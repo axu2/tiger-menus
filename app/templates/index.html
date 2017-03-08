@@ -1,14 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Hi, {{ user.nickname }}!</h1>
-    <div><p><b>Wucox</b></p></div>
-    {% for item in food1 %}
-    <p>{{ item }}</p>
-    {% endfor %}
 
-    <div><p><b>CJL</b></p></div>
-    {% for item in food2 %}
-    <p>{{ item }}</p>
-    {% endfor %}
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+  <h3>Butler/Wilson</h3>
+  {% for item in food1 %}
+  <p>{{ item }}</p>
+  {% endfor %}
+</div>
+<div class="col-sm-4">
+  <h3>CJL</h3>
+  {% for item in food2 %}
+  <p>{{ item }}</p>
+  {% endfor %}
+</div>
+<div class="col-sm-4">
+  <h3>Column 3</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+</div>
+</div>
+</div>
 
 {% endblock %}
