@@ -9,8 +9,8 @@ whitman = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locat
 
 halls = [wucox, cjl, whitman]
 
-lunchList  = [[]]*3
-dinnerList = [[]]*3
+lunchList = [[] for x in range(3)]
+dinnerList = [[] for x in range(3)]
 lunch = False
 dinner = False
 
