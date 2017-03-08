@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hi, {{ user.nickname }}!</h1>
+    <div><p><b>Wucox</b></p></div>
+    {% for item in food1 %}
+    <p>{{ item }}</p>
+    {% endfor %}
+
+    <div><p><b>CJL</b></p></div>
+    {% for item in food2 %}
+    <p>{{ item }}</p>
+    {% endfor %}
+
+{% endblock %}

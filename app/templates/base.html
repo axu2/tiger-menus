@@ -1,0 +1,15 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - Alex's Food App!</title>
+    {% else %}
+    <title>Welcome to Alex's Food App!</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>TigerFood: <a href="/lunch">Lunch</a></div>
+    <div>TigerFood: <a href="/dinner">Dinner</a></div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>
