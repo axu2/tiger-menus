@@ -8,7 +8,7 @@ grad    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locat
 cjl     = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=05'
 whitman = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=08'
 
-halls = [wucox, cjl, whitman]
+halls = [wucox, cjl, whitman, roma, forbes, grad]
 ######################################################
 from flask import render_template
 from app import app
@@ -23,18 +23,7 @@ def lunch():
 	dinner = False
 
 	for i in range(6):
-		if i == 0:
-			response = urllib2.urlopen(wucox)
-		if i == 1:
-			response = urllib2.urlopen(cjl)
-		if i == 2:
-			response = urllib2.urlopen(whitman)
-		if i == 3:
-			response = urllib2.urlopen(roma)
-		if i == 4:
-			response = urllib2.urlopen(forbes)
-		if i == 5:
-			response = urllib2.urlopen(grad)
+		response = urllib2.urlopen(halls[i])
 		html = response.read()
 		soup = BeautifulSoup(html, 'html.parser')
 
@@ -68,18 +57,7 @@ def dinner():
 	dinner = False
 
 	for i in range(6):
-		if i == 0:
-			response = urllib2.urlopen(wucox)
-		if i == 1:
-			response = urllib2.urlopen(cjl)
-		if i == 2:
-			response = urllib2.urlopen(whitman)
-		if i == 3:
-			response = urllib2.urlopen(roma)
-		if i == 4:
-			response = urllib2.urlopen(forbes)
-		if i == 5:
-			response = urllib2.urlopen(grad)
+		response = urllib2.urlopen(halls[i])
 		html = response.read()
 		soup = BeautifulSoup(html, 'html.parser')
 
