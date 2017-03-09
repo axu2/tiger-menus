@@ -4,23 +4,30 @@ from bs4 import BeautifulSoup
 roma    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=01'
 wucox   = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=02'
 forbes  = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=03'
+grad    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=04'
 cjl     = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=05'
 whitman = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=08'
 
 halls = [wucox, cjl, whitman]
 
-lunchList = [[] for x in range(3)]
-dinnerList = [[] for x in range(3)]
+lunchList = [[] for x in range(6)]
+dinnerList = [[] for x in range(6)]
 lunch = False
 dinner = False
 
-for i in range(3):
+for i in range(6):
 	if i == 0:
 		response = urllib2.urlopen(wucox)
 	if i == 1:
 		response = urllib2.urlopen(cjl)
 	if i == 2:
 		response = urllib2.urlopen(whitman)
+	if i == 3:
+		response = urllib2.urlopen(roma)
+	if i == 4:
+		response = urllib2.urlopen(forbes)
+	if i == 5:
+		response = urllib2.urlopen(grad)
 	html = response.read()
 	soup = BeautifulSoup(html, 'html.parser')
 
@@ -50,7 +57,10 @@ def lunch():
                            user=user,
                            wucox = lunchList[0],
                            cjl = lunchList[1],
-						   whitman = lunchList[2])
+						   whitman = lunchList[2],
+						   roma = lunchList[3],
+						   forbes = lunchList[4],
+						   grad = lunchList[5])
 
 @app.route('/dinner')
 def dinner():
@@ -60,4 +70,7 @@ def dinner():
                            user=user,
                            wucox = dinnerList[0],
                            cjl = dinnerList[1],
-						   whitman = dinnerList[2])
+						   whitman = dinnerList[2],
+						   roma = dinnerList[3],
+						   forbes = dinnerList[4],
+						   grad = lunchList[5])
