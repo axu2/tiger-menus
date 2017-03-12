@@ -41,7 +41,7 @@ def lunch():
 			if dinner:
 				dinnerList[i].append(string)
 	return render_template(
-							"index.html", 
+							"index.html",
 							wucox = lunchList[0],
 							cjl = lunchList[1],
 							whitman = lunchList[2],
