@@ -15,7 +15,7 @@ from app import app
 
 @app.route('/')
 def index():
-	return render_template("base.html")
+	return render_template("index.html")
 
 
 @app.route('/lunch')
@@ -45,7 +45,7 @@ def lunch():
 			if dinner:
 				dinnerList[i].append(string)
 	return render_template(
-							"index.html",
+							"meal.html",
 							wucox = lunchList[0],
 							cjl = lunchList[1],
 							whitman = lunchList[2],
@@ -78,7 +78,7 @@ def dinner():
 				lunchList[i].append(string)
 			if dinner:
 				dinnerList[i].append(string)
-	return render_template(	"index.html",
+	return render_template(	"meal.html",
 							wucox = dinnerList[0],
 							cjl = dinnerList[1],
 							whitman = dinnerList[2],
