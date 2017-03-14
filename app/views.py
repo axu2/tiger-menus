@@ -84,5 +84,5 @@ def dinner():
 							whitman = dinnerList[2],
 							roma = dinnerList[3],
 							forbes = dinnerList[4],
-							grad = lunchList[5]
+							grad = dinnerList[5]
 							)
