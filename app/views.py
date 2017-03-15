@@ -13,6 +13,30 @@ halls = [wucox, cjl, whitman, roma, forbes, grad]
 from flask import render_template
 from app import app
 
+lunchList = [[] for x in range(6)]
+dinnerList = [[] for x in range(6)]
+lunch = False
+dinner = False
+
+for i in range(6):
+	response = urllib2.urlopen(halls[i])
+	html = response.read()
+	soup = BeautifulSoup(html, 'html.parser')
+
+	#repr?
+	for string in soup.stripped_strings:
+		if string == 'Lunch':
+			lunch  = True
+		if string == 'Dinner':
+			lunch  = False
+			dinner = True
+		if string == 'Powered by FoodPro':
+			dinner = False
+		if lunch:
+			lunchList[i].append(string)
+		if dinner:
+			dinnerList[i].append(string)
+
 @app.route('/')
 def index():
 	return render_template("index.html")
@@ -20,32 +44,7 @@ def index():
 
 @app.route('/lunch')
 def lunch():
-
-	lunchList = [[] for x in range(6)]
-	dinnerList = [[] for x in range(6)]
-	lunch = False
-	dinner = False
-
-	for i in range(6):
-		response = urllib2.urlopen(halls[i])
-		html = response.read()
-		soup = BeautifulSoup(html, 'html.parser')
-
-		#repr?
-		for string in soup.stripped_strings:
-			if string == 'Lunch':
-				lunch  = True
-			if string == 'Dinner':
-				lunch  = False
-				dinner = True
-			if string == 'Powered by FoodPro':
-				dinner = False
-			if lunch:
-				lunchList[i].append(string)
-			if dinner:
-				dinnerList[i].append(string)
-	return render_template(
-							"meal.html",
+	return render_template(	"meal.html",
 							wucox = lunchList[0],
 							cjl = lunchList[1],
 							whitman = lunchList[2],
@@ -55,34 +54,10 @@ def lunch():
 @app.route('/dinner')
 def dinner():
 
-	lunchList = [[] for x in range(6)]
-	dinnerList = [[] for x in range(6)]
-	lunch = False
-	dinner = False
-
-	for i in range(6):
-		response = urllib2.urlopen(halls[i])
-		html = response.read()
-		soup = BeautifulSoup(html, 'html.parser')
-
-		#repr?
-		for string in soup.stripped_strings:
-			if string == 'Lunch':
-				lunch  = True
-			if string == 'Dinner':
-				lunch  = False
-				dinner = True
-			if string == 'Powered by FoodPro':
-				dinner = False
-			if lunch:
-				lunchList[i].append(string)
-			if dinner:
-				dinnerList[i].append(string)
 	return render_template(	"meal.html",
 							wucox = dinnerList[0],
 							cjl = dinnerList[1],
 							whitman = dinnerList[2],
 							roma = dinnerList[3],
 							forbes = dinnerList[4],
-							grad = dinnerList[5]
-							)
+							grad = dinnerList[5])
