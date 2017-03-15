@@ -1,4 +1,4 @@
-2# tiger_menus
+# tiger_menus
 Scrapes all 6 of Princeton dining hall's today menus and displays information on a single page
 
 Hosted here:
