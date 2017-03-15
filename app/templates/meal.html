@@ -6,37 +6,61 @@
 <div class="col-sm-2">
   <h3>Butler/Wilson</h3>
   {% for item in wucox %}
-  <p>{{ item }}</p>
+    {% if item[0] == '-' %}
+      <b><p>{{ item }}</p></b>
+    {% else %}
+        <p>{{ item }}</p>
+    {% endif %}
   {% endfor %}
 </div>
 <div class="col-sm-2">
   <h3>CJL</h3>
   {% for item in cjl %}
-  <p>{{ item }}</p>
+    {% if item[0] == '-' %}
+      <b><p>{{ item }}</p></b>
+    {% else %}
+        <p>{{ item }}</p>
+    {% endif %}
   {% endfor %}
 </div>
 <div class="col-sm-2">
   <h3>Whitman</h3>
   {% for item in whitman %}
-  <p>{{ item }}</p>
+    {% if item[0] == '-' %}
+      <b><p>{{ item }}</p></b>
+    {% else %}
+        <p>{{ item }}</p>
+    {% endif %}
   {% endfor %}
 </div>
 <div class="col-sm-2">
   <h3>Rocky/Mathey</h3>
   {% for item in roma %}
-  <p>{{ item }}</p>
+    {% if item[0] == '-' %}
+      <b><p>{{ item }}</p></b>
+    {% else %}
+        <p>{{ item }}</p>
+    {% endif %}
   {% endfor %}
 </div>
 <div class="col-sm-2">
   <h3>Forbes</h3>
   {% for item in forbes %}
-  <p>{{ item }}</p>
+    {% if item[0] == '-' %}
+      <b><p>{{ item }}</p></b>
+    {% else %}
+        <p>{{ item }}</p>
+    {% endif %}
   {% endfor %}
 </div>
 <div class="col-sm-2">
   <h3>Grad College</h3>
   {% for item in grad %}
-  <p>{{ item }}</p>
+    {% if item[0] == '-' %}
+      <b><p>{{ item }}</p></b>
+    {% else %}
+        <p>{{ item }}</p>
+    {% endif %}
   {% endfor %}
 </div>
 </div>
