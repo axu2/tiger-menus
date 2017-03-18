@@ -1,7 +1,9 @@
 import urllib2
 from bs4 import BeautifulSoup
 from flask import render_template
+import datetime
 from app import app
+
 
 roma    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=01'
 wucox   = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=02'
@@ -13,6 +15,7 @@ whitman = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locat
 halls = [wucox, cjl, whitman, roma, forbes, grad]
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
+lastDate = datetime.datetime.today().weekday()
 
 def scrape():
 	global lunchList
@@ -41,6 +44,8 @@ def scrape():
 			if dinner:
 				dinnerList[i].append(string)
 
+scrape()
+
 @app.route('/')
 def index():
 	return render_template("index.html")
@@ -48,7 +53,11 @@ def index():
 
 @app.route('/lunch')
 def lunch():
-	scrape()
+	global lastDate
+	currentDay = datetime.datetime.today().weekday()
+	if currentDay != lastDate:
+		scrape()
+		lastDate = currentDay
 	return render_template( "meal.html",
 							wucox = lunchList[0],
 							cjl = lunchList[1],
@@ -59,7 +68,11 @@ def lunch():
 
 @app.route('/dinner')
 def dinner():
-	scrape()
+	global lastDate
+	currentDay = datetime.datetime.today().weekday()
+	if currentDay != lastDate:
+		scrape()
+		lastDate = currentDay
 	return render_template(	"meal.html",
 							wucox = dinnerList[0],
 							cjl = dinnerList[1],
