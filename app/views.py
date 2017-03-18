@@ -1,5 +1,9 @@
 import urllib2
 from bs4 import BeautifulSoup
+from flask import render_template
+import datetime
+from app import app
+
 
 roma    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=01'
 wucox   = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=02'
@@ -9,33 +13,38 @@ cjl     = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locat
 whitman = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=08'
 
 halls = [wucox, cjl, whitman, roma, forbes, grad]
-######################################################
-from flask import render_template
-from app import app
-
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
-lunch = False
-dinner = False
+lastDate = datetime.datetime.today().weekday()
 
-for i in range(6):
-	response = urllib2.urlopen(halls[i])
-	html = response.read()
-	soup = BeautifulSoup(html, 'html.parser')
+def scrape():
+	global lunchList
+	global dinnerList
+	lunchList = [[] for x in range(6)]
+	dinnerList = [[] for x in range(6)]
+	lunch = False
+	dinner = False
 
-	#repr?
-	for string in soup.stripped_strings:
-		if string == 'Lunch':
-			lunch  = True
-		if string == 'Dinner':
-			lunch  = False
-			dinner = True
-		if string == 'Powered by FoodPro':
-			dinner = False
-		if lunch:
-			lunchList[i].append(string)
-		if dinner:
-			dinnerList[i].append(string)
+	for i in range(6):
+		response = urllib2.urlopen(halls[i])
+		html = response.read()
+		soup = BeautifulSoup(html, 'html.parser')
+
+		#repr?
+		for string in soup.stripped_strings:
+			if string == 'Lunch':
+				lunch  = True
+			if string == 'Dinner':
+				lunch  = False
+				dinner = True
+			if string == 'Powered by FoodPro':
+				dinner = False
+			if lunch:
+				lunchList[i].append(string)
+			if dinner:
+				dinnerList[i].append(string)
+
+scrape()
 
 @app.route('/')
 def index():
@@ -44,16 +53,26 @@ def index():
 
 @app.route('/lunch')
 def lunch():
-	return render_template(	"meal.html",
+	global lastDate
+	currentDay = datetime.datetime.today().weekday()
+	if currentDay != lastDate:
+		scrape()
+		lastDate = currentDay
+	return render_template( "meal.html",
 							wucox = lunchList[0],
 							cjl = lunchList[1],
 							whitman = lunchList[2],
 							roma = lunchList[3],
 							forbes = lunchList[4],
 							grad = lunchList[5])
+
 @app.route('/dinner')
 def dinner():
-
+	global lastDate
+	currentDay = datetime.datetime.today().weekday()
+	if currentDay != lastDate:
+		scrape()
+		lastDate = currentDay
 	return render_template(	"meal.html",
 							wucox = dinnerList[0],
 							cjl = dinnerList[1],
