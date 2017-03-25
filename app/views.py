@@ -4,7 +4,6 @@ from flask import render_template
 import datetime
 from app import app
 
-
 roma    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=01'
 wucox   = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=02'
 forbes  = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=03'
@@ -12,11 +11,13 @@ grad    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locat
 cjl     = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=05'
 whitman = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=08'
 
+#database
 halls = [wucox, cjl, whitman, roma, forbes, grad]
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
 lastDate = datetime.datetime.today().weekday()
 
+#update database
 def scrape():
 	global lunchList
 	global dinnerList
@@ -30,7 +31,6 @@ def scrape():
 		html = response.read()
 		soup = BeautifulSoup(html, 'html.parser')
 
-		#repr?
 		for string in soup.stripped_strings:
 			if string == 'Lunch':
 				lunch  = True
@@ -44,20 +44,22 @@ def scrape():
 			if dinner:
 				dinnerList[i].append(string)
 
+#scrape when server starts
 scrape()
 
-@app.route('/')
-def index():
-	return render_template("index.html")
-
-
-@app.route('/lunch')
-def lunch():
+#check if menus have changed
+def checkForUpdate():
 	global lastDate
 	currentDay = datetime.datetime.today().weekday()
 	if currentDay != lastDate:
 		scrape()
 		lastDate = currentDay
+
+
+@app.route('/lunch')
+def lunch():
+	checkForUpdate()
+
 	return render_template( "meal.html",
 							wucox = lunchList[0],
 							cjl = lunchList[1],
@@ -66,13 +68,11 @@ def lunch():
 							forbes = lunchList[4],
 							grad = lunchList[5])
 
+
 @app.route('/dinner')
 def dinner():
-	global lastDate
-	currentDay = datetime.datetime.today().weekday()
-	if currentDay != lastDate:
-		scrape()
-		lastDate = currentDay
+	checkForUpdate()
+
 	return render_template(	"meal.html",
 							wucox = dinnerList[0],
 							cjl = dinnerList[1],
@@ -80,3 +80,14 @@ def dinner():
 							roma = dinnerList[3],
 							forbes = dinnerList[4],
 							grad = dinnerList[5])
+
+#homepage will default
+@app.route('/')
+def index():
+	now = datetime.datetime.now()
+	if now.hour < 14:
+		return lunch()
+	else:
+		return dinner()
+
+
