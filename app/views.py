@@ -46,6 +46,7 @@ def update():
 	grad    = prefix + 'locationNum=04'
 	cjl     = prefix + 'locationNum=05'
 	whitman = prefix + 'locationNum=08'
+	
 	halls = [wucox, cjl, whitman, roma, forbes, grad]
 
 	#update today
@@ -56,16 +57,19 @@ def update():
 	scrape(halls, lunchList, dinnerList)
 
 	#update tomorrow
-	bw = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-
+	roma = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=01'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	wucox = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	forbes = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=03'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	grad = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=04'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	cjl = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=05'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	whitman = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=08'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	halls = [wucox, cjl, whitman, roma, forbes, grad]
 
 	global lunchTomorrow
 	global dinnerTomorrow
 	lunchTomorrow = [[] for x in range(6)]
 	dinnerTomorrow = [[] for x in range(6)]
-	bw = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-
-	halls = [bw, cjl, whitman, roma, forbes, grad]
+	
 	scrape(halls, lunchTomorrow, dinnerTomorrow)
 
 
