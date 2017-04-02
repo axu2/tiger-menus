@@ -94,7 +94,7 @@ def checkForUpdate():
 		update()
 
 ###########################################################################
-#scrape when server starts
+#populate database when server starts
 update()
 ###########################################################################
 
