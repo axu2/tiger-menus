@@ -9,7 +9,10 @@ lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
 lastDate = datetime.datetime.today().weekday()
 
-tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
+future = []
+for i in range(6):
+	future.append(datetime.datetime.now() + datetime.timedelta(days=i+1))
+
 lunchTomorrow  = [[] for x in range(6)]
 dinnerTomorrow = [[] for x in range(6)]
 
@@ -60,15 +63,15 @@ def update():
 	dinnerList = [[] for x in range(6)]
 	scrape(halls, lunchList, dinnerList)
 
-	#update tomorrow
-	prefixTomorrow = 'myaction=read&dtdate={}%2F{}%2F{}'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	#update future
+	prefixFuture = 'myaction=read&dtdate={}%2F{}%2F{}'.format(future[0].month, future[0].day, future[0].year)
 
-	roma    = prefix + prefixTomorrow + '&locationNum=01'
-	wucox   = prefix + prefixTomorrow + '&locationNum=02'
-	forbes  = prefix + prefixTomorrow + '&locationNum=03'
-	grad    = prefix + prefixTomorrow + '&locationNum=04'
-	cjl     = prefix + prefixTomorrow + '&locationNum=05'
-	whitman = prefix + prefixTomorrow + '&locationNum=08'
+	roma    = prefix + prefixFuture + '&locationNum=01'
+	wucox   = prefix + prefixFuture + '&locationNum=02'
+	forbes  = prefix + prefixFuture + '&locationNum=03'
+	grad    = prefix + prefixFuture + '&locationNum=04'
+	cjl     = prefix + prefixFuture + '&locationNum=05'
+	whitman = prefix + prefixFuture + '&locationNum=08'
 	
 	halls = [wucox, cjl, whitman, roma, forbes, grad]
 
@@ -81,11 +84,12 @@ def update():
 #check if menus have changed
 def checkForUpdate():
 	global lastDate
-	global tomorrow
+	global future
 	currentDay = datetime.datetime.today().weekday()
 	if currentDay != lastDate:
 		lastDate = currentDay
-		tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
+		for i in range(6):
+			future[i] = datetime.datetime.now() + datetime.timedelta(days=i+1)
 		update()
 
 ###########################################################################
@@ -111,7 +115,7 @@ def lunch2():
 	checkForUpdate()
 
 	return render_template( "meal.html",
-							day = days[tomorrow.isoweekday()-1],
+							day = days[future[0].isoweekday()-1],
 							wucox = lunchTomorrow[0],
 							cjl = lunchTomorrow[1],
 							whitman = lunchTomorrow[2],
@@ -138,7 +142,7 @@ def dinner2():
 	checkForUpdate()
 
 	return render_template( "meal.html",
-							day = days[tomorrow.isoweekday()-1],
+							day = days[future[0].isoweekday()-1],
 							wucox = dinnerTomorrow[0],
 							cjl = dinnerTomorrow[1],
 							whitman = dinnerTomorrow[2],
