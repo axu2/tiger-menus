@@ -103,40 +103,91 @@ def lunch():
 	checkForUpdate()
 
 	return render_template( "meal.html",
-							day = days[lastDate],
-							wucox = lunchList[0],
-							cjl = lunchList[1],
+							day     = days[lastDate],
+							wucox   = lunchList[0],
+							cjl     = lunchList[1],
 							whitman = lunchList[2],
-							roma = lunchList[3],
-							forbes = lunchList[4],
-							grad = lunchList[5])
+							roma    = lunchList[3],
+							forbes  = lunchList[4],
+							grad    = lunchList[5])
 
 @app.route('/lunch2')
 def lunch2():
 	checkForUpdate()
 
 	return render_template( "meal.html",
-							day = days[future[0].isoweekday()-1],
-							wucox = lunchFuture[0][0],
-							cjl = lunchFuture[0][1],
+							day     = days[future[0].isoweekday()-1],
+							wucox   = lunchFuture[0][0],
+							cjl     = lunchFuture[0][1],
 							whitman = lunchFuture[0][2],
-							roma = lunchFuture[0][3],
-							forbes = lunchFuture[0][4],
-							grad = lunchFuture[0][5])
+							roma    = lunchFuture[0][3],
+							forbes  = lunchFuture[0][4],
+							grad    = lunchFuture[0][5])
 
 @app.route('/lunch3')
 def lunch3():
 	checkForUpdate()
 
 	return render_template( "meal.html",
-							day = days[future[1].isoweekday()-1],
-							wucox = lunchFuture[1][0],
-							cjl = lunchFuture[1][1],
+							day     = days[future[1].isoweekday()-1],
+							wucox   = lunchFuture[1][0],
+							cjl     = lunchFuture[1][1],
 							whitman = lunchFuture[1][2],
-							roma = lunchFuture[1][3],
-							forbes = lunchFuture[1][4],
-							grad = lunchFuture[1][5])
+							roma    = lunchFuture[1][3],
+							forbes  = lunchFuture[1][4],
+							grad    = lunchFuture[1][5])
 
+@app.route('/lunch4')
+def lunch4():
+	checkForUpdate()
+
+	return render_template( "meal.html",
+							day     = days[future[2].isoweekday()-1],
+							wucox   = lunchFuture[2][0],
+							cjl     = lunchFuture[2][1],
+							whitman = lunchFuture[2][2],
+							roma    = lunchFuture[2][3],
+							forbes  = lunchFuture[2][4],
+							grad    = lunchFuture[2][5])
+
+@app.route('/lunch5')
+def lunch5():
+	checkForUpdate()
+
+	return render_template( "meal.html",
+							day     = days[future[3].isoweekday()-1],
+							wucox   = lunchFuture[3][0],
+							cjl     = lunchFuture[3][1],
+							whitman = lunchFuture[3][2],
+							roma    = lunchFuture[3][3],
+							forbes  = lunchFuture[3][4],
+							grad    = lunchFuture[3][5])
+
+@app.route('/lunch6')
+def lunch6():
+	checkForUpdate()
+
+	return render_template( "meal.html",
+							day     = days[future[4].isoweekday()-1],
+							wucox   = lunchFuture[4][0],
+							cjl     = lunchFuture[4][1],
+							whitman = lunchFuture[4][2],
+							roma    = lunchFuture[4][3],
+							forbes  = lunchFuture[4][4],
+							grad    = lunchFuture[4][5])
+
+@app.route('/lunch7')
+def lunch7():
+	checkForUpdate()
+
+	return render_template( "meal.html",
+							day     = days[future[5].isoweekday()-1],
+							wucox   = lunchFuture[5][0],
+							cjl     = lunchFuture[5][1],
+							whitman = lunchFuture[5][2],
+							roma    = lunchFuture[5][3],
+							forbes  = lunchFuture[5][4],
+							grad    = lunchFuture[5][5])
 
 @app.route('/dinner')
 def dinner():
