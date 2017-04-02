@@ -140,7 +140,9 @@ def index():
 	now = datetime.datetime.now()
 	if now.hour < 14:
 		return lunch()
-	else:
+	elif now.hour < 20:
 		return dinner()
+	else: 
+		return lunch2()
 
 
