@@ -4,7 +4,7 @@
   {% if title %}
   <title>{{ title }} - Tiger Food</title>
   {% else %}
-  <title>TigerMenus</title> 
+  <title>TigerMenu</title> 
   {% endif %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,20 +18,22 @@
 <body>
 
 <div class="jumbotron text-center">
-  <h1>Tiger Menus</h1>
-  <p id="date"></p>
+  <h1>Tiger Menu</h1>
+  <p id="day">{{ day }}</p>
   <p><a href="/lunch">Lunch</a></p>
+  <p><a href="/lunch2">Lunch2</a></p>
   <p><a href="/dinner">Dinner</a></p>
+  <p><a href="/dinner2">Dinner2</a></p>
 </div>
 
     {% block content %}{% endblock %}
-        
+    <!--  
     <script>
       var d = new Date();
       var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
       document.getElementById("date").innerHTML = day[d.getDay()]; 
     </script> 
-
+    -->
 
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
