@@ -81,6 +81,7 @@ def update():
 #check if menus have changed
 def checkForUpdate():
 	global lastDate
+	global tomorrow
 	currentDay = datetime.datetime.today().weekday()
 	if currentDay != lastDate:
 		lastDate = currentDay
