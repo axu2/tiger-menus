@@ -15,6 +15,8 @@ dinnerTomorrow = [[] for x in range(6)]
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
+#######################################################################################
+
 #scrape campus dining
 def scrape(halls, lunchList, dinnerList):
 	lunch = False
@@ -76,9 +78,6 @@ def update():
 	dinnerTomorrow = [[] for x in range(6)]
 	scrape(halls, lunchTomorrow, dinnerTomorrow)
 
-#scrape when server starts
-update()
-
 #check if menus have changed
 def checkForUpdate():
 	global lastDate
@@ -88,6 +87,10 @@ def checkForUpdate():
 		tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
 		update()
 
+###########################################################################
+#scrape when server starts
+update()
+###########################################################################
 
 @app.route('/lunch')
 def lunch():
