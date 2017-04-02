@@ -13,6 +13,8 @@ tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
 lunchTomorrow  = [[] for x in range(6)]
 dinnerTomorrow = [[] for x in range(6)]
 
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 #scrape campus dining
 def scrape(halls, lunchList, dinnerList):
 	lunch = False
@@ -92,6 +94,7 @@ def lunch():
 	checkForUpdate()
 
 	return render_template( "meal.html",
+							day = days[lastDate],
 							wucox = lunchList[0],
 							cjl = lunchList[1],
 							whitman = lunchList[2],
@@ -104,6 +107,7 @@ def lunch2():
 	checkForUpdate()
 
 	return render_template( "meal.html",
+							day = days[tomorrow.isoweekday()-1],
 							wucox = lunchTomorrow[0],
 							cjl = lunchTomorrow[1],
 							whitman = lunchTomorrow[2],
@@ -117,6 +121,7 @@ def dinner():
 	checkForUpdate()
 
 	return render_template(	"meal.html",
+							day = days[lastDate],
 							wucox = dinnerList[0],
 							cjl = dinnerList[1],
 							whitman = dinnerList[2],
@@ -129,6 +134,7 @@ def dinner2():
 	checkForUpdate()
 
 	return render_template( "meal.html",
+							day = days[tomorrow.isoweekday()-1],
 							wucox = dinnerTomorrow[0],
 							cjl = dinnerTomorrow[1],
 							whitman = dinnerTomorrow[2],
