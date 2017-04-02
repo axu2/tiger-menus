@@ -57,12 +57,14 @@ def update():
 	scrape(halls, lunchList, dinnerList)
 
 	#update tomorrow
-	roma    = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=01'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	wucox   = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	forbes  = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=03'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	grad    = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=04'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	cjl     = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=05'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	whitman = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=08'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	prefixTomorrow = 'myaction=read&dtdate={}%2F{}%2F{}'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+
+	roma    = prefix + prefixTomorrow + '&locationNum=01'
+	wucox   = prefix + prefixTomorrow + '&locationNum=02'
+	forbes  = prefix + prefixTomorrow + '&locationNum=03'
+	grad    = prefix + prefixTomorrow + '&locationNum=04'
+	cjl     = prefix + prefixTomorrow + '&locationNum=05'
+	whitman = prefix + prefixTomorrow + '&locationNum=08'
 	
 	halls = [wucox, cjl, whitman, roma, forbes, grad]
 
