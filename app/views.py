@@ -4,7 +4,7 @@ from flask import render_template
 import datetime
 from app import app
 
-#database
+#database (lol)
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
 lastDate = datetime.datetime.today().weekday()
@@ -57,21 +57,20 @@ def update():
 	scrape(halls, lunchList, dinnerList)
 
 	#update tomorrow
-	roma = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=01'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	wucox = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	forbes = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=03'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	grad = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=04'.format(tomorrow.month, tomorrow.day, tomorrow.year)
-	cjl = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=05'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	roma    = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=01'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	wucox   = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	forbes  = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=03'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	grad    = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=04'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	cjl     = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=05'.format(tomorrow.month, tomorrow.day, tomorrow.year)
 	whitman = prefix + 'myaction=read&dtdate={}%2F{}%2F{}&locationNum=08'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+	
 	halls = [wucox, cjl, whitman, roma, forbes, grad]
 
 	global lunchTomorrow
 	global dinnerTomorrow
 	lunchTomorrow = [[] for x in range(6)]
 	dinnerTomorrow = [[] for x in range(6)]
-	
 	scrape(halls, lunchTomorrow, dinnerTomorrow)
-
 
 #scrape when server starts
 update()
@@ -122,6 +121,18 @@ def dinner():
 							roma = dinnerList[3],
 							forbes = dinnerList[4],
 							grad = dinnerList[5])
+
+@app.route('/dinner2')
+def dinner2():
+	checkForUpdate()
+
+	return render_template( "meal.html",
+							wucox = dinnerTomorrow[0],
+							cjl = dinnerTomorrow[1],
+							whitman = dinnerTomorrow[2],
+							roma = dinnerTomorrow[3],
+							forbes = dinnerTomorrow[4],
+							grad = dinnerTomorrow[5])
 
 #homepage will default
 @app.route('/')
