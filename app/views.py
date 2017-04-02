@@ -4,15 +4,7 @@ from flask import render_template
 import datetime
 from app import app
 
-roma    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=01'
-wucox   = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=02'
-forbes  = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=03'
-grad    = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=04'
-cjl     = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=05'
-whitman = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?locationNum=08'
-
 #database
-halls = [wucox, cjl, whitman, roma, forbes, grad]
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
 lastDate = datetime.datetime.today().weekday()
@@ -21,19 +13,12 @@ tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
 lunchTomorrow  = [[] for x in range(6)]
 dinnerTomorrow = [[] for x in range(6)]
 
-
-
-#update database
-def update():
-	#update today
-	global lunchList
-	global dinnerList
-	lunchList = [[] for x in range(6)]
-	dinnerList = [[] for x in range(6)]
+#scrape campus dining
+def scrape(halls, lunchList, dinnerList):
 	lunch = False
 	dinner = False
 
-	for i in range(6):
+	for i in range(len(halls)):
 		response = urllib2.urlopen(halls[i])
 		html = response.read()
 		soup = BeautifulSoup(html, 'html.parser')
@@ -51,27 +36,38 @@ def update():
 			if dinner:
 				dinnerList[i].append(string)
 
+#update database
+def update():
+	prefix = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
+
+	roma    = prefix + 'locationNum=01'
+	wucox   = prefix + 'locationNum=02'
+	forbes  = prefix + 'locationNum=03'
+	grad    = prefix + 'locationNum=04'
+	cjl     = prefix + 'locationNum=05'
+	whitman = prefix + 'locationNum=08'
+	halls = [wucox, cjl, whitman, roma, forbes, grad]
+
+	#update today
+	global lunchList
+	global dinnerList
+	lunchList = [[] for x in range(6)]
+	dinnerList = [[] for x in range(6)]
+	scrape(halls, lunchList, dinnerList)
+
 	#update tomorrow
-	global lunchTomorrow
-	global dinnerTomorrow
 	bw = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
 
-	response = urllib2.urlopen(bw)
-	html = response.read()
-	soup = BeautifulSoup(html, 'html.parser')
 
-	for string in soup.stripped_strings:
-		if string == 'Lunch':
-			lunch  = True
-		if string == 'Dinner':
-			lunch  = False
-			dinner = True
-		if string == 'Powered by FoodPro':
-			dinner = False
-		if lunch:
-			lunchTomorrow[i].append(string)
-		if dinner:
-			dinnerTomorrow[i].append(string)
+	global lunchTomorrow
+	global dinnerTomorrow
+	lunchTomorrow = [[] for x in range(6)]
+	dinnerTomorrow = [[] for x in range(6)]
+	bw = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+
+	halls = [bw, cjl, whitman, roma, forbes, grad]
+	scrape(halls, lunchTomorrow, dinnerTomorrow)
+
 
 #scrape when server starts
 update()
