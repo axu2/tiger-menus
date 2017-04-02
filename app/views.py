@@ -17,8 +17,15 @@ lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
 lastDate = datetime.datetime.today().weekday()
 
+tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
+lunchTomorrow  = [[] for x in range(6)]
+dinnerTomorrow = [[] for x in range(6)]
+
+
+
 #update database
-def scrape():
+def update():
+	#update today
 	global lunchList
 	global dinnerList
 	lunchList = [[] for x in range(6)]
@@ -44,16 +51,39 @@ def scrape():
 			if dinner:
 				dinnerList[i].append(string)
 
+	#update tomorrow
+	global lunchTomorrow
+	global dinnerTomorrow
+	bw = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?myaction=read&dtdate={}%2F{}%2F{}&locationNum=02'.format(tomorrow.month, tomorrow.day, tomorrow.year)
+
+	response = urllib2.urlopen(bw)
+	html = response.read()
+	soup = BeautifulSoup(html, 'html.parser')
+
+	for string in soup.stripped_strings:
+		if string == 'Lunch':
+			lunch  = True
+		if string == 'Dinner':
+			lunch  = False
+			dinner = True
+		if string == 'Powered by FoodPro':
+			dinner = False
+		if lunch:
+			lunchTomorrow[i].append(string)
+		if dinner:
+			dinnerTomorrow[i].append(string)
+
 #scrape when server starts
-scrape()
+update()
 
 #check if menus have changed
 def checkForUpdate():
 	global lastDate
 	currentDay = datetime.datetime.today().weekday()
 	if currentDay != lastDate:
-		scrape()
 		lastDate = currentDay
+		tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
+		update()
 
 
 @app.route('/lunch')
@@ -67,6 +97,18 @@ def lunch():
 							roma = lunchList[3],
 							forbes = lunchList[4],
 							grad = lunchList[5])
+
+@app.route('/lunch2')
+def lunch2():
+	checkForUpdate()
+
+	return render_template( "meal.html",
+							wucox = lunchTomorrow[0],
+							cjl = lunchTomorrow[1],
+							whitman = lunchTomorrow[2],
+							roma = lunchTomorrow[3],
+							forbes = lunchTomorrow[4],
+							grad = lunchTomorrow[5])
 
 
 @app.route('/dinner')
