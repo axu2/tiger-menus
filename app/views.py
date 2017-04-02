@@ -124,6 +124,19 @@ def lunch2():
 							forbes = lunchFuture[0][4],
 							grad = lunchFuture[0][5])
 
+@app.route('/lunch3')
+def lunch3():
+	checkForUpdate()
+
+	return render_template( "meal.html",
+							day = days[future[1].isoweekday()-1],
+							wucox = lunchFuture[1][0],
+							cjl = lunchFuture[1][1],
+							whitman = lunchFuture[1][2],
+							roma = lunchFuture[1][3],
+							forbes = lunchFuture[1][4],
+							grad = lunchFuture[1][5])
+
 
 @app.route('/dinner')
 def dinner():
