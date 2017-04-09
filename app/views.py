@@ -105,6 +105,7 @@ def lunch():
 
 	return render_template( "meal.html",
 							day     = days[lastDate],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -124,6 +125,7 @@ def lunch2():
 
 	return render_template( "meal.html",
 							day     = days[future[0].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -143,6 +145,7 @@ def lunch3():
 
 	return render_template( "meal.html",
 							day     = days[future[1].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -162,6 +165,7 @@ def lunch4():
 
 	return render_template( "meal.html",
 							day     = days[future[2].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -181,6 +185,7 @@ def lunch5():
 
 	return render_template( "meal.html",
 							day     = days[future[3].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -200,6 +205,7 @@ def lunch6():
 
 	return render_template( "meal.html",
 							day     = days[future[4].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -219,6 +225,7 @@ def lunch7():
 
 	return render_template( "meal.html",
 							day     = days[future[5].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -238,6 +245,7 @@ def dinner():
 
 	return render_template(	"meal.html",
 							day     = days[lastDate],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -257,6 +265,7 @@ def dinner2():
 
 	return render_template( "meal.html",
 							day     = days[future[0].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -276,6 +285,7 @@ def dinner3():
 
 	return render_template( "meal.html",
 							day     = days[future[1].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -295,6 +305,7 @@ def dinner4():
 
 	return render_template( "meal.html",
 							day     = days[future[2].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -314,6 +325,7 @@ def dinner5():
 
 	return render_template( "meal.html",
 							day     = days[future[3].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -333,6 +345,7 @@ def dinner6():
 
 	return render_template( "meal.html",
 							day     = days[future[4].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
@@ -352,6 +365,7 @@ def dinner7():
 
 	return render_template( "meal.html",
 							day     = days[future[5].isoweekday()-1],
+							zero    = minidays[lastDate+0],
 							one     = minidays[lastDate+1],
 							two     = minidays[lastDate+2],
 							three   = minidays[lastDate+3],
