@@ -8,7 +8,7 @@ from app import app
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] 
 
-#today's menyus
+#today's menus
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
 
@@ -318,11 +318,11 @@ def dinner6():
 def index():
 	now = datetime.datetime.now()
 	if now.hour < 14:
-		return lunch()
+		return lunch0()
 	#else:
 	elif now.hour < 20:
-		return dinner()
+		return dinner0()
 	else: 
-		return lunch2()
+		return lunch1()
 
 

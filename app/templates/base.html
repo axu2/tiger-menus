@@ -6,14 +6,18 @@
   {% else %}
   <title>TigerMenus</title> 
   {% endif %}
-  <meta name="description" content="What's on the menu today at every Princeton dining hall? Visit Tiger Menus to find out!">
+
+  <meta name="description" content="What's on the menu today at every Princeton dining hall? Visit TigerMenus to find out!">
   <meta name="keywords" content="Princeton, tiger, menus, menu, TigerMenus, TigerMenu, Tiger Menus, Tiger Menu" />
-  <meta property="og:title" content="Tiger Menus"/>
+
+  <meta property="og:title" content="TigerMenus"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://tigermenus.herokuapp.com/"/>
   <meta property="og:image" content="https://tigermenus.herokuapp.com/static/screenshot.png"/>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -28,11 +32,15 @@
   <div class="jumbotron text-center">
     <h1>Tiger Menus</h1>
     <p id="day">{{ day }}</p>
-    <p><a href="/lunch0">Lunch:</a> <a href="/lunch1">{{ nextWeek[1] }}</a> <a href="/lunch2">{{nextWeek[2]}}</a> <a href="/lunch3">{{nextWeek[3]}}</a> <a href="/lunch4">{{nextWeek[4]}}</a> <a href="/lunch5">{{nextWeek[5]}}</a> <a href="/lunch6">{{nextWeek[6]}}</a> </p>
-    <p><a href="/dinner0">Dinner:</a> <a href="/dinner1">{{ nextWeek[1] }}</a> <a href="/dinner2">{{nextWeek[2]}}</a> <a href="/dinner3">{{nextWeek[3]}}</a> <a href="/dinner4">{{nextWeek[4]}}</a> <a href="/dinner5">{{nextWeek[5]}}</a> <a href="/dinner6">{{nextWeek[6]}}</a> </p>
+    <p>Lunch:
+      {% for day in nextWeek %}<a href="/lunch{{loop.index0}}">{{ nextWeek[loop.index0] }}</a> {% endfor %}
+    </p>
+    <p>Dinner:
+      {% for day in nextWeek %}<a href="/dinner{{loop.index0}}">{{ nextWeek[loop.index0] }}</a> {% endfor %}
+    </p>
   </div>
 
-    {% block content %}{% endblock %}
+  {% block content %}{% endblock %}
 
   <br>
 
@@ -43,7 +51,7 @@
       <p>On Android, click on the "three vertical dots" button on the top right of Chrome</p> 
       <p>Click "Add to Home Screen" and see what happens. :P</p>
       <p>Icon Designed by Alice Wang '19</p>
-      <p>Naming credit to Ji-Sung Kim '17 and Sherry Bai '19</p>
+      <p>Naming credit to Ji-Sung Kim '18 and Sherry Bai '19</p>
       <p>Website created by Alex Xu '19</p>
     </div>
   </div>
