@@ -25,14 +25,28 @@
 </head>
 <body>
 
-<div class="jumbotron text-center">
-  <h1>Tiger Menus</h1>
-  <p id="day">{{ day }}</p>
-  <p><a href="/lunch0">Lunch:</a> <a href="/lunch1">{{ nextWeek[1] }}</a> <a href="/lunch2">{{nextWeek[2]}}</a> <a href="/lunch3">{{nextWeek[3]}}</a> <a href="/lunch4">{{nextWeek[4]}}</a> <a href="/lunch5">{{nextWeek[5]}}</a> <a href="/lunch6">{{nextWeek[6]}}</a> </p>
-  <p><a href="/dinner0">Dinner:</a> <a href="/dinner1">{{ nextWeek[1] }}</a> <a href="/dinner2">{{nextWeek[2]}}</a> <a href="/dinner3">{{nextWeek[3]}}</a> <a href="/dinner4">{{nextWeek[4]}}</a> <a href="/dinner5">{{nextWeek[5]}}</a> <a href="/dinner6">{{nextWeek[6]}}</a> </p>
-</div>
+  <div class="jumbotron text-center">
+    <h1>Tiger Menus</h1>
+    <p id="day">{{ day }}</p>
+    <p><a href="/lunch0">Lunch:</a> <a href="/lunch1">{{ nextWeek[1] }}</a> <a href="/lunch2">{{nextWeek[2]}}</a> <a href="/lunch3">{{nextWeek[3]}}</a> <a href="/lunch4">{{nextWeek[4]}}</a> <a href="/lunch5">{{nextWeek[5]}}</a> <a href="/lunch6">{{nextWeek[6]}}</a> </p>
+    <p><a href="/dinner0">Dinner:</a> <a href="/dinner1">{{ nextWeek[1] }}</a> <a href="/dinner2">{{nextWeek[2]}}</a> <a href="/dinner3">{{nextWeek[3]}}</a> <a href="/dinner4">{{nextWeek[4]}}</a> <a href="/dinner5">{{nextWeek[5]}}</a> <a href="/dinner6">{{nextWeek[6]}}</a> </p>
+  </div>
 
     {% block content %}{% endblock %}
+
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <p>Pstttt. Open the <a href="/">homepage</a> in your phone's browser</p>
+      <p> On iPhone, click the "box with an arrow pointing up" button on the bottom of Safari</p>
+      <p>On Android, click on the "three vertical dots" button on the top right of Chrome</p> 
+      <p>Click "Add to Home Screen" and see what happens. :P</p>
+      <p>Icon Designed by Alice Wang '19</p>
+      <p>Naming credit to Ji-Sung Kim '17 and Sherry Bai '19</p>
+      <p>Website created by Alex Xu '19</p>
+    </div>
+  </div>
     <!--  
     <script>
       var d = new Date();
