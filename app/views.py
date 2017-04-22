@@ -5,19 +5,30 @@ import datetime
 from app import app
 
 #database (lol)
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] 
+
+#today
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
 lastDate = datetime.datetime.today().weekday()
+
+nextWeek = []
+for i in range(7):
+	nextWeek.append(minidays[lastDate+i])
 
 future = []
 for i in range(6):
 	future.append(datetime.datetime.now() + datetime.timedelta(days=i+1))
 
+#scrape future days differently in case campus dining changes their format slightly so 
+#only part of the scraper will break
 lunchFuture  = [[ [] for y in range(6) ] for x in range(6)]
 dinnerFuture = [[ [] for y in range(6) ] for x in range(6)]
 
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] 
+
+
+
 
 #######################################################################################
 
@@ -70,6 +81,12 @@ def update():
 	lunchFuture  = [[ [] for y in range(6) ] for x in range(6)]
 	dinnerFuture = [[ [] for y in range(6) ] for x in range(6)]
 
+	#update nextWeek
+	global nextWeek
+	nextWeek = []
+	for i in range(7):
+		nextWeek.append(minidays[lastDate+i])
+
 	for i in range(6):
 		prefixFuture = 'myaction=read&dtdate={}%2F{}%2F{}'.format(future[i].month, future[i].day, future[i].year)
 
@@ -105,13 +122,7 @@ def lunch():
 
 	return render_template( "meal.html",
 							day     = days[lastDate],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6], 
+							nextWeek = nextWeek, 
 							wucox   = lunchList[0],
 							cjl     = lunchList[1],
 							whitman = lunchList[2],
@@ -125,13 +136,7 @@ def lunch2():
 
 	return render_template( "meal.html",
 							day     = days[future[0].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6], 
+							nextWeek = nextWeek, 
 							wucox   = lunchFuture[0][0],
 							cjl     = lunchFuture[0][1],
 							whitman = lunchFuture[0][2],
@@ -145,13 +150,7 @@ def lunch3():
 
 	return render_template( "meal.html",
 							day     = days[future[1].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = lunchFuture[1][0],
 							cjl     = lunchFuture[1][1],
 							whitman = lunchFuture[1][2],
@@ -165,13 +164,7 @@ def lunch4():
 
 	return render_template( "meal.html",
 							day     = days[future[2].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],							
+							nextWeek = nextWeek,							
 							wucox   = lunchFuture[2][0],
 							cjl     = lunchFuture[2][1],
 							whitman = lunchFuture[2][2],
@@ -185,13 +178,7 @@ def lunch5():
 
 	return render_template( "meal.html",
 							day     = days[future[3].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = lunchFuture[3][0],
 							cjl     = lunchFuture[3][1],
 							whitman = lunchFuture[3][2],
@@ -205,13 +192,7 @@ def lunch6():
 
 	return render_template( "meal.html",
 							day     = days[future[4].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = lunchFuture[4][0],
 							cjl     = lunchFuture[4][1],
 							whitman = lunchFuture[4][2],
@@ -225,13 +206,7 @@ def lunch7():
 
 	return render_template( "meal.html",
 							day     = days[future[5].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = lunchFuture[5][0],
 							cjl     = lunchFuture[5][1],
 							whitman = lunchFuture[5][2],
@@ -245,13 +220,7 @@ def dinner():
 
 	return render_template(	"meal.html",
 							day     = days[lastDate],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = dinnerList[0],
 							cjl     = dinnerList[1],
 							whitman = dinnerList[2],
@@ -265,13 +234,7 @@ def dinner2():
 
 	return render_template( "meal.html",
 							day     = days[future[0].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = dinnerFuture[0][0],
 							cjl     = dinnerFuture[0][1],
 							whitman = dinnerFuture[0][2],
@@ -285,13 +248,7 @@ def dinner3():
 
 	return render_template( "meal.html",
 							day     = days[future[1].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = dinnerFuture[1][0],
 							cjl     = dinnerFuture[1][1],
 							whitman = dinnerFuture[1][2],
@@ -305,13 +262,7 @@ def dinner4():
 
 	return render_template( "meal.html",
 							day     = days[future[2].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = dinnerFuture[2][0],
 							cjl     = dinnerFuture[2][1],
 							whitman = dinnerFuture[2][2],
@@ -325,13 +276,7 @@ def dinner5():
 
 	return render_template( "meal.html",
 							day     = days[future[3].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = dinnerFuture[3][0],
 							cjl     = dinnerFuture[3][1],
 							whitman = dinnerFuture[3][2],
@@ -345,13 +290,7 @@ def dinner6():
 
 	return render_template( "meal.html",
 							day     = days[future[4].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = dinnerFuture[4][0],
 							cjl     = dinnerFuture[4][1],
 							whitman = dinnerFuture[4][2],
@@ -365,13 +304,7 @@ def dinner7():
 
 	return render_template( "meal.html",
 							day     = days[future[5].isoweekday()-1],
-							zero    = minidays[lastDate+0],
-							one     = minidays[lastDate+1],
-							two     = minidays[lastDate+2],
-							three   = minidays[lastDate+3],
-							four    = minidays[lastDate+4],
-							five    = minidays[lastDate+5],
-							six     = minidays[lastDate+6],
+							nextWeek = nextWeek,
 							wucox   = dinnerFuture[5][0],
 							cjl     = dinnerFuture[5][1],
 							whitman = dinnerFuture[5][2],

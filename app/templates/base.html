@@ -7,7 +7,7 @@
   <title>TigerMenus</title> 
   {% endif %}
   <meta name="description" content="What's on the menu today at every Princeton dining hall? Visit Tiger Menus to find out!">
-  <meta name="keywords" content="Princeton, tiger, menus, TigerMenus, TigerMenu" />
+  <meta name="keywords" content="Princeton, tiger, menus, menu, TigerMenus, TigerMenu, Tiger Menus, Tiger Menu" />
   <meta property="og:title" content="Tiger Menus"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://tigermenus.herokuapp.com/"/>
@@ -19,8 +19,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <link href="/static/logo180x180.png" rel="apple-touch-icon" sizes="180x180" />
+
   <link rel="stylesheet" type="text/css" href="/static/css/index.css">
   <script src="/static/js/index.js"></script>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-93565150-1', 'auto');
+  ga('send', 'pageview');
+  </script>
 
 </head>
 <body>
@@ -28,8 +38,8 @@
 <div class="jumbotron text-center">
   <h1>Tiger Menus</h1>
   <p id="day">{{ day }}</p>
-  <p><a href="/lunch">Lunch:</a> <a href="/lunch2">{{ one }}</a> <a href="/lunch3">{{two}}</a> <a href="/lunch4">{{three}}</a> <a href="/lunch5">{{four}}</a> <a href="/lunch6">{{five}}</a> <a href="/lunch7">{{six}}</a> </p>
-  <p><a href="/dinner">Dinner:</a> <a href="/dinner2">{{ one }}</a> <a href="/dinner3">{{two}}</a> <a href="/dinner4">{{three}}</a> <a href="/dinner5">{{four}}</a> <a href="/dinner6">{{five}}</a> <a href="/dinner7">{{six}}</a> </p>
+  <p><a href="/lunch">Lunch:</a> <a href="/lunch2">{{ nextWeek[1] }}</a> <a href="/lunch3">{{nextWeek[2]}}</a> <a href="/lunch4">{{nextWeek[3]}}</a> <a href="/lunch5">{{nextWeek[4]}}</a> <a href="/lunch6">{{nextWeek[5]}}</a> <a href="/lunch7">{{nextWeek[6]}}</a> </p>
+  <p><a href="/dinner">Dinner:</a> <a href="/dinner2">{{ nextWeek[1] }}</a> <a href="/dinner3">{{nextWeek[2]}}</a> <a href="/dinner4">{{nextWeek[3]}}</a> <a href="/dinner5">{{nextWeek[4]}}</a> <a href="/dinner6">{{nextWeek[5]}}</a> <a href="/dinner7">{{nextWeek[6]}}</a> </p>
 </div>
 
     {% block content %}{% endblock %}
@@ -99,15 +109,5 @@
     </div>
   </div>
 
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-93565150-1', 'auto');
-    ga('send', 'pageview');
-
-    </script>
   </body>
 </html>
