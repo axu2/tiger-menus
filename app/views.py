@@ -8,15 +8,19 @@ from app import app
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] 
 
-#today
+#today's menyus
 lunchList = [[] for x in range(6)]
 dinnerList = [[] for x in range(6)]
+
+#the last date checked
 lastDate = datetime.datetime.today().weekday()
 
+#the next 7 days
 nextWeek = []
 for i in range(7):
 	nextWeek.append(minidays[lastDate+i])
 
+#datetimes for this week
 future = []
 for i in range(6):
 	future.append(datetime.datetime.now() + datetime.timedelta(days=i+1))
@@ -25,10 +29,6 @@ for i in range(6):
 #only part of the scraper will break
 lunchFuture  = [[ [] for y in range(6) ] for x in range(6)]
 dinnerFuture = [[ [] for y in range(6) ] for x in range(6)]
-
-
-
-
 
 #######################################################################################
 
@@ -88,14 +88,15 @@ def update():
 		nextWeek.append(minidays[lastDate+i])
 
 	for i in range(6):
-		prefixFuture = 'myaction=read&dtdate={}%2F{}%2F{}'.format(future[i].month, future[i].day, future[i].year)
+		prefixFuture = prefix + 'myaction=read&dtdate={}%2F{}%2F{}'.format(future[i].month, future[i].day, future[i].year)
 
-		roma    = prefix + prefixFuture + '&locationNum=01'
-		wucox   = prefix + prefixFuture + '&locationNum=02'
-		forbes  = prefix + prefixFuture + '&locationNum=03'
-		grad    = prefix + prefixFuture + '&locationNum=04'
-		cjl     = prefix + prefixFuture + '&locationNum=05'
-		whitman = prefix + prefixFuture + '&locationNum=08'
+
+		roma    = prefixFuture + '&locationNum=01'
+		wucox   = prefixFuture + '&locationNum=02'
+		forbes  = prefixFuture + '&locationNum=03'
+		grad    = prefixFuture + '&locationNum=04'
+		cjl     = prefixFuture + '&locationNum=05'
+		whitman = prefixFuture + '&locationNum=08'
 		
 		halls = [wucox, cjl, whitman, roma, forbes, grad]
 		scrape(halls, lunchFuture[i], dinnerFuture[i])
@@ -116,8 +117,8 @@ def checkForUpdate():
 update()
 ###########################################################################
 
-@app.route('/lunch')
-def lunch():
+@app.route('/lunch0')
+def lunch0():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -130,8 +131,8 @@ def lunch():
 							forbes  = lunchList[4],
 							grad    = lunchList[5])
 
-@app.route('/lunch2')
-def lunch2():
+@app.route('/lunch1')
+def lunch1():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -144,8 +145,8 @@ def lunch2():
 							forbes  = lunchFuture[0][4],
 							grad    = lunchFuture[0][5])
 
-@app.route('/lunch3')
-def lunch3():
+@app.route('/lunch2')
+def lunch2():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -158,8 +159,8 @@ def lunch3():
 							forbes  = lunchFuture[1][4],
 							grad    = lunchFuture[1][5])
 
-@app.route('/lunch4')
-def lunch4():
+@app.route('/lunch3')
+def lunch3():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -172,8 +173,8 @@ def lunch4():
 							forbes  = lunchFuture[2][4],
 							grad    = lunchFuture[2][5])
 
-@app.route('/lunch5')
-def lunch5():
+@app.route('/lunch4')
+def lunch4():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -186,8 +187,8 @@ def lunch5():
 							forbes  = lunchFuture[3][4],
 							grad    = lunchFuture[3][5])
 
-@app.route('/lunch6')
-def lunch6():
+@app.route('/lunch5')
+def lunch5():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -200,8 +201,8 @@ def lunch6():
 							forbes  = lunchFuture[4][4],
 							grad    = lunchFuture[4][5])
 
-@app.route('/lunch7')
-def lunch7():
+@app.route('/lunch6')
+def lunch6():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -214,8 +215,8 @@ def lunch7():
 							forbes  = lunchFuture[5][4],
 							grad    = lunchFuture[5][5])
 
-@app.route('/dinner')
-def dinner():
+@app.route('/dinner0')
+def dinner0():
 	checkForUpdate()
 
 	return render_template(	"meal.html",
@@ -228,8 +229,8 @@ def dinner():
 							forbes  = dinnerList[4],
 							grad    = dinnerList[5])
 
-@app.route('/dinner2')
-def dinner2():
+@app.route('/dinner1')
+def dinner1():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -242,8 +243,8 @@ def dinner2():
 							forbes  = dinnerFuture[0][4],
 							grad    = dinnerFuture[0][5])
 
-@app.route('/dinner3')
-def dinner3():
+@app.route('/dinner2')
+def dinner2():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -256,8 +257,8 @@ def dinner3():
 							forbes  = dinnerFuture[1][4],
 							grad    = dinnerFuture[1][5])
 
-@app.route('/dinner4')
-def dinner4():
+@app.route('/dinner3')
+def dinner3():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -270,8 +271,8 @@ def dinner4():
 							forbes  = dinnerFuture[2][4],
 							grad    = dinnerFuture[2][5])
 
-@app.route('/dinner5')
-def dinner5():
+@app.route('/dinner4')
+def dinner4():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -284,8 +285,8 @@ def dinner5():
 							forbes  = dinnerFuture[3][4],
 							grad    = dinnerFuture[3][5])
 
-@app.route('/dinner6')
-def dinner6():
+@app.route('/dinner5')
+def dinner5():
 	checkForUpdate()
 
 	return render_template( "meal.html",
@@ -298,8 +299,8 @@ def dinner6():
 							forbes  = dinnerFuture[4][4],
 							grad    = dinnerFuture[4][5])
 
-@app.route('/dinner7')
-def dinner7():
+@app.route('/dinner6')
+def dinner6():
 	checkForUpdate()
 
 	return render_template( "meal.html",
