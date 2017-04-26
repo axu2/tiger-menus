@@ -32,8 +32,49 @@ dinnerFuture = [[ [] for y in range(6) ] for x in range(6)]
 
 #######################################################################################
 
+#find main entrees
+def findMainEntrees(foodArray):
+	if not (len(foodArray) == 0 or len(foodArray) == 1):
+		#print('entering loop')
+		foodBefore = []
+		foodMain = []
+		foodAfter = []
+
+		before = True
+		main = False
+		after = False
+
+		for string in foodArray:
+			#print(string)
+			if main and string[0] == '-':
+				#print('stop')
+				main = False
+				after = True
+			if string == '-- Main Entree --':
+				#print('start')
+				main = True 
+				before = False
+			if before:
+				foodBefore.append(string)
+			if main:
+				foodMain.append(string)
+			if after: 
+				foodAfter.append(string)
+			#print('')
+
+		#print(foodBefore)
+		#print(foodMain)
+		#print(foodAfter)
+
+		foodArray = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
+		return foodArray
+	return []
+		#print(foodArray)
+	
+
+
 #scrape campus dining
-def scrape(halls, lunchList, dinnerList):
+def scrape(halls, lunchArray, dinnerArray):
 	lunch = False
 	dinner = False
 
@@ -51,9 +92,14 @@ def scrape(halls, lunchList, dinnerList):
 			if string == 'Powered by FoodPro':
 				dinner = False
 			if lunch:
-				lunchList[i].append(string)
+				lunchArray[i].append(string)
 			if dinner:
-				dinnerList[i].append(string)
+				dinnerArray[i].append(string)
+
+		lunchArray[i] = findMainEntrees(lunchArray[i])
+		dinnerArray[i] = findMainEntrees(dinnerArray[i])
+
+
 
 #update database
 def update():
