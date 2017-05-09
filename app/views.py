@@ -90,6 +90,7 @@ def scrape(halls, lunchArray, dinnerArray):
 				lunch  = False
 				dinner = True
 			if string == 'Powered by FoodPro':
+				lunch  = False
 				dinner = False
 			if lunch:
 				lunchArray[i].append(string)
