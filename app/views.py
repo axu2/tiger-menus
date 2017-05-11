@@ -363,7 +363,6 @@ def dinner6():
 #homepage will default
 @app.route('/')
 def index():
-	'''
 	now = datetime.datetime.now()
 	if now.hour < 14:
 		return lunch0()
@@ -372,9 +371,5 @@ def index():
 		return dinner0()
 	else: 
 		return lunch1()
-	'''
-	return render_template("base.html", 
-							day     = days[future[5].isoweekday()-1],
-							nextWeek = nextWeek,)
 
 
