@@ -1,8 +1,11 @@
 # TigerMenus
-Scrapes all 6 of Princeton dining hall's today menus and displays information on a single page
+Solves problem of students having to check six different web pages to see current menus.
 
-Hosted here:
-https://tigermenus.herokuapp.com/
+Scrapes menu data daily for all six dining halls and displays on a single page for easy comparison.
+
+25,000+ page views,  ~300 daily unique users to date.
+
+Hosted at https://tigermenus.herokuapp.com/
 
 It sure was fun learning Python, Flask, BeautifulSoup, GitHub, and Heroku in order to develop this!
 
