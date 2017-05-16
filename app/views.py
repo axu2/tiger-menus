@@ -1,4 +1,4 @@
-import requests
+import urllib2
 from bs4 import BeautifulSoup
 from flask import render_template
 import datetime
@@ -6,7 +6,7 @@ from app import app
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] 
 
 #today's menus
 lunchList = [[] for x in range(6)]
@@ -25,7 +25,7 @@ future = []
 for i in range(6):
 	future.append(datetime.datetime.now() + datetime.timedelta(days=i+1))
 
-#scrape future days differently in case campus dining changes their format slightly so
+#scrape future days differently in case campus dining changes their format slightly so 
 #only part of the scraper will break
 lunchFuture  = [[ [] for y in range(6) ] for x in range(6)]
 dinnerFuture = [[ [] for y in range(6) ] for x in range(6)]
@@ -35,6 +35,7 @@ dinnerFuture = [[ [] for y in range(6) ] for x in range(6)]
 #find main entrees
 def findMainEntrees(foodArray):
 	if not (len(foodArray) == 0 or len(foodArray) == 1):
+		#print('entering loop')
 		foodBefore = []
 		foodMain = []
 		foodAfter = []
@@ -44,22 +45,33 @@ def findMainEntrees(foodArray):
 		after = False
 
 		for string in foodArray:
+			#print(string)
 			if main and string[0] == '-':
+				#print('stop')
 				main = False
 				after = True
 			if string == '-- Main Entree --':
-				main = True
+				#print('start')
+				main = True 
 				before = False
 			if before:
 				foodBefore.append(string)
 			if main:
 				foodMain.append(string)
-			if after:
+			if after: 
 				foodAfter.append(string)
+			#print('')
+
+		#print(foodBefore)
+		#print(foodMain)
+		#print(foodAfter)
 
 		foodArray = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
 		return foodArray
 	return []
+		#print(foodArray)
+	
+
 
 #scrape campus dining
 def scrape(halls, lunchArray, dinnerArray):
@@ -67,12 +79,11 @@ def scrape(halls, lunchArray, dinnerArray):
 	dinner = False
 
 	for i in range(len(halls)):
-		r = requests.get(halls[i])
-		html = r.text
+		response = urllib2.urlopen(halls[i])
+		html = response.read()
 		soup = BeautifulSoup(html, 'html.parser')
 
 		for string in soup.stripped_strings:
-			string = str(string)
 			if string == 'Lunch':
 				lunch  = True
 			if string == 'Dinner':
@@ -101,7 +112,7 @@ def update():
 	grad    = prefix + 'locationNum=04'
 	cjl     = prefix + 'locationNum=05'
 	whitman = prefix + 'locationNum=08'
-
+	
 	halls = [wucox, cjl, whitman, roma, forbes, grad]
 
 	#update today
@@ -133,7 +144,7 @@ def update():
 		grad    = prefixFuture + '&locationNum=04'
 		cjl     = prefixFuture + '&locationNum=05'
 		whitman = prefixFuture + '&locationNum=08'
-
+		
 		halls = [wucox, cjl, whitman, roma, forbes, grad]
 		scrape(halls, lunchFuture[i], dinnerFuture[i])
 
@@ -159,7 +170,7 @@ def lunch0():
 
 	return render_template( "meal.html",
 							day     = days[lastDate],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek, 
 							wucox   = lunchList[0],
 							cjl     = lunchList[1],
 							whitman = lunchList[2],
@@ -173,7 +184,7 @@ def lunch1():
 
 	return render_template( "meal.html",
 							day     = days[future[0].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek, 
 							wucox   = lunchFuture[0][0],
 							cjl     = lunchFuture[0][1],
 							whitman = lunchFuture[0][2],
@@ -201,7 +212,7 @@ def lunch3():
 
 	return render_template( "meal.html",
 							day     = days[future[2].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek,							
 							wucox   = lunchFuture[2][0],
 							cjl     = lunchFuture[2][1],
 							whitman = lunchFuture[2][2],
@@ -358,5 +369,7 @@ def index():
 	#else:
 	elif now.hour < 20:
 		return dinner0()
-	else:
+	else: 
 		return lunch1()
+
+
