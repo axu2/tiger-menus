@@ -4,7 +4,7 @@
   {% if title %}
   <title>{{ title }} - Tiger Food</title>
   {% else %}
-  <title>TigerMenus</title> 
+  <title>TigerMenus</title>
   {% endif %}
 
   <meta name="description" content="What's on the menu today at every Princeton dining hall? Visit TigerMenus to find out!">
@@ -17,10 +17,21 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+  integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
@@ -30,8 +41,6 @@
   <link rel="shortcut icon" href="/static/favicons/favicon.ico">
   <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-
-  
 
 </head>
 <body>
@@ -46,29 +55,35 @@
       {% for wd in nextWeek %}<a href="/dinner{{loop.index}}">{{ wd }}</a> {% endfor %}
     </p>
   </div>
-
   {% block content %}{% endblock %}
 
-  <br>
+  <hr>
 
   <div class="container">
-    <div class="row">
-      <p>Nothing look good for lunch? Order a <a href="https://www.princeton.edu/us/dining/news/archive/?id=15744">bag lunch!</a></p>
-      <p>Pstttt. Open the <a href="/">homepage</a> in your phone's browser</p>
-      <p> On iPhone, click the "box with an arrow pointing up" button on the bottom of Safari</p>
-      <p>On Android, click on the "three vertical dots" button on the top right of Chrome</p> 
-      <p>Click "Add to Home Screen" and see what happens. :P</p>
-      <p>Icon Designed by Alice Wang '19</p>
-      <p>Naming credit to Ji-Sung Kim '18 and Sherry Bai '19</p>
-      <p>Website created by Alex Xu '19</p>
-    </div>
+    <footer>
+      <p>To add the site to your phone's homescreen, open the <a href="/">homepage</a></p>
+      <p>On iPhone, click the <span class="glyphicon glyphicon-share" aria-hidden="true"></span>-ish button on the bottom of Safari</p>
+      <p>On Android, click on the <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span> button on the top right of Chrome</p>
+      <p>Click "Add to Home Screen" </p>
+    </footer>
   </div>
-    <!--  
+
+  <hr>
+
+  <div class="container">
+    <footer>
+      <p>Order a <a href="https://campusdining.princeton.edu/lunchtogo/">bag lunch!</a>
+         More info <a href="https://www.princeton.edu/us/dining/news/archive/?id=15744">here</a></p>
+      <p><a href="/about">About</a></p>
+    </footer>
+  </div>
+
+    <!--
     <script>
       var d = new Date();
       var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-      document.getElementById("date").innerHTML = day[d.getDay()]; 
-    </script> 
+      document.getElementById("date").innerHTML = day[d.getDay()];
+    </script>
     -->
     {% include 'form.html' %}
     {% include 'analytics.html' %}
