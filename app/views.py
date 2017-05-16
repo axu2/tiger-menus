@@ -160,7 +160,7 @@ def lunch0():
 
 	return render_template( "meal.html",
 							day     = days[lastDate],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = lunchList[0],
 							cjl     = lunchList[1],
 							whitman = lunchList[2],
@@ -174,7 +174,7 @@ def lunch1():
 
 	return render_template( "meal.html",
 							day     = days[future[0].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = lunchFuture[0][0],
 							cjl     = lunchFuture[0][1],
 							whitman = lunchFuture[0][2],
@@ -188,7 +188,7 @@ def lunch2():
 
 	return render_template( "meal.html",
 							day     = days[future[1].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = lunchFuture[1][0],
 							cjl     = lunchFuture[1][1],
 							whitman = lunchFuture[1][2],
@@ -202,7 +202,7 @@ def lunch3():
 
 	return render_template( "meal.html",
 							day     = days[future[2].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = lunchFuture[2][0],
 							cjl     = lunchFuture[2][1],
 							whitman = lunchFuture[2][2],
@@ -216,7 +216,7 @@ def lunch4():
 
 	return render_template( "meal.html",
 							day     = days[future[3].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = lunchFuture[3][0],
 							cjl     = lunchFuture[3][1],
 							whitman = lunchFuture[3][2],
@@ -230,7 +230,7 @@ def lunch5():
 
 	return render_template( "meal.html",
 							day     = days[future[4].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = lunchFuture[4][0],
 							cjl     = lunchFuture[4][1],
 							whitman = lunchFuture[4][2],
@@ -244,7 +244,7 @@ def lunch6():
 
 	return render_template( "meal.html",
 							day     = days[future[5].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = lunchFuture[5][0],
 							cjl     = lunchFuture[5][1],
 							whitman = lunchFuture[5][2],
@@ -258,7 +258,7 @@ def dinner0():
 
 	return render_template(	"meal.html",
 							day     = days[lastDate],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = dinnerList[0],
 							cjl     = dinnerList[1],
 							whitman = dinnerList[2],
@@ -272,7 +272,7 @@ def dinner1():
 
 	return render_template( "meal.html",
 							day     = days[future[0].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = dinnerFuture[0][0],
 							cjl     = dinnerFuture[0][1],
 							whitman = dinnerFuture[0][2],
@@ -286,7 +286,7 @@ def dinner2():
 
 	return render_template( "meal.html",
 							day     = days[future[1].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = dinnerFuture[1][0],
 							cjl     = dinnerFuture[1][1],
 							whitman = dinnerFuture[1][2],
@@ -300,7 +300,7 @@ def dinner3():
 
 	return render_template( "meal.html",
 							day     = days[future[2].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = dinnerFuture[2][0],
 							cjl     = dinnerFuture[2][1],
 							whitman = dinnerFuture[2][2],
@@ -314,7 +314,7 @@ def dinner4():
 
 	return render_template( "meal.html",
 							day     = days[future[3].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = dinnerFuture[3][0],
 							cjl     = dinnerFuture[3][1],
 							whitman = dinnerFuture[3][2],
@@ -328,7 +328,7 @@ def dinner5():
 
 	return render_template( "meal.html",
 							day     = days[future[4].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = dinnerFuture[4][0],
 							cjl     = dinnerFuture[4][1],
 							whitman = dinnerFuture[4][2],
@@ -342,7 +342,7 @@ def dinner6():
 
 	return render_template( "meal.html",
 							day     = days[future[5].isoweekday()-1],
-							nextWeek = nextWeek,
+							nextWeek = nextWeek[1:],
 							wucox   = dinnerFuture[5][0],
 							cjl     = dinnerFuture[5][1],
 							whitman = dinnerFuture[5][2],
