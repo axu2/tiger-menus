@@ -1,9 +1,5 @@
 # TigerMenus
-Solves problem of students having to check six different web pages to see current menus.
-
 Scrapes menu data daily for all six dining halls and displays on a single page for easy comparison.
-
-25,000+ page views,  ~300 daily unique users to date.
 
 Hosted at https://tigermenus.herokuapp.com/
 
