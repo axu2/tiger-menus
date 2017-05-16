@@ -34,7 +34,7 @@ dinnerFuture = [[ [] for y in range(6) ] for x in range(6)]
 
 #find main entrees
 def findMainEntrees(foodArray):
-	if not (len(foodArray) == 0 or len(foodArray) == 1):
+	if len(foodArray) > 1:
 		foodBefore = []
 		foodMain = []
 		foodAfter = []
@@ -59,7 +59,8 @@ def findMainEntrees(foodArray):
 
 		foodArray = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
 		return foodArray
-	return []
+	else:
+		return foodArray
 
 #scrape campus dining
 def scrape(halls, lunchArray, dinnerArray):
@@ -355,7 +356,6 @@ def index():
 	now = datetime.datetime.now()
 	if now.hour < 14:
 		return lunch0()
-	#else:
 	elif now.hour < 20:
 		return dinner0()
 	else:
