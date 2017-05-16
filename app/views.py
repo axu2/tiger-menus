@@ -136,7 +136,7 @@ def update():
 		whitman = prefixFuture + '&locationNum=08'
 
 		halls = [wucox, cjl, whitman, roma, forbes, grad]
-		#scrape(halls, lunchFuture[i], dinnerFuture[i])
+		scrape(halls, lunchFuture[i], dinnerFuture[i])
 
 #check if menus have changed
 def checkForUpdate():
