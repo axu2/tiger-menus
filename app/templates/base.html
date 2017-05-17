@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% if title %}
-  <title>{{ title }} - Tiger Food</title>
-  {% else %}
   <title>TigerMenus</title>
-  {% endif %}
 
   <meta name="description" content="What's on the menu today at every Princeton dining hall? Visit TigerMenus to find out!">
   <meta name="keywords" content="Princeton, tiger, menus, menu, TigerMenus, TigerMenu, Tiger Menus, Tiger Menu" />
@@ -78,13 +74,6 @@
     </footer>
   </div>
 
-    <!--
-    <script>
-      var d = new Date();
-      var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-      document.getElementById("date").innerHTML = day[d.getDay()];
-    </script>
-    -->
     {% include 'form.html' %}
     {% include 'analytics.html' %}
 
