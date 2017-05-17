@@ -11,8 +11,8 @@ I plan to add more features to it (user accounts, email notifications when dumpl
 ![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
 
 ## Setup (Bash on Ubuntu on Windows)
+Fork repository and clone it into your own directory. Then:
 ```
-$ git clone https://github.com/axu2/tiger-menus.git
 $ cd tiger-menus
 ```
 To set up a virtual environment, run the commands from http://flask.pocoo.org/docs/0.12/installation/#installation:
