@@ -1,3 +1,4 @@
+
 # TigerMenus
 ## Overview
 Scrapes menu data daily for all six dining halls and displays on a single page for easy comparison.
@@ -11,6 +12,8 @@ I plan to add more features to it (user accounts, email notifications when dumpl
 ![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
 
 ## Setup (Bash on Ubuntu on Windows)
+Recommended Python 2.7.9+. Older versions will give you error messages, but you can probably ignore them. 
+
 Fork repository and clone it into your own directory. Then:
 ```
 $ cd tiger-menus
@@ -28,5 +31,14 @@ $ pip install -r requirements.txt
 To run development server:
 ```
 $ python run.py
+```
+It takes a while to scrape 7*6=42 webpages. 
+
+So wait until you see something like (ignore any error messages you get if you use an old version of Python):
+```
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 630-870-627
 ```
 Open http://localhost:5000/
