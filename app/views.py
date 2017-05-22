@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from flask import render_template
 import datetime
 from app import app
+import re
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -71,24 +72,42 @@ def scrape(halls, lunchArray, dinnerArray):
 		r = requests.get(halls[i])
 		html = r.text
 		soup = BeautifulSoup(html, 'html.parser')
+		tag_strings = soup.table.findAll('div')
+		
+		for tag in tag_strings:
+			string = tag.get_text().strip()
+			tag = unicode(tag)
+			toAppend = []
 
-		for string in soup.stripped_strings:
-			string = unicode(string)
 			if string == 'Lunch':
 				lunch  = True
 			if string == 'Dinner':
 				lunch  = False
 				dinner = True
-			if string == 'Powered by FoodPro':
-				lunch  = False
-				dinner = False
-			if lunch:
-				lunchArray[i].append(string)
-			if dinner:
-				dinnerArray[i].append(string)
 
-		lunchArray[i] = findMainEntrees(lunchArray[i])
-		dinnerArray[i] = findMainEntrees(dinnerArray[i])
+			if lunch:
+				toAppend = lunchArray[i]
+			if dinner:
+				toAppend = dinnerArray[i]
+
+			if len(string) > 0:
+				if re.search("#0000FF", tag):
+					toAppend.append('<p style="color: #0000FF">' + string + '</p>')
+				elif re.search("#00FF00", tag):
+					toAppend.append('<p style="color: #00FF00">' + string + '</p>')
+				elif re.search("#8000FF", tag):
+					toAppend.append('<p style="color: #8000FF">' + string + '</p>')
+				else:
+					if string[0] == '-':
+						toAppend.append('<b><p>' + string + '</p></b>')
+					else:
+						toAppend.append('<p>' + string + '</p>')
+		
+		lunch = False
+		dinner = False
+
+		#lunchArray[i] = findMainEntrees(lunchArray[i])
+		#dinnerArray[i] = findMainEntrees(dinnerArray[i])
 
 
 
