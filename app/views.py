@@ -45,10 +45,10 @@ def findMainEntrees(foodArray):
 		after = False
 
 		for string in foodArray:
-			if main and string[0] == '-':
+			if main and re.search('-', string):
 				main = False
 				after = True
-			if string == '-- Main Entree --':
+			if re.search('-- Main Entree --', string):
 				main = True
 				before = False
 			if before:
@@ -106,8 +106,8 @@ def scrape(halls, lunchArray, dinnerArray):
 		lunch = False
 		dinner = False
 
-		#lunchArray[i] = findMainEntrees(lunchArray[i])
-		#dinnerArray[i] = findMainEntrees(dinnerArray[i])
+		lunchArray[i] = findMainEntrees(lunchArray[i])
+		dinnerArray[i] = findMainEntrees(dinnerArray[i])
 
 
 
