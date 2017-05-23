@@ -39,14 +39,16 @@
           {{ item | safe }}
       {% endfor %}
     </div>
+    <div class="col-sm-2">
+    <div class="well well-sm">
+      <p><b>Legend</b></p>
+        <p style="color: #0000FF">Vegan - no animal derivatives</p>
+        <p style="color: LimeGreen">Vegetarian - no meat products</p>
+        <p style="color: #8000FF">Contains Pork</p>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 
-<hr>
-<div class="container">
-  <h4>Legend</h4>
-  <p style="color: #0000FF">Vegan - no animal derivatives</p>
-  <p style="color: #00FF00">Vegetarian - no meat products</p>
-  <p style="color: #8000FF">Contains Pork</p>
-</div>
 {% endblock %}

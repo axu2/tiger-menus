@@ -94,7 +94,7 @@ def scrape(halls, lunchArray, dinnerArray):
 				if re.search("#0000FF", tag):
 					toAppend.append('<p style="color: #0000FF">' + string + '</p>')
 				elif re.search("#00FF00", tag):
-					toAppend.append('<p style="color: #00FF00">' + string + '</p>')
+					toAppend.append('<p style="color: LimeGreen">' + string + '</p>')
 				elif re.search("#8000FF", tag):
 					toAppend.append('<p style="color: #8000FF">' + string + '</p>')
 				else:
