@@ -1,4 +1,4 @@
-
+ 
 # TigerMenus
 ## Overview
 Scrapes menu data for all six dining halls and displays each meal on a single page for easy comparison.
@@ -27,11 +27,11 @@ $ source venv/bin/activate
 ```
 Install requirements with pip in the venv:
 ```
-(venv)$ pip install -r requirements.txt
+(venv) $ pip install -r requirements.txt
 ```
 To run development server:
 ```
-(venv)$ python run.py
+(venv) $ python run.py
 ```
 It takes a while to scrape 7*6=42 webpages. 
 
