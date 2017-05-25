@@ -45,7 +45,7 @@ def findMainEntrees(foodArray):
 		after = False
 
 		for string in foodArray:
-			if main and re.search('-', string):
+			if main and re.search('-', string) and not re.search('-- Vegetarian & Vegan Entree --', string):
 				main = False
 				after = True
 			if re.search('-- Main Entree --', string):
