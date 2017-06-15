@@ -4,6 +4,14 @@ from flask import render_template
 import datetime
 from app import app
 import re
+from mongoengine import *
+
+connect("menus")
+
+class Menu(Document):
+	date_modified = DateTimeField(default=datetime.datetime.now)
+	lunch  = ListField(ListField(StringField()))
+	dinner = ListField(ListField(StringField()))
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -23,8 +31,9 @@ for i in range(7):
 
 #datetimes for this week
 future = []
+now = datetime.datetime.now()
 for i in range(6):
-	future.append(datetime.datetime.now() + datetime.timedelta(days=i+1))
+	future.append(now + datetime.timedelta(days=i+1))
 
 #scrape future days differently in case campus dining changes their format slightly so
 #only part of the scraper will break
@@ -73,7 +82,7 @@ def scrape(halls, lunchArray, dinnerArray):
 		html = r.text
 		soup = BeautifulSoup(html, 'html.parser')
 		tag_strings = soup.table.findAll('div')
-		
+
 		for tag in tag_strings:
 			string = tag.get_text().strip()
 			tag = unicode(tag)
@@ -102,14 +111,12 @@ def scrape(halls, lunchArray, dinnerArray):
 						toAppend.append('<b><p>' + string + '</p></b>')
 					else:
 						toAppend.append('<p>' + string + '</p>')
-		
+
 		lunch = False
 		dinner = False
 
 		lunchArray[i] = findMainEntrees(lunchArray[i])
 		dinnerArray[i] = findMainEntrees(dinnerArray[i])
-
-
 
 #update database
 def update():
@@ -146,7 +153,6 @@ def update():
 	for i in range(6):
 		prefixFuture = prefix + 'myaction=read&dtdate={}%2F{}%2F{}'.format(future[i].month, future[i].day, future[i].year)
 
-
 		roma    = prefixFuture + '&locationNum=01'
 		wucox   = prefixFuture + '&locationNum=02'
 		forbes  = prefixFuture + '&locationNum=03'
@@ -157,6 +163,8 @@ def update():
 		halls = [wucox, cjl, whitman, roma, forbes, grad]
 		scrape(halls, lunchFuture[i], dinnerFuture[i])
 
+	menu = Menu(lunch=lunchList, dinner=dinnerList).save() #commit to MongoDB
+
 #check if menus have changed
 def checkForUpdate():
 	global lastDate
@@ -164,8 +172,9 @@ def checkForUpdate():
 	currentDay = datetime.datetime.today().weekday()
 	if currentDay != lastDate:
 		lastDate = currentDay
+		now = datetime.datetime.now()
 		for i in range(6):
-			future[i] = datetime.datetime.now() + datetime.timedelta(days=i+1)
+			future[i] =  now + datetime.timedelta(days=i+1)
 		update()
 
 ###########################################################################
