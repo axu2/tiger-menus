@@ -163,7 +163,17 @@ def update():
 		halls = [wucox, cjl, whitman, roma, forbes, grad]
 		scrape(halls, lunchFuture[i], dinnerFuture[i])
 
-	menu = Menu(lunch=lunchList, dinner=dinnerList).save() #commit to MongoDB
+	count = Menu.objects.count()
+	if count == 0:
+		Menu(lunch=lunchList, dinner=dinnerList).save() #commit to MongoDB
+	else:
+		last = Menu.objects[count-1]
+		#datetime.date objects are year, month, day only.
+		oldDate = last.date_modified.date()
+		newDate = datetime.datetime.now().date()
+		if oldDate != newDate:
+			Menu(lunch=lunchList, dinner=dinnerList).save()
+
 
 #check if menus have changed
 def checkForUpdate():
