@@ -8,10 +8,14 @@ from mongoengine import *
 
 connect("menus", host="mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m")
 
+class Item(EmbeddedDocument):
+	item = StringField(required=True)
+	legend = StringField()
+
 class Menu(Document):
 	date_modified = DateTimeField(default=datetime.datetime.now)
-	lunch  = ListField(ListField(DictField()))
-	dinner = ListField(ListField(DictField()))
+	lunch  = ListField(ListField(EmbeddedDocumentField(Item)))
+	dinner = ListField(ListField(EmbeddedDocumentField(Item)))
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -101,16 +105,16 @@ def scrape(halls, lunchArray, dinnerArray):
 
 			if len(string) > 0:
 				if re.search("#0000FF", tag):
-					toAppend.append({"item" : string, "legend" : "vegan"})
+					toAppend.append(Item(string, "vegan"))
 				elif re.search("#00FF00", tag):
-					toAppend.append({"item" : string, "legend" : "vegetarian"})
+					toAppend.append(Item(string, "vegetarian"))
 				elif re.search("#8000FF", tag):
-					toAppend.append({"item" : string, "legend" : "pork"})
+					toAppend.append(Item(string, "pork"))
 				else:
 					if string[0] == '-':
-						toAppend.append({"item" : string, "legend" : "label"})
+						toAppend.append(Item(string, "label"))
 					else:
-						toAppend.append({"item" : string, "legend" : ""})
+						toAppend.append(Item(string, ""))
 
 		lunch = False
 		dinner = False
@@ -413,3 +417,21 @@ def about():
 	"index.html",
 	day = days[lastDate],
 	nextWeek = nextWeek[1:])
+
+@app.route('/dinner/<int:month>/<int:day>/<int:year>')
+def dinnerOld(month, day, year):
+	query = datetime.date(year, month, day)
+	for menu in Menu.objects:
+		if menu.date_modified.date() == query:
+			return render_template(
+			"meal.html",
+			day      = days[future[5].isoweekday()-1],
+			nextWeek = nextWeek[1:],
+			wucox    = menu.dinner[0],
+			cjl      = menu.dinner[1],
+			whitman  = menu.dinner[2],
+			roma     = menu.dinner[3],
+			forbes   = menu.dinner[4],
+			grad     = menu.dinner[5]
+			)
+	return "Not found!"
