@@ -6,7 +6,7 @@ from app import app
 import re
 from mongoengine import *
 
-connect("menus")
+connect("menus", host="mongodb://<dbuser>:<dbpassword>@ds127982.mlab.com:27982/heroku_pbbvt44m")
 
 class Menu(Document):
 	date_modified = DateTimeField(default=datetime.datetime.now)
