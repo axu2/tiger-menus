@@ -1,4 +1,19 @@
 {% extends "base.html" %}
+
+{% macro items(item) -%}
+  {% if item.legend == "label" %}
+    <b><p>{{ item.item }}</p></b>
+  {% elif item.legend == "vegan" %}
+    <p style="color: #0000FF">{{ item.item }}</p>
+  {% elif item.legend == "vegetarian" %}
+    <p style="color: LimeGreen">{{ item.item }}</p>
+  {% elif item.legend == "pork" %}
+    <p style="color: #8000FF">{{ item.item }}</p>
+  {% else %}
+    <p>{{ item.item }}</p>
+  {% endif %}
+{%- endmacro %}
+
 {% block content %}
 
 <div class="container">
@@ -6,37 +21,37 @@
     <div class="col-sm-2">
       <h3>Butler</h3>
       {% for item in wucox %}
-          {{ item | safe }}
+          {{ items(item) }}
       {% endfor %}
     </div>
     <div class="col-sm-2">
       <h3>CJL</h3>
       {% for item in cjl %}
-          {{ item | safe }}
+          {{ items(item) }}
       {% endfor %}
     </div>
     <div class="col-sm-2">
       <h3>Whitman</h3>
       {% for item in whitman %}
-          {{ item | safe }}
+          {{ items(item) }}
       {% endfor %}
     </div>
     <div class="col-sm-2">
       <h3>Ro / Ma</h3>
       {% for item in roma %}
-          {{ item | safe }}
+          {{ items(item) }}
       {% endfor %}
     </div>
     <div class="col-sm-2">
       <h3>Forbes</h3>
       {% for item in forbes %}
-          {{ item | safe }}
+          {{ items(item) }}
       {% endfor %}
     </div>
     <div class="col-sm-2">
       <h3>Grad</h3>
       {% for item in grad %}
-          {{ item | safe }}
+          {{ items(item) }}
       {% endfor %}
     </div>
     <div class="col-sm-2">

@@ -10,8 +10,8 @@ connect("menus", host="mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pb
 
 class Menu(Document):
 	date_modified = DateTimeField(default=datetime.datetime.now)
-	lunch  = ListField(ListField(StringField()))
-	dinner = ListField(ListField(StringField()))
+	lunch  = ListField(ListField(DictField()))
+	dinner = ListField(ListField(DictField()))
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -53,19 +53,19 @@ def findMainEntrees(foodArray):
 		main = False
 		after = False
 
-		for string in foodArray:
-			if main and re.search('-', string) and not re.search('-- Vegetarian & Vegan Entree --', string):
+		for item in foodArray:
+			if main and item["item"][0] == '-' and not item["item"] == '-- Vegetarian & Vegan Entree --':
 				main = False
 				after = True
-			if re.search('-- Main Entree --', string):
+			if item["item"] == '-- Main Entree --':
 				main = True
 				before = False
 			if before:
-				foodBefore.append(string)
+				foodBefore.append(item)
 			if main:
-				foodMain.append(string)
+				foodMain.append(item)
 			if after:
-				foodAfter.append(string)
+				foodAfter.append(item)
 
 		foodArray = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
 		return foodArray
@@ -101,16 +101,16 @@ def scrape(halls, lunchArray, dinnerArray):
 
 			if len(string) > 0:
 				if re.search("#0000FF", tag):
-					toAppend.append('<p style="color: #0000FF">' + string + '</p>')
+					toAppend.append({"item" : string, "legend" : "vegan"})
 				elif re.search("#00FF00", tag):
-					toAppend.append('<p style="color: LimeGreen">' + string + '</p>')
+					toAppend.append({"item" : string, "legend" : "vegetarian"})
 				elif re.search("#8000FF", tag):
-					toAppend.append('<p style="color: #8000FF">' + string + '</p>')
+					toAppend.append({"item" : string, "legend" : "pork"})
 				else:
 					if string[0] == '-':
-						toAppend.append('<b><p>' + string + '</p></b>')
+						toAppend.append({"item" : string, "legend" : "label"})
 					else:
-						toAppend.append('<p>' + string + '</p>')
+						toAppend.append({"item" : string, "legend" : ""})
 
 		lunch = False
 		dinner = False
@@ -163,6 +163,7 @@ def update():
 		halls = [wucox, cjl, whitman, roma, forbes, grad]
 		scrape(halls, lunchFuture[i], dinnerFuture[i])
 
+	#mongoDB stuff
 	count = Menu.objects.count()
 	if count == 0:
 		Menu(lunch=lunchList, dinner=dinnerList).save() #commit to MongoDB
@@ -173,7 +174,6 @@ def update():
 		newDate = datetime.datetime.now().date()
 		if oldDate != newDate:
 			Menu(lunch=lunchList, dinner=dinnerList).save()
-
 
 #check if menus have changed
 def checkForUpdate():
