@@ -425,7 +425,7 @@ def dinnerOld(month, day, year):
 		if menu.date_modified.date() == query:
 			return render_template(
 			"meal.html",
-			day      = days[future[5].isoweekday()-1],
+			day      = days[lastDate],
 			nextWeek = nextWeek[1:],
 			wucox    = menu.dinner[0],
 			cjl      = menu.dinner[1],
@@ -433,5 +433,23 @@ def dinnerOld(month, day, year):
 			roma     = menu.dinner[3],
 			forbes   = menu.dinner[4],
 			grad     = menu.dinner[5]
+			)
+	return "Not found!"
+
+@app.route('/lunch/<int:month>/<int:day>/<int:year>')
+def lunchOld(month, day, year):
+	query = datetime.date(year, month, day)
+	for menu in Menu.objects:
+		if menu.date_modified.date() == query:
+			return render_template(
+			"meal.html",
+			day      = days[lastDate],
+			nextWeek = nextWeek[1:],
+			wucox    = menu.lunch[0],
+			cjl      = menu.lunch[1],
+			whitman  = menu.lunch[2],
+			roma     = menu.lunch[3],
+			forbes   = menu.lunch[4],
+			grad     = menu.lunch[5]
 			)
 	return "Not found!"
