@@ -2,3 +2,4 @@ Flask==0.12
 bs4==0.0.1
 gunicorn==19.7.1
 requests==2.14.2
+mongoengine==0.13.0

@@ -4,6 +4,18 @@ from flask import render_template
 import datetime
 from app import app
 import re
+from mongoengine import *
+
+connect("menus", host="mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m")
+
+class Item(EmbeddedDocument):
+	item = StringField(required=True)
+	legend = StringField()
+
+class Menu(Document):
+	date_modified = DateTimeField(default=datetime.datetime.now)
+	lunch  = ListField(ListField(EmbeddedDocumentField(Item)))
+	dinner = ListField(ListField(EmbeddedDocumentField(Item)))
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -23,8 +35,9 @@ for i in range(7):
 
 #datetimes for this week
 future = []
+now = datetime.datetime.now()
 for i in range(6):
-	future.append(datetime.datetime.now() + datetime.timedelta(days=i+1))
+	future.append(now + datetime.timedelta(days=i+1))
 
 #scrape future days differently in case campus dining changes their format slightly so
 #only part of the scraper will break
@@ -44,19 +57,19 @@ def findMainEntrees(foodArray):
 		main = False
 		after = False
 
-		for string in foodArray:
-			if main and re.search('-', string) and not re.search('-- Vegetarian & Vegan Entree --', string):
+		for item in foodArray:
+			if main and item["item"][0] == '-' and not item["item"] == '-- Vegetarian & Vegan Entree --':
 				main = False
 				after = True
-			if re.search('-- Main Entree --', string):
+			if item["item"] == '-- Main Entree --':
 				main = True
 				before = False
 			if before:
-				foodBefore.append(string)
+				foodBefore.append(item)
 			if main:
-				foodMain.append(string)
+				foodMain.append(item)
 			if after:
-				foodAfter.append(string)
+				foodAfter.append(item)
 
 		foodArray = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
 		return foodArray
@@ -73,7 +86,7 @@ def scrape(halls, lunchArray, dinnerArray):
 		html = r.text
 		soup = BeautifulSoup(html, 'html.parser')
 		tag_strings = soup.table.findAll('div')
-		
+
 		for tag in tag_strings:
 			string = tag.get_text().strip()
 			tag = unicode(tag)
@@ -92,24 +105,22 @@ def scrape(halls, lunchArray, dinnerArray):
 
 			if len(string) > 0:
 				if re.search("#0000FF", tag):
-					toAppend.append('<p style="color: #0000FF">' + string + '</p>')
+					toAppend.append(Item(string, "vegan"))
 				elif re.search("#00FF00", tag):
-					toAppend.append('<p style="color: LimeGreen">' + string + '</p>')
+					toAppend.append(Item(string, "vegetarian"))
 				elif re.search("#8000FF", tag):
-					toAppend.append('<p style="color: #8000FF">' + string + '</p>')
+					toAppend.append(Item(string, "pork"))
 				else:
 					if string[0] == '-':
-						toAppend.append('<b><p>' + string + '</p></b>')
+						toAppend.append(Item(string, "label"))
 					else:
-						toAppend.append('<p>' + string + '</p>')
-		
+						toAppend.append(Item(string, ""))
+
 		lunch = False
 		dinner = False
 
 		lunchArray[i] = findMainEntrees(lunchArray[i])
 		dinnerArray[i] = findMainEntrees(dinnerArray[i])
-
-
 
 #update database
 def update():
@@ -146,7 +157,6 @@ def update():
 	for i in range(6):
 		prefixFuture = prefix + 'myaction=read&dtdate={}%2F{}%2F{}'.format(future[i].month, future[i].day, future[i].year)
 
-
 		roma    = prefixFuture + '&locationNum=01'
 		wucox   = prefixFuture + '&locationNum=02'
 		forbes  = prefixFuture + '&locationNum=03'
@@ -157,6 +167,18 @@ def update():
 		halls = [wucox, cjl, whitman, roma, forbes, grad]
 		scrape(halls, lunchFuture[i], dinnerFuture[i])
 
+	#mongoDB stuff
+	count = Menu.objects.count()
+	if count == 0:
+		Menu(lunch=lunchList, dinner=dinnerList).save() #commit to MongoDB
+	else:
+		last = Menu.objects[count-1]
+		#datetime.date objects are year, month, day only.
+		oldDate = last.date_modified.date()
+		newDate = datetime.datetime.now().date()
+		if oldDate != newDate:
+			Menu(lunch=lunchList, dinner=dinnerList).save()
+
 #check if menus have changed
 def checkForUpdate():
 	global lastDate
@@ -164,8 +186,9 @@ def checkForUpdate():
 	currentDay = datetime.datetime.today().weekday()
 	if currentDay != lastDate:
 		lastDate = currentDay
+		now = datetime.datetime.now()
 		for i in range(6):
-			future[i] = datetime.datetime.now() + datetime.timedelta(days=i+1)
+			future[i] =  now + datetime.timedelta(days=i+1)
 		update()
 
 ###########################################################################
@@ -394,3 +417,21 @@ def about():
 	"index.html",
 	day = days[lastDate],
 	nextWeek = nextWeek[1:])
+
+@app.route('/dinner/<int:month>/<int:day>/<int:year>')
+def dinnerOld(month, day, year):
+	query = datetime.date(year, month, day)
+	for menu in Menu.objects:
+		if menu.date_modified.date() == query:
+			return render_template(
+			"meal.html",
+			day      = days[future[5].isoweekday()-1],
+			nextWeek = nextWeek[1:],
+			wucox    = menu.dinner[0],
+			cjl      = menu.dinner[1],
+			whitman  = menu.dinner[2],
+			roma     = menu.dinner[3],
+			forbes   = menu.dinner[4],
+			grad     = menu.dinner[5]
+			)
+	return "Not found!"
