@@ -2,20 +2,20 @@ import requests
 from bs4 import BeautifulSoup
 from flask import render_template
 import datetime
-from app import app
+from app import app, db
 import re
-from mongoengine import *
+#from mongoengine import *
 
-connect("menus", host="mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m")
+#connect("menus", host="mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m")
 
-class Item(EmbeddedDocument):
-	item = StringField(required=True)
-	legend = StringField()
+class Item(db.EmbeddedDocument):
+	item = db.StringField(required=True)
+	legend = db.StringField()
 
-class Menu(Document):
-	date_modified = DateTimeField(default=datetime.datetime.now)
-	lunch  = ListField(ListField(EmbeddedDocumentField(Item)))
-	dinner = ListField(ListField(EmbeddedDocumentField(Item)))
+class Menu(db.Document):
+	date_modified = db.DateTimeField(default=datetime.datetime.now)
+	lunch  = db.ListField(db.ListField(db.EmbeddedDocumentField(Item)))
+	dinner = db.ListField(db.ListField(db.EmbeddedDocumentField(Item)))
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
