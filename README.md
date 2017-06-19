@@ -5,9 +5,9 @@ Scrapes menu data for all six dining halls and displays each meal on a single pa
 
 Hosted at https://tigermenus.herokuapp.com/
 
-It sure was fun learning Python, Flask, BeautifulSoup, GitHub, and Heroku in order to develop this!
+It sure was fun learning Python, Flask, BeautifulSoup, MongoDB, GitHub, and Heroku in order to develop this!
 
-I plan to add more features to it (user accounts, email notifications when dumplings are being served, better UI and design overall, a database to store many months of information so other people can use it, making a version of the site for grad students to use since they actually go frist/frick cafe, equad cafe, eating club menus) Please tell me about features you want added or even submit a pull request! You can use the feedback form on the website (which I shamelessly stole from TigerBook).
+I plan to add more features to it (user accounts, email notifications when dumplings are being served, better UI and design overall, making a version of the site for grad students to use since they actually go frist/frick cafe, equad cafe, eating club menus) Please tell me about features you want added or even submit a pull request! You can use the feedback form on the website (which I shamelessly stole from TigerBook).
 
 ![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
 
