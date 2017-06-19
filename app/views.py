@@ -1,10 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
-from flask import render_template
+from flask import render_template, redirect
 import datetime
 from app import app, db
 import re
 #from mongoengine import *
+from flask_mongoengine.wtf import model_form
 
 #connect("menus", host="mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m")
 
@@ -16,6 +17,14 @@ class Menu(db.Document):
 	date_modified = db.DateTimeField(default=datetime.datetime.now)
 	lunch  = db.ListField(db.ListField(db.EmbeddedDocumentField(Item)))
 	dinner = db.ListField(db.ListField(db.EmbeddedDocumentField(Item)))
+
+@app.route('/form', methods=['GET', 'POST'])
+def add_post():
+    form = model_form(Menu)
+    if form.validate():
+        # add to DB
+        redirect('done')
+    return render_template('add_menu.html', form=form)
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
