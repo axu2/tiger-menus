@@ -6,7 +6,8 @@ from app import app
 import re
 from mongoengine import *
 
-connect("menus", host="mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m")
+host = "mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m"
+connect("menus", host=host)
 
 class Item(EmbeddedDocument):
 	item = StringField(required=True)
@@ -19,7 +20,7 @@ class Menu(Document):
 
 #database (lol)
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 #today's menus
 lunchList = [[] for x in range(6)]
@@ -31,7 +32,7 @@ lastDate = datetime.datetime.today().weekday()
 #the next 7 days
 nextWeek = []
 for i in range(7):
-	nextWeek.append(minidays[lastDate+i])
+	nextWeek.append(minidays[(lastDate+i) % 7])
 
 #datetimes for this week
 future = []
@@ -152,7 +153,7 @@ def update():
 	global nextWeek
 	nextWeek = []
 	for i in range(7):
-		nextWeek.append(minidays[lastDate+i])
+		nextWeek.append(minidays[(lastDate+i) % 7])
 
 	for i in range(6):
 		prefixFuture = prefix + 'myaction=read&dtdate={}%2F{}%2F{}'.format(future[i].month, future[i].day, future[i].year)
