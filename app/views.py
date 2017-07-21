@@ -413,9 +413,7 @@ def dinner():
 @app.route('/about')
 def about():
     return render_template(
-    "index.html",
-    day = days[lastDate],
-    nextWeek = nextWeek[1:])
+        "index.html", day=days[lastDate], nextWeek=nextWeek[1:])
 
 
 @app.route('/dinner/<int:month>/<int:day>/<int:year>')
@@ -424,16 +422,15 @@ def dinnerOld(month, day, year):
     for menu in Menu.objects:
         if menu.date_modified.date() == query:
             return render_template(
-            "meal.html",
-            day      = days[lastDate],
-            nextWeek = nextWeek[1:],
-            wucox    = menu.dinner[0],
-            cjl      = menu.dinner[1],
-            whitman  = menu.dinner[2],
-            roma     = menu.dinner[3],
-            forbes   = menu.dinner[4],
-            grad     = menu.dinner[5]
-            )
+                "meal.html",
+                day      = days[lastDate],
+                nextWeek = nextWeek[1:],
+                wucox    = menu.dinner[0],
+                cjl      = menu.dinner[1],
+                whitman  = menu.dinner[2],
+                roma     = menu.dinner[3],
+                forbes   = menu.dinner[4],
+                grad     = menu.dinner[5])
     return "Not found!"
 
 
@@ -443,14 +440,13 @@ def lunchOld(month, day, year):
     for menu in Menu.objects:
         if menu.date_modified.date() == query:
             return render_template(
-            "meal.html",
-            day      = days[lastDate],
-            nextWeek = nextWeek[1:],
-            wucox    = menu.lunch[0],
-            cjl      = menu.lunch[1],
-            whitman  = menu.lunch[2],
-            roma     = menu.lunch[3],
-            forbes   = menu.lunch[4],
-            grad     = menu.lunch[5]
-            )
+                "meal.html",
+                day      = days[lastDate],
+                nextWeek = nextWeek[1:],
+                wucox    = menu.lunch[0],
+                cjl      = menu.lunch[1],
+                whitman  = menu.lunch[2],
+                roma     = menu.lunch[3],
+                forbes   = menu.lunch[4],
+                grad     = menu.lunch[5])
     return "Not found!"
