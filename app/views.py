@@ -130,6 +130,7 @@ def scrape(halls, lunchArray, dinnerArray):
 
 
 # update database
+@app.before_first_request
 def update():
     prefix = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
 
@@ -192,6 +193,7 @@ def update():
 
 
 # check if menus have changed
+@app.before_request
 def checkForUpdate():
     global lastDate
     global future
@@ -203,16 +205,9 @@ def checkForUpdate():
             future[i] = now + datetime.timedelta(days=i+1)
         update()
 
-###########################################################################
-# populate database when server starts
-update()
-###########################################################################
-
 
 @app.route('/lunch0')
 def lunch0():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[lastDate],
                             nextWeek = nextWeek[1:],
@@ -226,8 +221,6 @@ def lunch0():
 
 @app.route('/lunch1')
 def lunch1():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[0].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -241,8 +234,6 @@ def lunch1():
 
 @app.route('/lunch2')
 def lunch2():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[1].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -256,8 +247,6 @@ def lunch2():
 
 @app.route('/lunch3')
 def lunch3():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[2].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -271,8 +260,6 @@ def lunch3():
 
 @app.route('/lunch4')
 def lunch4():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[3].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -286,8 +273,6 @@ def lunch4():
 
 @app.route('/lunch5')
 def lunch5():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[4].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -301,8 +286,6 @@ def lunch5():
 
 @app.route('/lunch6')
 def lunch6():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[5].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -316,8 +299,6 @@ def lunch6():
 
 @app.route('/dinner0')
 def dinner0():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[lastDate],
                             nextWeek = nextWeek[1:],
@@ -331,8 +312,6 @@ def dinner0():
 
 @app.route('/dinner1')
 def dinner1():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[0].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -346,8 +325,6 @@ def dinner1():
 
 @app.route('/dinner2')
 def dinner2():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[1].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -361,8 +338,6 @@ def dinner2():
 
 @app.route('/dinner3')
 def dinner3():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[2].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -376,8 +351,6 @@ def dinner3():
 
 @app.route('/dinner4')
 def dinner4():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[3].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -391,8 +364,6 @@ def dinner4():
 
 @app.route('/dinner5')
 def dinner5():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[4].isoweekday()-1],
                             nextWeek = nextWeek[1:],
@@ -406,8 +377,6 @@ def dinner5():
 
 @app.route('/dinner6')
 def dinner6():
-    checkForUpdate()
-
     return render_template("meal.html",
                             day     = days[future[5].isoweekday()-1],
                             nextWeek = nextWeek[1:],
