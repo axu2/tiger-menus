@@ -6,7 +6,7 @@ from app import app
 import re
 from mongoengine import *
 
-host = os.getenv('MONGODB_URI')
+host = "mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m"
 connect("menus", host=host)
 
 
