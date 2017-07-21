@@ -2,7 +2,7 @@
 
 {% macro items(item) -%}
   {% if item.legend == "label" %}
-    <b><p>{{ item.item }}</p></b>
+    <b><p><u>{{ item.item[3:-3] }}</u></p></b>
   {% elif item.legend == "vegan" %}
     <p style="color: #0000FF">{{ item.item }}</p>
   {% elif item.legend == "vegetarian" %}
