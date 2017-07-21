@@ -47,11 +47,9 @@ for i in range(6):
 lunchFuture = [[[] for y in range(6)] for x in range(6)]
 dinnerFuture = [[[] for y in range(6)] for x in range(6)]
 
-##############################################################################
-
 
 # find main entrees
-def findMainEntrees(foodArray):
+def floatMainEntrees(foodArray):
     if len(foodArray) > 1:
         foodBefore = []
         foodMain = []
@@ -125,8 +123,8 @@ def scrape(halls, lunchArray, dinnerArray):
         lunch = False
         dinner = False
 
-        lunchArray[i] = findMainEntrees(lunchArray[i])
-        dinnerArray[i] = findMainEntrees(dinnerArray[i])
+        lunchArray[i] = floatMainEntrees(lunchArray[i])
+        dinnerArray[i] = floatMainEntrees(dinnerArray[i])
 
 
 # update database
@@ -208,57 +206,62 @@ def checkForUpdate():
 
 @app.route('/lunch/0')
 def lunch0():
-    return render_template("meal.html",
-                            day     = days[lastDate],
-                            nextWeek = nextWeek[1:],
-                            wucox   = lunchList[0],
-                            cjl     = lunchList[1],
-                            whitman = lunchList[2],
-                            roma    = lunchList[3],
-                            forbes  = lunchList[4],
-                            grad    = lunchList[5])
+    return render_template(
+        "meal.html",
+        day=days[lastDate],
+        nextWeek=nextWeek[1:],
+        wucox=lunchList[0],
+        cjl=lunchList[1],
+        whitman=lunchList[2],
+        roma=lunchList[3],
+        forbes=lunchList[4],
+        grad=lunchList[5])
+
 
 @app.route('/lunch/<int:i>')
 def lunchFuture(i):
     if 0 < i and i < 7:
-        return render_template("meal.html",
-                                day=days[future[i-1].isoweekday()-1],
-                                nextWeek = nextWeek[1:],
-                                wucox   = lunchFuture[i-1][0],
-                                cjl     = lunchFuture[i-1][1],
-                                whitman = lunchFuture[i-1][2],
-                                roma    = lunchFuture[i-1][3],
-                                forbes  = lunchFuture[i-1][4],
-                                grad    = lunchFuture[i-1][5])
+        return render_template(
+            "meal.html",
+            day=days[future[i-1].isoweekday()-1],
+            nextWeek=nextWeek[1:],
+            wucox=lunchFuture[i-1][0],
+            cjl=lunchFuture[i-1][1],
+            whitman=lunchFuture[i-1][2],
+            roma=lunchFuture[i-1][3],
+            forbes=lunchFuture[i-1][4],
+            grad=lunchFuture[i-1][5])
     else:
         return "error"
 
 
 @app.route('/dinner/0')
 def dinner0():
-    return render_template("meal.html",
-                            day     = days[lastDate],
-                            nextWeek = nextWeek[1:],
-                            wucox   = dinnerList[0],
-                            cjl     = dinnerList[1],
-                            whitman = dinnerList[2],
-                            roma    = dinnerList[3],
-                            forbes  = dinnerList[4],
-                            grad    = dinnerList[5])
+    return render_template(
+        "meal.html",
+        day=days[lastDate],
+        nextWeek=nextWeek[1:],
+        wucox=dinnerList[0],
+        cjl=dinnerList[1],
+        whitman=dinnerList[2],
+        roma=dinnerList[3],
+        forbes=dinnerList[4],
+        grad=dinnerList[5])
 
 
 @app.route('/dinner/<int:i>')
 def dinnerFuture(i):
     if 0 < i and i < 7:
-        return render_template("meal.html",
-                                day     = days[future[0].isoweekday()-1],
-                                nextWeek = nextWeek[1:],
-                                wucox   = dinnerFuture[i-1][0],
-                                cjl     = dinnerFuture[i-1][1],
-                                whitman = dinnerFuture[i-1][2],
-                                roma    = dinnerFuture[i-1][3],
-                                forbes  = dinnerFuture[i-1][4],
-                                grad    = dinnerFuture[i-1][5])
+        return render_template(
+            "meal.html",
+            day=days[future[0].isoweekday()-1],
+            nextWeek=nextWeek[1:],
+            wucox=dinnerFuture[i-1][0],
+            cjl=dinnerFuture[i-1][1],
+            whitman=dinnerFuture[i-1][2],
+            roma=dinnerFuture[i-1][3],
+            forbes=dinnerFuture[i-1][4],
+            grad=dinnerFuture[i-1][5])
     else:
         return "error"
 
@@ -298,14 +301,14 @@ def dinnerOld(month, day, year):
         if menu.date_modified.date() == query:
             return render_template(
                 "meal.html",
-                day      = days[lastDate],
-                nextWeek = nextWeek[1:],
-                wucox    = menu.dinner[0],
-                cjl      = menu.dinner[1],
-                whitman  = menu.dinner[2],
-                roma     = menu.dinner[3],
-                forbes   = menu.dinner[4],
-                grad     = menu.dinner[5])
+                day=days[lastDate],
+                nextWeek=nextWeek[1:],
+                wucox=menu.dinner[0],
+                cjl=menu.dinner[1],
+                whitman=menu.dinner[2],
+                roma=menu.dinner[3],
+                forbes=menu.dinner[4],
+                grad=menu.dinner[5])
     return "Not found!"
 
 
@@ -316,12 +319,12 @@ def lunchOld(month, day, year):
         if menu.date_modified.date() == query:
             return render_template(
                 "meal.html",
-                day      = days[lastDate],
-                nextWeek = nextWeek[1:],
-                wucox    = menu.lunch[0],
-                cjl      = menu.lunch[1],
-                whitman  = menu.lunch[2],
-                roma     = menu.lunch[3],
-                forbes   = menu.lunch[4],
-                grad     = menu.lunch[5])
+                day=days[lastDate],
+                nextWeek=nextWeek[1:],
+                wucox=menu.lunch[0],
+                cjl=menu.lunch[1],
+                whitman=menu.lunch[2],
+                roma=menu.lunch[3],
+                forbes=menu.lunch[4],
+                grad=menu.lunch[5])
     return "Not found!"
