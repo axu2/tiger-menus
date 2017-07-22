@@ -219,7 +219,7 @@ def lunch0():
 
 
 @app.route('/lunch/<int:i>')
-def lunchFuture(i):
+def lunchF(i):
     if 0 < i and i < 7:
         return render_template(
             "meal.html",
@@ -250,7 +250,7 @@ def dinner0():
 
 
 @app.route('/dinner/<int:i>')
-def dinnerFuture(i):
+def dinnerF(i):
     if 0 < i and i < 7:
         return render_template(
             "meal.html",
@@ -275,7 +275,7 @@ def index():
     elif now.hour < 20:
         return dinner0()
     else:
-        return lunchFuture(1)
+        return lunchF(1)
 
 
 @app.route('/lunch')
