@@ -1,10 +1,9 @@
 import requests
+from app import app
 from bs4 import BeautifulSoup
+from .models import Menu, Item
 from flask import render_template
 from datetime import datetime, date, timedelta
-from app import app
-import os
-from .models import Menu, Item
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
         'Saturday', 'Sunday']
