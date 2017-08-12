@@ -35,8 +35,8 @@ dinnerFuture = [[[] for y in range(6)] for x in range(6)]
 
 
 # find main entrees
-def floatMainEntrees(foodArray):
-    if len(foodArray) > 1:
+def floatMainEntrees(foodList):
+    if len(foodList) > 1:
         foodBefore = []
         foodMain = []
         foodAfter = []
@@ -45,7 +45,7 @@ def floatMainEntrees(foodArray):
         main = False
         after = False
 
-        for item in foodArray:
+        for item in foodList:
             v = '-- Vegetarian & Vegan Entree --'
             if main and item["item"][0] == '-' and not item["item"] == v:
                 main = False
@@ -60,14 +60,14 @@ def floatMainEntrees(foodArray):
             if after:
                 foodAfter.append(item)
 
-        foodArray = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
-        return foodArray
+        foodList = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
+        return foodList
     else:
-        return foodArray
+        return foodList
 
 
 # scrape campus dining
-def scrape(halls, lunchArray, dinnerArray):
+def scrape(halls, lunchList, dinnerList):
     lunch = False
     dinner = False
 
@@ -89,9 +89,9 @@ def scrape(halls, lunchArray, dinnerArray):
                 dinner = True
 
             if lunch:
-                toAppend = lunchArray[i]
+                toAppend = lunchList[i]
             if dinner:
-                toAppend = dinnerArray[i]
+                toAppend = dinnerList[i]
 
             if len(string) > 0:
                 if "#0000FF" in tag:
@@ -109,8 +109,8 @@ def scrape(halls, lunchArray, dinnerArray):
         lunch = False
         dinner = False
 
-        lunchArray[i] = floatMainEntrees(lunchArray[i])
-        dinnerArray[i] = floatMainEntrees(dinnerArray[i])
+        lunchList[i] = floatMainEntrees(lunchList[i])
+        dinnerList[i] = floatMainEntrees(dinnerList[i])
 
 
 # update database
