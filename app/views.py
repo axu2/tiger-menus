@@ -55,8 +55,8 @@ def scrape(halls, lunchList, dinnerList):
     lunch = False
     dinner = False
 
-    for i in range(len(halls)):
-        r = requests.get(halls[i])
+    for i, url in enumerate(halls):
+        r = requests.get(url)
         html = r.text
         soup = BeautifulSoup(html, 'html.parser')
         tag_strings = soup.table.findAll('div')
