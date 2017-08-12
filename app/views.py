@@ -4,24 +4,8 @@ from flask import render_template
 import datetime
 from app import app
 import re
-from mongoengine import (connect, EmbeddedDocument, Document,
-                         ListField, StringField, DateTimeField,
-                         EmbeddedDocumentField)
 import os
-
-host = os.getenv('MONGODB_URI')
-connect("menus", host=host)
-
-
-class Item(EmbeddedDocument):
-    item = StringField(required=True)
-    legend = StringField()
-
-
-class Menu(Document):
-    date_modified = DateTimeField(default=datetime.datetime.now)
-    lunch = ListField(ListField(EmbeddedDocumentField(Item)))
-    dinner = ListField(ListField(EmbeddedDocumentField(Item)))
+from .models import Menu, Item
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
         'Saturday', 'Sunday']
