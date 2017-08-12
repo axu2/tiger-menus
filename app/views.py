@@ -4,9 +4,12 @@ from flask import render_template
 import datetime
 from app import app
 import re
-from mongoengine import *
+from mongoengine import (connect, EmbeddedDocument, Document,
+                         ListField, StringField, DateTimeField,
+                         EmbeddedDocumentField)
+import os
 
-host = "mongodb://Arable:Arable@ds127982.mlab.com:27982/heroku_pbbvt44m"
+host = os.getenv('MONGODB_URI')
 connect("menus", host=host)
 
 
