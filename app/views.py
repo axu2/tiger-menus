@@ -12,19 +12,10 @@ minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 lunchLists = [[[] for y in range(6)] for x in range(7)]
 dinnerLists = [[[] for y in range(6)] for x in range(7)]
 
-# the last date checked
 lastDate = datetime.now().weekday()
-
-# the next 7 days
-nextWeek = []
-for i in range(7):
-    nextWeek.append(minidays[(lastDate + i) % 7])
-
-# datetimes for this week
-future = []
+nextWeek = [minidays[(lastDate + i) % 7] for i in range(7)]
 now = datetime.now()
-for i in range(7):
-    future.append(now + timedelta(days=i))
+future = [now + timedelta(days=i) for i in range(7)]
 
 
 # find main entrees
@@ -117,9 +108,7 @@ def update():
 
     # update nextWeek
     global nextWeek
-    nextWeek = []
-    for i in range(7):
-        nextWeek.append(minidays[(lastDate+i) % 7])
+    nextWeek = [minidays[(lastDate+i) % 7] for i in range(7)]
 
     for i in range(7):
         p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
@@ -160,8 +149,7 @@ def checkForUpdate():
     if currentDay != lastDate:
         lastDate = currentDay
         now = datetime.now()
-        for i in range(7):
-            future[i] = now + timedelta(days=i)
+        future = [now + timedelta(days=i) for i in range(7)]
         update()
 
 
