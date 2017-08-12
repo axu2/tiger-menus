@@ -10,9 +10,8 @@ days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
         'Saturday', 'Sunday']
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-# today's menus
-lunchList = [[] for x in range(6)]
-dinnerList = [[] for x in range(6)]
+lunchLists = [[[] for y in range(6)] for x in range(7)]
+dinnerLists = [[[] for y in range(6)] for x in range(7)]
 
 # the last date checked
 lastDate = datetime.datetime.today().weekday()
@@ -20,18 +19,13 @@ lastDate = datetime.datetime.today().weekday()
 # the next 7 days
 nextWeek = []
 for i in range(7):
-    nextWeek.append(minidays[(lastDate+i) % 7])
+    nextWeek.append(minidays[(lastDate + i) % 7])
 
 # datetimes for this week
 future = []
 now = datetime.datetime.now()
-for i in range(6):
-    future.append(now + datetime.timedelta(days=i+1))
-
-# scrape future days differently in case campus dining changes their format
-# slightly so only part of the scraper will break
-lunchFuture = [[[] for y in range(6)] for x in range(6)]
-dinnerFuture = [[[] for y in range(6)] for x in range(6)]
+for i in range(7):
+    future.append(now + datetime.timedelta(days=i))
 
 
 # find main entrees
@@ -116,29 +110,11 @@ def scrape(halls, lunchList, dinnerList):
 # update database
 @app.before_first_request
 def update():
-    prefix = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
-
-    roma = prefix + 'locationNum=01'
-    wucox = prefix + 'locationNum=02'
-    forbes = prefix + 'locationNum=03'
-    grad = prefix + 'locationNum=04'
-    cjl = prefix + 'locationNum=05'
-    whitman = prefix + 'locationNum=08'
-
-    halls = [wucox, cjl, whitman, roma, forbes, grad]
-
-    # update today
-    global lunchList
-    global dinnerList
-    lunchList = [[] for x in range(6)]
-    dinnerList = [[] for x in range(6)]
-    scrape(halls, lunchList, dinnerList)
-
     # update future
-    global lunchFuture
-    global dinnerFuture
-    lunchFuture = [[[] for y in range(6)] for x in range(6)]
-    dinnerFuture = [[[] for y in range(6)] for x in range(6)]
+    global lunchLists
+    global dinnerLists
+    lunchLists = [[[] for y in range(6)] for x in range(7)]
+    dinnerLists = [[[] for y in range(6)] for x in range(7)]
 
     # update nextWeek
     global nextWeek
@@ -146,34 +122,34 @@ def update():
     for i in range(7):
         nextWeek.append(minidays[(lastDate+i) % 7])
 
-    for i in range(6):
-        p = prefix
+    for i in range(7):
+        p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
         m = future[i].month
         d = future[i].day
         y = future[i].year
-        prefixFuture = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
+        prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
 
-        roma = prefixFuture + '&locationNum=01'
-        wucox = prefixFuture + '&locationNum=02'
-        forbes = prefixFuture + '&locationNum=03'
-        grad = prefixFuture + '&locationNum=04'
-        cjl = prefixFuture + '&locationNum=05'
-        whitman = prefixFuture + '&locationNum=08'
+        roma = prefix + '&locationNum=01'
+        wucox = prefix + '&locationNum=02'
+        forbes = prefix + '&locationNum=03'
+        grad = prefix + '&locationNum=04'
+        cjl = prefix + '&locationNum=05'
+        whitman = prefix + '&locationNum=08'
 
         halls = [wucox, cjl, whitman, roma, forbes, grad]
-        scrape(halls, lunchFuture[i], dinnerFuture[i])
+        scrape(halls, lunchLists[i], dinnerLists[i])
 
     # mongoDB stuff
     count = Menu.objects.count()
     if count == 0:
-        Menu(lunch=lunchList, dinner=dinnerList).save()
+        Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
     else:
         last = Menu.objects[count-1]
         # datetime.date objects are year, month, day only.
         oldDate = last.date_modified.date()
         newDate = datetime.datetime.now().date()
         if oldDate != newDate:
-            Menu(lunch=lunchList, dinner=dinnerList).save()
+            Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
 # check if menus have changed
@@ -185,69 +161,41 @@ def checkForUpdate():
     if currentDay != lastDate:
         lastDate = currentDay
         now = datetime.datetime.now()
-        for i in range(6):
-            future[i] = now + datetime.timedelta(days=i+1)
+        for i in range(7):
+            future[i] = now + datetime.timedelta(days=i)
         update()
 
 
-@app.route('/lunch/0')
-def lunch0():
-    return render_template(
-        "meal.html",
-        day=days[lastDate],
-        nextWeek=nextWeek[1:],
-        wucox=lunchList[0],
-        cjl=lunchList[1],
-        whitman=lunchList[2],
-        roma=lunchList[3],
-        forbes=lunchList[4],
-        grad=lunchList[5])
-
-
 @app.route('/lunch/<int:i>')
-def lunchF(i):
-    if 0 < i and i < 7:
+def lunch(i):
+    if 0 <= i and i < 7:
         return render_template(
             "meal.html",
-            day=days[future[i-1].isoweekday()-1],
+            day=days[future[i].isoweekday()-1],
             nextWeek=nextWeek[1:],
-            wucox=lunchFuture[i-1][0],
-            cjl=lunchFuture[i-1][1],
-            whitman=lunchFuture[i-1][2],
-            roma=lunchFuture[i-1][3],
-            forbes=lunchFuture[i-1][4],
-            grad=lunchFuture[i-1][5])
+            wucox=lunchLists[i][0],
+            cjl=lunchLists[i][1],
+            whitman=lunchLists[i][2],
+            roma=lunchLists[i][3],
+            forbes=lunchLists[i][4],
+            grad=lunchLists[i][5])
     else:
         return "error"
 
 
-@app.route('/dinner/0')
-def dinner0():
-    return render_template(
-        "meal.html",
-        day=days[lastDate],
-        nextWeek=nextWeek[1:],
-        wucox=dinnerList[0],
-        cjl=dinnerList[1],
-        whitman=dinnerList[2],
-        roma=dinnerList[3],
-        forbes=dinnerList[4],
-        grad=dinnerList[5])
-
-
 @app.route('/dinner/<int:i>')
-def dinnerF(i):
-    if 0 < i and i < 7:
+def dinner(i):
+    if 0 <= i and i < 7:
         return render_template(
             "meal.html",
-            day=days[future[0].isoweekday()-1],
+            day=days[future[i].isoweekday()-1],
             nextWeek=nextWeek[1:],
-            wucox=dinnerFuture[i-1][0],
-            cjl=dinnerFuture[i-1][1],
-            whitman=dinnerFuture[i-1][2],
-            roma=dinnerFuture[i-1][3],
-            forbes=dinnerFuture[i-1][4],
-            grad=dinnerFuture[i-1][5])
+            wucox=dinnerLists[i][0],
+            cjl=dinnerLists[i][1],
+            whitman=dinnerLists[i][2],
+            roma=dinnerLists[i][3],
+            forbes=dinnerLists[i][4],
+            grad=dinnerLists[i][5])
     else:
         return "error"
 
@@ -257,21 +205,21 @@ def dinnerF(i):
 def index():
     now = datetime.datetime.now()
     if now.hour < 14:
-        return lunch0()
+        return lunch(0)
     elif now.hour < 20:
-        return dinner0()
+        return dinner(0)
     else:
-        return lunchF(1)
+        return lunch(1)
 
 
 @app.route('/lunch')
-def lunch():
-    return lunch0()
+def lunch0():
+    return lunch(0)
 
 
 @app.route('/dinner')
-def dinner():
-    return dinner0()
+def dinner0():
+    return dinner(0)
 
 
 @app.route('/about')
