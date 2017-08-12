@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from flask import render_template
 import datetime
 from app import app
-import re
 import os
 from .models import Menu, Item
 
@@ -95,11 +94,11 @@ def scrape(halls, lunchArray, dinnerArray):
                 toAppend = dinnerArray[i]
 
             if len(string) > 0:
-                if re.search("#0000FF", tag):
+                if "#0000FF" in tag:
                     toAppend.append(Item(string, "vegan"))
-                elif re.search("#00FF00", tag):
+                elif "#00FF00" in tag:
                     toAppend.append(Item(string, "vegetarian"))
-                elif re.search("#8000FF", tag):
+                elif "#8000FF" in tag:
                     toAppend.append(Item(string, "pork"))
                 else:
                     if string[0] == '-':
