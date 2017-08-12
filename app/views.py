@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from flask import render_template
-import datetime
+from datetime import datetime, date, timedelta
 from app import app
 import os
 from .models import Menu, Item
@@ -14,7 +14,7 @@ lunchLists = [[[] for y in range(6)] for x in range(7)]
 dinnerLists = [[[] for y in range(6)] for x in range(7)]
 
 # the last date checked
-lastDate = datetime.datetime.today().weekday()
+lastDate = datetime.now().weekday()
 
 # the next 7 days
 nextWeek = []
@@ -23,9 +23,9 @@ for i in range(7):
 
 # datetimes for this week
 future = []
-now = datetime.datetime.now()
+now = datetime.now()
 for i in range(7):
-    future.append(now + datetime.timedelta(days=i))
+    future.append(now + timedelta(days=i))
 
 
 # find main entrees
@@ -145,9 +145,9 @@ def update():
         Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
     else:
         last = Menu.objects[count-1]
-        # datetime.date objects are year, month, day only.
+        # date objects are year, month, day only.
         oldDate = last.date_modified.date()
-        newDate = datetime.datetime.now().date()
+        newDate = datetime.now().date()
         if oldDate != newDate:
             Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
@@ -157,12 +157,12 @@ def update():
 def checkForUpdate():
     global lastDate
     global future
-    currentDay = datetime.datetime.today().weekday()
+    currentDay = datetime.now().weekday()
     if currentDay != lastDate:
         lastDate = currentDay
-        now = datetime.datetime.now()
+        now = datetime.now()
         for i in range(7):
-            future[i] = now + datetime.timedelta(days=i)
+            future[i] = now + timedelta(days=i)
         update()
 
 
@@ -171,7 +171,7 @@ def lunch(i):
     if 0 <= i and i < 7:
         return render_template(
             "meal.html",
-            day=days[future[i].isoweekday()-1],
+            day=days[future[i].weekday()],
             nextWeek=nextWeek[1:],
             wucox=lunchLists[i][0],
             cjl=lunchLists[i][1],
@@ -188,7 +188,7 @@ def dinner(i):
     if 0 <= i and i < 7:
         return render_template(
             "meal.html",
-            day=days[future[i].isoweekday()-1],
+            day=days[future[i].weekday()],
             nextWeek=nextWeek[1:],
             wucox=dinnerLists[i][0],
             cjl=dinnerLists[i][1],
@@ -203,7 +203,7 @@ def dinner(i):
 # homepage will default
 @app.route('/')
 def index():
-    now = datetime.datetime.now()
+    now = datetime.now()
     if now.hour < 14:
         return lunch(0)
     elif now.hour < 20:
@@ -230,7 +230,7 @@ def about():
 
 @app.route('/dinner/<int:month>/<int:day>/<int:year>')
 def dinnerOld(month, day, year):
-    query = datetime.date(year, month, day)
+    query = date(year, month, day)
     for menu in Menu.objects:
         if menu.date_modified.date() == query:
             return render_template(
@@ -248,7 +248,7 @@ def dinnerOld(month, day, year):
 
 @app.route('/lunch/<int:month>/<int:day>/<int:year>')
 def lunchOld(month, day, year):
-    query = datetime.date(year, month, day)
+    query = date(year, month, day)
     for menu in Menu.objects:
         if menu.date_modified.date() == query:
             return render_template(
