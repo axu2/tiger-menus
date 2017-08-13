@@ -55,8 +55,7 @@ def scrape(halls, lunchList, dinnerList):
     dinner = False
 
     for i, url in enumerate(halls):
-        r = requests.get(url)
-        html = r.text
+        html = requests.get(url).text
         soup = BeautifulSoup(html, 'html.parser')
         tag_strings = soup.table.findAll('div')
 
@@ -186,7 +185,6 @@ def dinner(i):
         return "error"
 
 
-# homepage will default
 @app.route('/')
 def index():
     """Return homepage HTML. The displayed meal depends on time of day."""
