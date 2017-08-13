@@ -12,9 +12,9 @@ minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 lunchLists = [[[] for y in range(6)] for x in range(7)]
 dinnerLists = [[[] for y in range(6)] for x in range(7)]
 
-lastDate = datetime.now().weekday()
-nextWeek = [minidays[(lastDate + i) % 7] for i in range(7)]
 now = datetime.now()
+lastDate = now.weekday()
+nextWeek = [minidays[(lastDate + i) % 7] for i in range(7)]
 future = [now + timedelta(days=i) for i in range(7)]
 
 
@@ -45,9 +45,8 @@ def floatMainEntrees(foodList):
                 foodAfter.append(item)
 
         foodList = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
-        return foodList
-    else:
-        return foodList
+
+    return foodList
 
 
 # scrape campus dining
@@ -145,10 +144,10 @@ def update():
 def checkForUpdate():
     global lastDate
     global future
-    currentDay = datetime.now().weekday()
+    now = datetime.now()
+    currentDay = now.weekday()
     if currentDay != lastDate:
         lastDate = currentDay
-        now = datetime.now()
         future = [now + timedelta(days=i) for i in range(7)]
         update()
 
