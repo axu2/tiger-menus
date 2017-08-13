@@ -1,6 +1,4 @@
-import requests
 from app import app
-from bs4 import BeautifulSoup
 from .models import Menu, Item
 from flask import render_template
 from datetime import datetime, date, timedelta
@@ -50,7 +48,10 @@ def floatMainEntrees(foodList):
 
 
 def scrape(halls, lunchList, dinnerList):
-    """Scrape on day of campus dining."""
+    """Scrape one day of campus dining."""
+    import requests
+    from bs4 import BeautifulSoup
+
     lunch = False
     dinner = False
 
