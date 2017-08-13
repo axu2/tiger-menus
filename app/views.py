@@ -18,8 +18,8 @@ nextWeek = [minidays[(lastDate + i) % 7] for i in range(7)]
 future = [now + timedelta(days=i) for i in range(7)]
 
 
-# find main entrees
 def floatMainEntrees(foodList):
+    """Return foodList with main entrees at the top."""
     if len(foodList) > 1:
         foodBefore = []
         foodMain = []
@@ -49,8 +49,8 @@ def floatMainEntrees(foodList):
     return foodList
 
 
-# scrape campus dining
 def scrape(halls, lunchList, dinnerList):
+    """Scrape on day of campus dining."""
     lunch = False
     dinner = False
 
@@ -96,17 +96,15 @@ def scrape(halls, lunchList, dinnerList):
         dinnerList[i] = floatMainEntrees(dinnerList[i])
 
 
-# update database
 @app.before_first_request
 def update():
-    # update future
+    """Update global variables and database."""
     global lunchLists
     global dinnerLists
+    global nextWeek
+
     lunchLists = [[[] for y in range(6)] for x in range(7)]
     dinnerLists = [[[] for y in range(6)] for x in range(7)]
-
-    # update nextWeek
-    global nextWeek
     nextWeek = [minidays[(lastDate+i) % 7] for i in range(7)]
 
     for i in range(7):
@@ -139,9 +137,9 @@ def update():
             Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
-# check if menus have changed
 @app.before_request
 def checkForUpdate():
+    """Check if day has changed."""
     global lastDate
     global future
     now = datetime.now()
@@ -154,6 +152,7 @@ def checkForUpdate():
 
 @app.route('/lunch/<int:i>')
 def lunch(i):
+    """Return lunch HTML."""
     if 0 <= i and i < 7:
         return render_template(
             "meal.html",
@@ -171,6 +170,7 @@ def lunch(i):
 
 @app.route('/dinner/<int:i>')
 def dinner(i):
+    """Return dinner HTML."""
     if 0 <= i and i < 7:
         return render_template(
             "meal.html",
@@ -189,6 +189,7 @@ def dinner(i):
 # homepage will default
 @app.route('/')
 def index():
+    """Return homepage HTML. The displayed meal depends on time of day."""
     now = datetime.now()
     if now.hour < 14:
         return lunch(0)
@@ -200,22 +201,26 @@ def index():
 
 @app.route('/lunch')
 def lunch0():
+    """Return lunch/0 HTML for convenience."""
     return lunch(0)
 
 
 @app.route('/dinner')
 def dinner0():
+    """Return dinner/0 HTML for convenience."""
     return dinner(0)
 
 
 @app.route('/about')
 def about():
+    """Return about page HTML."""
     return render_template(
         "index.html", day=days[lastDate], nextWeek=nextWeek[1:])
 
 
 @app.route('/dinner/<int:month>/<int:day>/<int:year>')
 def dinnerOld(month, day, year):
+    """Return past dinner HTML from database."""
     query = date(year, month, day)
     for menu in Menu.objects:
         if menu.date_modified.date() == query:
@@ -234,6 +239,7 @@ def dinnerOld(month, day, year):
 
 @app.route('/lunch/<int:month>/<int:day>/<int:year>')
 def lunchOld(month, day, year):
+    """Return past lunch HTML from database."""
     query = date(year, month, day)
     for menu in Menu.objects:
         if menu.date_modified.date() == query:
