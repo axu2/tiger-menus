@@ -1,7 +1,8 @@
 from app import app
 from .models import Menu, Item
-from flask import render_template
-from datetime import datetime, date, timedelta
+from datetime import datetime, timedelta
+from flask import render_template, jsonify
+from mongoengine import MultipleObjectsReturned, DoesNotExist
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
         'Saturday', 'Sunday']
@@ -124,17 +125,11 @@ def update():
         halls = [wucox, cjl, whitman, roma, forbes, grad]
         scrape(halls, lunchLists[i], dinnerLists[i])
 
-    # mongoDB stuff
-    count = Menu.objects.count()
-    if count == 0:
+    now = datetime.now()
+    start = datetime(now.year, now.month, now.day)
+    end = start + timedelta(days=1)
+    if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
         Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
-    else:
-        last = Menu.objects[count-1]
-        # date objects are year, month, day only.
-        oldDate = last.date_modified.date()
-        newDate = datetime.now().date()
-        if oldDate != newDate:
-            Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
 @app.before_request
@@ -217,39 +212,30 @@ def about():
         "index.html", day=days[lastDate], nextWeek=nextWeek[1:])
 
 
-@app.route('/dinner/<int:month>/<int:day>/<int:year>')
-def dinnerOld(month, day, year):
-    """Return past dinner HTML from database."""
-    query = date(year, month, day)
-    for menu in Menu.objects:
-        if menu.date_modified.date() == query:
-            return render_template(
-                "meal.html",
-                day=days[lastDate],
-                nextWeek=nextWeek[1:],
-                wucox=menu.dinner[0],
-                cjl=menu.dinner[1],
-                whitman=menu.dinner[2],
-                roma=menu.dinner[3],
-                forbes=menu.dinner[4],
-                grad=menu.dinner[5])
-    return "Not found!"
+@app.route('/api/<int:month>/<int:day>/<int:year>')
+def api(month, day, year):
+    """Return past menu JSON from database."""
+    start = datetime(year, month, day)
+    end = start + timedelta(days=1)
+    menu = Menu.objects.get(date_modified__gte=start, date_modified__lt=end)
+    return jsonify(menu)
 
 
-@app.route('/lunch/<int:month>/<int:day>/<int:year>')
-def lunchOld(month, day, year):
-    """Return past lunch HTML from database."""
-    query = date(year, month, day)
-    for menu in Menu.objects:
-        if menu.date_modified.date() == query:
-            return render_template(
-                "meal.html",
-                day=days[lastDate],
-                nextWeek=nextWeek[1:],
-                wucox=menu.lunch[0],
-                cjl=menu.lunch[1],
-                whitman=menu.lunch[2],
-                roma=menu.lunch[3],
-                forbes=menu.lunch[4],
-                grad=menu.lunch[5])
-    return "Not found!"
+@app.errorhandler(DoesNotExist)
+def handle_does_not_exist(e):
+    """MongoEngine `DoesNotExist` error handler."""
+    payload = {
+        'reason': type(e).__name__,
+        'description': e.message
+    }
+    return jsonify(payload), 404
+
+
+@app.errorhandler(MultipleObjectsReturned)
+def handle_multiple_objects_returned(e):
+    """MongoEngine `MultipleObjectsReturned` error handler."""
+    payload = {
+        'reason': 'Database problem please use contact form on homepage',
+        'description': e.message
+    }
+    return jsonify(payload), 500
