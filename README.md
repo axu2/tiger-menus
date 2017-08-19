@@ -1,18 +1,26 @@
- 
+
 # TigerMenus
 ## Overview
-Scrapes menu data for all six dining halls and displays each meal on a single page for easy comparison.
+Convenient to use dining hall menu website for Princeton University with 33,333+ views and ~333 daily users
 
 Hosted at https://tigermenus.herokuapp.com/
 
 It sure was fun learning Python, Flask, BeautifulSoup, MongoDB, GitHub, and Heroku in order to develop this!
 
-I plan to add more features to it (user accounts, email notifications when dumplings are being served, better UI and design overall, making a version of the site for grad students to use since they actually go frist/frick cafe, equad cafe, eating club menus) Please tell me about features you want added or even submit a pull request! You can use the feedback form on the website (which I shamelessly stole from TigerBook).
+Make sure you checkout the mobile versions too!
+
+![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/favicons/apple-touch-icon.png)
+Mobile app icon.
+
 
 ![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
+How it looks.
+
+![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/analytics.png)
+How popular it was
 
 ## Setup
-Recommended Python 2.7.9+. Older versions will give you error messages, but you can probably ignore them. 
+Recommended Python 2.7.9+. Older versions will give you error messages, but you can probably ignore them.
 
 Fork repository (optional) and clone it into your own directory. Then:
 ```
@@ -33,7 +41,7 @@ To run development server:
 ```
 (venv) $ python run.py
 ```
-It takes a while to scrape 7*6=42 webpages. 
+It takes a while to scrape 7*6=42 webpages.
 
 So wait until you see something like (ignore any error messages you get if you use an old version of Python):
 ```
