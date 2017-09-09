@@ -2,7 +2,7 @@
 
 {% macro items(item) -%}
   {% if item.legend == "label" %}
-    <b><p><u>{{ item.item[3:-3] }}</u></p></b>
+    <b><p>{{ item.item }}</p></b>
   {% elif item.legend == "vegan" %}
     <p style="color: #0000FF">{{ item.item }}</p>
   {% elif item.legend == "vegetarian" %}
@@ -19,7 +19,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
-      <h3>Butler</h3>
+      <h3>Butler / Wilson</h3>
       {% for item in wucox %}
           {{ items(item) }}
       {% endfor %}
