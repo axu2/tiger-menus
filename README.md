@@ -1,18 +1,21 @@
 
 # TigerMenus
 ## Overview
-Convenient to use dining hall menu website for Princeton University with 33,333+ views and ~333 daily users
+Developed new university dining hall menu website with 300+ daily active users and 33,000+ total views
 
-Hosted at https://tigermenus.herokuapp.com/
+Designed interface that consolidated all 6 university dining hall menus into a single page, mobile website with app icon for iPhone/Android, and JSON web API for historical menu data stored in MongoDB
 
-It sure was fun learning Python, Flask, BeautifulSoup, MongoDB, GitHub, and Heroku in order to develop this!
+Hosted at http://tigermenus.herokuapp.com/
 
-Make sure you checkout the mobile versions too!
+Programmed backend in Flask (Python) using BeautifulSoup (scraping) and MongoEngine (database)
 
-![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png)
 
-![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png)
-
+<table>
+  <tr>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png" alt="iPhone" style="width: 320px;"/></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png" alt="iPhone" style="width: 320px;"/></th>
+  </tr>
+</table>
 
 ![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
 How it looks.
@@ -32,23 +35,24 @@ For example, if you are using Bash on Ubuntu on Windows like me, the commands mi
 ```
 $ sudo apt-get install python-virtualenv
 $ virtualenv venv
-$ source venv/bin/activate
+$ . venv/bin/activate
 ```
 Install requirements with pip in the venv:
 ```
 (venv) $ pip install -r requirements.txt
 ```
+
+Start a local MongoDB server.
+```
+(venv) $ service mongodb start
+```
 To run development server:
 ```
 (venv) $ python run.py
 ```
-It takes a while to scrape 7*6=42 webpages.
 
-So wait until you see something like (ignore any error messages you get if you use an old version of Python):
-```
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 630-870-627
-```
+Ignore any error messages you get if you use an old version of Python.
+
 Open http://localhost:5000/
+
+It takes a while to scrape 7*6=42 webpages, so page will load when scraping is done.
