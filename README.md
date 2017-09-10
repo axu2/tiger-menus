@@ -9,7 +9,9 @@ It sure was fun learning Python, Flask, BeautifulSoup, MongoDB, GitHub, and Hero
 
 Make sure you checkout the mobile versions too!
 
-![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/favicons/apple-touch-icon.png)
+![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png)
+
+![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png)
 
 
 ![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
