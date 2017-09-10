@@ -12,8 +12,10 @@ Programmed backend in Flask (Python) using BeautifulSoup (scraping) and MongoEng
 
 <table>
   <tr>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png" alt="iPhone" style="width: 320px;"/></th>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png" alt="iPhone" style="width: 320px;"/></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"  style="width: 160px;"/></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png"  style="width: 160px;"/></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png" style="width: 160px;"/></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/android.png"  style="width: 160px;"/></th>
   </tr>
 </table>
 
