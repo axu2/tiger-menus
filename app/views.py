@@ -221,6 +221,15 @@ def api(month, day, year):
     return jsonify(menu)
 
 
+@app.route('/api/<int:m0>/<int:d0>/<int:y0>/<int:m1>/<int:d1>/<int:y1>')
+def api2(m0, d0, y0, m1, d1, y1):
+    """Return past menu JSON from database."""
+    start = datetime(y0, m0, d0)
+    end = datetime(y1, m1, d1)
+    menus = Menu.objects(date_modified__gte=start, date_modified__lte=end)
+    return jsonify(menus)
+
+
 @app.errorhandler(DoesNotExist)
 def handle_does_not_exist(e):
     """MongoEngine `DoesNotExist` error handler."""

@@ -4,11 +4,13 @@ from bson import ObjectId
 from flask_cors import CORS
 from datetime import datetime
 from flask.json import JSONEncoder
-from mongoengine import connect, Document
+from mongoengine import connect, Document, QuerySet
 
 
 class FlaskJSONEncoder(JSONEncoder):
     def default(self, o):
+        if isinstance(o, QuerySet):
+            return [doc for doc in o]
         if isinstance(o, Document):
             return o.to_mongo()
         elif isinstance(o, ObjectId):
