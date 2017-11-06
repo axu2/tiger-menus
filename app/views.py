@@ -29,8 +29,8 @@ def floatMainEntrees(foodList):
         after = False
 
         for item in foodList:
-            v = '-- Vegetarian & Vegan Entree --'
-            if main and item["item"][0] == '-' and not item["item"] == v:
+            more = ['-- Vegetarian & Vegan Entree --', '-- Euro Special --']
+            if main and item["item"][0] == '-' and not item["item"] in more:
                 main = False
                 after = True
             if item["item"] == '-- Main Entree --':
