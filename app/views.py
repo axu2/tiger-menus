@@ -97,7 +97,7 @@ def scrape(halls, lunchList, dinnerList):
         dinnerList[i] = floatMainEntrees(dinnerList[i])
 
 
-#@app.before_first_request
+@app.before_first_request
 def update():
     """Update global variables and database."""
     global lunchLists
@@ -132,7 +132,7 @@ def update():
         Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
-#@app.before_request
+@app.before_request
 def checkForUpdate():
     """Check if day has changed."""
     global lastDate
@@ -170,7 +170,7 @@ def lunch(i):
         "meal.html",
         form=form,
         success=success,
-        comments=Comment.query.order_by(Comment.timestamp.asc()),
+        comments=Comment.query.order_by(Comment.timestamp.desc()),
         day=days[future[i].weekday()],
         nextWeek=nextWeek[1:],
         wucox=lunchLists[i][0],
@@ -191,7 +191,7 @@ def dinner(i):
         "meal.html",
         form=form,
         success=success,
-        comments=Comment.query.order_by(Comment.timestamp.asc()),
+        comments=Comment.query.order_by(Comment.timestamp.desc()),
         day=days[future[i].weekday()],
         nextWeek=nextWeek[1:],
         wucox=dinnerLists[i][0],
@@ -203,7 +203,7 @@ def dinner(i):
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     """Return homepage HTML. The displayed meal depends on time of day."""
     now = datetime.now()
