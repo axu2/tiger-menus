@@ -1,7 +1,7 @@
-from app import app
+from app import app, Comment, CommentForm, db
 from .models import Menu, Item
 from datetime import datetime, timedelta
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 from mongoengine import MultipleObjectsReturned, DoesNotExist
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
@@ -97,7 +97,7 @@ def scrape(halls, lunchList, dinnerList):
         dinnerList[i] = floatMainEntrees(dinnerList[i])
 
 
-@app.before_first_request
+#@app.before_first_request
 def update():
     """Update global variables and database."""
     global lunchLists
@@ -132,7 +132,7 @@ def update():
         Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
-@app.before_request
+#@app.before_request
 def checkForUpdate():
     """Check if day has changed."""
     global lastDate
@@ -145,40 +145,62 @@ def checkForUpdate():
         update()
 
 
-@app.route('/lunch/<int:i>')
+def getComment(request):
+    comment = Comment()
+    success = False
+
+    if request.method == 'POST':
+        form = CommentForm(request.form, obj=comment)
+        if form.validate():
+            form.populate_obj(comment)
+            db.session.add(comment)
+            db.session.commit()
+            success = True
+    else:
+        form = CommentForm(obj=comment)
+
+    return comment, success, form
+
+@app.route('/lunch/<int:i>', methods=['GET', 'POST'])
 def lunch(i):
     """Return lunch HTML."""
-    if 0 <= i and i < 7:
-        return render_template(
-            "meal.html",
-            day=days[future[i].weekday()],
-            nextWeek=nextWeek[1:],
-            wucox=lunchLists[i][0],
-            cjl=lunchLists[i][1],
-            whitman=lunchLists[i][2],
-            roma=lunchLists[i][3],
-            forbes=lunchLists[i][4],
-            grad=lunchLists[i][5])
-    else:
-        return "error"
+    comment, success, form = getComment(request)
+
+    return render_template(
+        "meal.html",
+        form=form,
+        success=success,
+        comments=Comment.query.order_by(Comment.timestamp.asc()),
+        day=days[future[i].weekday()],
+        nextWeek=nextWeek[1:],
+        wucox=lunchLists[i][0],
+        cjl=lunchLists[i][1],
+        whitman=lunchLists[i][2],
+        roma=lunchLists[i][3],
+        forbes=lunchLists[i][4],
+        grad=lunchLists[i][5])
 
 
-@app.route('/dinner/<int:i>')
+
+@app.route('/dinner/<int:i>', methods=['GET', 'POST'])
 def dinner(i):
     """Return dinner HTML."""
-    if 0 <= i and i < 7:
-        return render_template(
-            "meal.html",
-            day=days[future[i].weekday()],
-            nextWeek=nextWeek[1:],
-            wucox=dinnerLists[i][0],
-            cjl=dinnerLists[i][1],
-            whitman=dinnerLists[i][2],
-            roma=dinnerLists[i][3],
-            forbes=dinnerLists[i][4],
-            grad=dinnerLists[i][5])
-    else:
-        return "error"
+    comment, success, form = getComment(request)
+
+    return render_template(
+        "meal.html",
+        form=form,
+        success=success,
+        comments=Comment.query.order_by(Comment.timestamp.asc()),
+        day=days[future[i].weekday()],
+        nextWeek=nextWeek[1:],
+        wucox=dinnerLists[i][0],
+        cjl=dinnerLists[i][1],
+        whitman=dinnerLists[i][2],
+        roma=dinnerLists[i][3],
+        forbes=dinnerLists[i][4],
+        grad=dinnerLists[i][5])
+
 
 
 @app.route('/')
