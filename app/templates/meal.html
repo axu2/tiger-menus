@@ -78,17 +78,15 @@
   </div>
 </div>
 
-<div class="container">
-  <form method="post" action="">
-    {{ with_errors(form.text, style='font-weight: bold') }}
-    <!--<div>{{ form.text.label }}: {{ form.text() }}</div>
-    <div>{{ form.author.label }}: {{ form.author() }}</div>-->
-    <p><button type="submit">Submit</button></p>
-  </form>
-  <div class="row">
-    {% for c in comments %}<div class="col-sm-2">{{ c.text }}</div>{% endfor %}
-  </div>
-</div>
+      {% if success %}<p>Saved Successfully!</p>{% endif %}
+      <form method="post" action="">
+        {{ with_errors(form.text, style='font-weight: bold') }}
+        {{ with_errors(form.author, style='font-weight: bold') }}
+        <!--<div>{{ form.text.label }}: {{ form.text() }}</div>
+        <div>{{ form.author.label }}: {{ form.author() }}</div>-->
 
+        <p><button type="submit">Submit</button></p>
+      </form>
+      {% for c in comments %}<p>{{ c.text }}</p>{% endfor %}
 
 {% endblock %}
