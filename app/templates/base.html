@@ -44,14 +44,35 @@
   <div class="jumbotron text-center">
     <h1>Tiger Menus</h1>
     <p id="day">{{ day }}</p>
-    <p><a href="/breakfast/0">Breakfast:</a>
-      {% for wd in nextWeek %}<a href="/breakfast/{{loop.index}}">{{ wd }}</a> {% endfor %}
-    </p>
-    <p><a href="/lunch/0">Lunch:</a>
-      {% for wd in nextWeek %}<a href="/lunch/{{loop.index}}">{{ wd }}</a> {% endfor %}
-    </p>
-    <p><a href="/dinner/0">Dinner:</a>
-      {% for wd in nextWeek %}<a href="/dinner/{{loop.index}}">{{ wd }}</a> {% endfor %}
+
+    {% if meal == 'breakfast' %}
+        <p>
+          <b><a href="/breakfast/{{i}}">Brkfast</a></b>&nbsp;
+          <a href="/lunch/{{i}}">Lunch</a>&nbsp;
+          <a href="/dinner/{{i}}">Dinner</a>
+        </p>
+    {% elif meal == 'lunch' %}
+        <p>
+          <a href="/breakfast/{{i}}">Brkfast</a>&nbsp;
+          <b><a href="/lunch/{{i}}">Lunch</a></b>&nbsp;
+          <a href="/dinner/{{i}}">Dinner</a>
+        </p>
+    {% else %}
+        <p>
+          <a href="/breakfast/{{i}}">Brkfast</a>&nbsp;
+          <a href="/lunch/{{i}}">Lunch</a>&nbsp;
+          <b><a href="/dinner/{{i}}">Dinner</a></b>
+        </p>
+    {% endif %}
+    <p>
+      <p>
+      {% for wd in nextWeek %}
+        {% if loop.index0 == i %}
+        <b><a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></b>
+        {% else %}
+        <a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
+        {% endif %}
+      {% endfor %}
     </p>
   </div>
   {% block content %}{% endblock %}

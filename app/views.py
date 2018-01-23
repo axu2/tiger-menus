@@ -174,8 +174,10 @@ def meal(meal, i):
 
     return render_template(
         "meal.html",
+        meal=meal,
+        i=i,
         day=days[future[i].weekday()],
-        nextWeek=nextWeek[1:],
+        nextWeek=nextWeek,
         wucox=l[0],
         cjl=l[1],
         whitman=l[2],
