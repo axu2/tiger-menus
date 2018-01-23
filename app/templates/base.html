@@ -43,7 +43,7 @@
 
   <div class="jumbotron text-center">
     <h1>Tiger Menus</h1>
-    <p id="day">{{ day }}</p>
+    <br>
 
     {% if meal == 'breakfast' %}
         <p>
@@ -57,11 +57,17 @@
           <b><a href="/lunch/{{i}}">Lunch</a></b>&nbsp;
           <a href="/dinner/{{i}}">Dinner</a>
         </p>
-    {% else %}
+    {% elif meal == 'dinner' %}
         <p>
           <a href="/breakfast/{{i}}">Brkfast</a>&nbsp;
           <a href="/lunch/{{i}}">Lunch</a>&nbsp;
           <b><a href="/dinner/{{i}}">Dinner</a></b>
+        </p>
+    {% else %}
+        <p>
+          <a href="/breakfast/{{i}}">Brkfast</a>&nbsp;
+          <a href="/lunch/{{i}}">Lunch</a>&nbsp;
+          <a href="/dinner/{{i}}">Dinner</a>
         </p>
     {% endif %}
     <p>
