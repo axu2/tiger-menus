@@ -9,6 +9,7 @@ days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
         'Saturday', 'Sunday']
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
+breakfastLists = [[[] for y in range(6)] for x in range(7)]
 lunchLists = [[[] for y in range(6)] for x in range(7)]
 dinnerLists = [[[] for y in range(6)] for x in range(7)]
 
@@ -49,11 +50,12 @@ def floatMainEntrees(foodList):
     return foodList
 
 
-def scrape(halls, lunchList, dinnerList):
+def scrape(halls, breakfastList, lunchList, dinnerList):
     """Scrape one day of campus dining."""
     import requests
     from bs4 import BeautifulSoup
 
+    breakfast = False
     lunch = False
     dinner = False
 
@@ -67,12 +69,18 @@ def scrape(halls, lunchList, dinnerList):
             tag = unicode(tag)
             toAppend = []
 
+            if string == 'Breakfast':
+                breakfast = True
             if string == 'Lunch':
+                breakfast = False
                 lunch = True
             if string == 'Dinner':
+                breakfast = False
                 lunch = False
                 dinner = True
 
+            if breakfast:
+                toAppend = breakfastList[i]
             if lunch:
                 toAppend = lunchList[i]
             if dinner:
@@ -93,9 +101,11 @@ def scrape(halls, lunchList, dinnerList):
                     else:
                         toAppend.append(Item(string, ""))
 
+        breakfast = False
         lunch = False
         dinner = False
 
+        breakfastList[i] = floatMainEntrees(breakfastList[i])
         lunchList[i] = floatMainEntrees(lunchList[i])
         dinnerList[i] = floatMainEntrees(dinnerList[i])
 
@@ -103,10 +113,12 @@ def scrape(halls, lunchList, dinnerList):
 @app.before_first_request
 def update():
     """Update global variables and database."""
+    global breakfastLists
     global lunchLists
     global dinnerLists
     global nextWeek
 
+    breakfastLists = [[[] for y in range(6)] for x in range(7)]
     lunchLists = [[[] for y in range(6)] for x in range(7)]
     dinnerLists = [[[] for y in range(6)] for x in range(7)]
     nextWeek = [minidays[(lastDate+i) % 7] for i in range(7)]
@@ -127,13 +139,13 @@ def update():
         whitman = prefix + '&locationNum=08'
 
         halls = [wucox, cjl, whitman, roma, forbes, grad]
-        scrape(halls, lunchLists[i], dinnerLists[i])
+        scrape(halls, breakfastLists[i], lunchLists[i], dinnerLists[i])
 
     now = datetime.now()
     start = datetime(now.year, now.month, now.day)
     end = start + timedelta(days=1)
     if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-        Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
+        Menu(breakfast=breakfastList[0], lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
 @app.before_request
@@ -149,40 +161,27 @@ def checkForUpdate():
         update()
 
 
-@app.route('/lunch/<int:i>')
-def lunch(i):
+@app.route('/<meal>/<int:i>')
+def meal(meal, i):
     """Return lunch HTML."""
-    if 0 <= i and i < 7:
-        return render_template(
-            "meal.html",
-            day=days[future[i].weekday()],
-            nextWeek=nextWeek[1:],
-            wucox=lunchLists[i][0],
-            cjl=lunchLists[i][1],
-            whitman=lunchLists[i][2],
-            roma=lunchLists[i][3],
-            forbes=lunchLists[i][4],
-            grad=lunchLists[i][5])
-    else:
-        return "error"
 
+    if meal == 'breakfast':
+        l = breakfastLists[i]
+    if meal == 'lunch':
+        l = lunchLists[i]
+    if meal == 'dinner':
+        l = dinnerLists[i]
 
-@app.route('/dinner/<int:i>')
-def dinner(i):
-    """Return dinner HTML."""
-    if 0 <= i and i < 7:
-        return render_template(
-            "meal.html",
-            day=days[future[i].weekday()],
-            nextWeek=nextWeek[1:],
-            wucox=dinnerLists[i][0],
-            cjl=dinnerLists[i][1],
-            whitman=dinnerLists[i][2],
-            roma=dinnerLists[i][3],
-            forbes=dinnerLists[i][4],
-            grad=dinnerLists[i][5])
-    else:
-        return "error"
+    return render_template(
+        "meal.html",
+        day=days[future[i].weekday()],
+        nextWeek=nextWeek[1:],
+        wucox=l[0],
+        cjl=l[1],
+        whitman=l[2],
+        roma=l[3],
+        forbes=l[4],
+        grad=l[5])
 
 
 @app.route('/')
@@ -190,23 +189,29 @@ def index():
     """Return homepage HTML. The displayed meal depends on time of day."""
     now = datetime.now()
     if now.hour < 14:
-        return lunch(0)
+        return meal('lunch', 0)
     elif now.hour < 20:
-        return dinner(0)
+        return meal('dinner', 0)
     else:
-        return lunch(1)
+        return meal('lunch', 1)
+
+
+@app.route('/breakfast')
+def breakfast0():
+    """Return breakfast/0 HTML for convenience."""
+    return meal('breakfast', 0)
 
 
 @app.route('/lunch')
 def lunch0():
     """Return lunch/0 HTML for convenience."""
-    return lunch(0)
+    return meal('lunch', 0)
 
 
 @app.route('/dinner')
 def dinner0():
     """Return dinner/0 HTML for convenience."""
-    return dinner(0)
+    return meal('dinner', 0)
 
 
 @app.route('/about')

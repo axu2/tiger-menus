@@ -11,5 +11,7 @@ class Item(EmbeddedDocument):
 
 class Menu(Document):
     date_modified = DateTimeField(default=datetime.now)
+    
+    breakfast = ListField(ListField(EmbeddedDocumentField(Item)))
     lunch = ListField(ListField(EmbeddedDocumentField(Item)))
     dinner = ListField(ListField(EmbeddedDocumentField(Item)))
