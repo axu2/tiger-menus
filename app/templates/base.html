@@ -44,6 +44,9 @@
   <div class="jumbotron text-center">
     <h1>Tiger Menus</h1>
     <p id="day">{{ day }}</p>
+    <p><a href="/breakfast/0">Breakfast:</a>
+      {% for wd in nextWeek %}<a href="/breakfast/{{loop.index}}">{{ wd }}</a> {% endfor %}
+    </p>
     <p><a href="/lunch/0">Lunch:</a>
       {% for wd in nextWeek %}<a href="/lunch/{{loop.index}}">{{ wd }}</a> {% endfor %}
     </p>
