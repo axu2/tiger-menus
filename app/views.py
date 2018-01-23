@@ -78,13 +78,15 @@ def scrape(halls, lunchList, dinnerList):
             if dinner:
                 toAppend = dinnerList[i]
 
-            if len(string) > 0:
+            if string:
                 if "#0000FF" in tag:
                     toAppend.append(Item(string, "vegan"))
                 elif "#00FF00" in tag:
                     toAppend.append(Item(string, "vegetarian"))
                 elif "#8000FF" in tag:
                     toAppend.append(Item(string, "pork"))
+                elif "#FF0000" in tag:
+                    toAppend.append(Item(string, "halal"))
                 else:
                     if string[0] == '-':
                         toAppend.append(Item(string, "label"))
@@ -109,29 +111,29 @@ def update():
     dinnerLists = [[[] for y in range(6)] for x in range(7)]
     nextWeek = [minidays[(lastDate+i) % 7] for i in range(7)]
 
-    if os.getenv('MONGODB_URI'):
-        for i in range(7):
-            p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
-            m = future[i].month
-            d = future[i].day
-            y = future[i].year
-            prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
+    #if os.getenv('MONGODB_URI'):
+    for i in range(7):
+        p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
+        m = future[i].month
+        d = future[i].day
+        y = future[i].year
+        prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
 
-            roma = prefix + '&locationNum=01'
-            wucox = prefix + '&locationNum=02'
-            forbes = prefix + '&locationNum=03'
-            grad = prefix + '&locationNum=04'
-            cjl = prefix + '&locationNum=05'
-            whitman = prefix + '&locationNum=08'
+        roma = prefix + '&locationNum=01'
+        wucox = prefix + '&locationNum=02'
+        forbes = prefix + '&locationNum=03'
+        grad = prefix + '&locationNum=04'
+        cjl = prefix + '&locationNum=05'
+        whitman = prefix + '&locationNum=08'
 
-            halls = [wucox, cjl, whitman, roma, forbes, grad]
-            scrape(halls, lunchLists[i], dinnerLists[i])
+        halls = [wucox, cjl, whitman, roma, forbes, grad]
+        scrape(halls, lunchLists[i], dinnerLists[i])
 
-        now = datetime.now()
-        start = datetime(now.year, now.month, now.day)
-        end = start + timedelta(days=1)
-        if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-            Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
+    now = datetime.now()
+    start = datetime(now.year, now.month, now.day)
+    end = start + timedelta(days=1)
+    if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
+        Menu(lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
 @app.before_request

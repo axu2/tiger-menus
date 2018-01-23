@@ -9,6 +9,8 @@
     <p style="color: LimeGreen">{{ item.item }}</p>
   {% elif item.legend == "pork" %}
     <p style="color: #8000FF">{{ item.item }}</p>
+  {% elif item.legend == "halal" %}
+    <p style="color: DarkRed">{{ item.item }}</p>
   {% else %}
     <p>{{ item.item }}</p>
   {% endif %}
@@ -60,6 +62,7 @@
         <p style="color: #0000FF">Vegan - no animal derivatives</p>
         <p style="color: LimeGreen">Vegetarian - no meat products</p>
         <p style="color: #8000FF">Contains Pork</p>
+        <p style="color: DarkRed">Halal</p>
       </div>
     </div>
   </div>
