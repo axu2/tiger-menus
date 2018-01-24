@@ -145,7 +145,7 @@ def update():
     start = datetime(now.year, now.month, now.day)
     end = start + timedelta(days=1)
     if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-        Menu(breakfast=breakfastList[0], lunch=lunchLists[0], dinner=dinnerLists[0]).save()
+        Menu(breakfast=breakfastLists[0], lunch=lunchLists[0], dinner=dinnerLists[0]).save()
 
 
 @app.before_request
