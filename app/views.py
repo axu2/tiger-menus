@@ -220,7 +220,7 @@ def dinner0():
 def about():
     """Return about page HTML."""
     return render_template(
-        "index.html", i=0, day=days[lastDate], nextWeek=nextWeek[1:])
+        "index.html", i=0, day=days[lastDate], nextWeek=nextWeek)
 
 
 @app.route('/api/<int:month>/<int:day>/<int:year>')
