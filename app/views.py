@@ -55,16 +55,15 @@ def scrape(halls, breakfastList, lunchList, dinnerList):
     import requests
     from bs4 import BeautifulSoup
 
-    breakfast = False
-    lunch = False
-    dinner = False
-
     for i, url in enumerate(halls):
+        breakfast = False
+        lunch = False
+        dinner = False
+
         html = requests.get(url).text
         soup = BeautifulSoup(html, 'html.parser')
-        tag_strings = soup.table.findAll('div')
 
-        for tag in tag_strings:
+        for tag in soup.table.findAll('div'):
             string = tag.get_text().strip()
             tag = unicode(tag)
             toAppend = []
@@ -100,10 +99,6 @@ def scrape(halls, breakfastList, lunchList, dinnerList):
                         toAppend.append(Item(string, "label"))
                     else:
                         toAppend.append(Item(string, ""))
-
-        breakfast = False
-        lunch = False
-        dinner = False
 
         breakfastList[i] = floatMainEntrees(breakfastList[i])
         lunchList[i] = floatMainEntrees(lunchList[i])
@@ -172,18 +167,8 @@ def meal(meal, i):
     if meal == 'dinner':
         l = dinnerLists[i]
 
-    return render_template(
-        "meal.html",
-        meal=meal,
-        i=i,
-        day=days[future[i].weekday()],
-        nextWeek=nextWeek,
-        wucox=l[0],
-        cjl=l[1],
-        whitman=l[2],
-        roma=l[3],
-        forbes=l[4],
-        grad=l[5])
+    return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
+        wucox=l[0], cjl=l[1], whitman=l[2], roma=l[3], forbes=l[4], grad=l[5])
 
 
 @app.route('/')
