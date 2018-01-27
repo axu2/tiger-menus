@@ -51,33 +51,26 @@
 
   <div class="jumbotron text-center">
     <a href="/" style="color: #262626; text-decoration: none;"><h1>Tiger Menus</h1></a>
-    <br>
+    <p><a href="/about">About</a>&nbsp;&nbsp;</p>
 
-    {% if meal == 'breakfast' %}
-        <p>
-          <b><a href="/breakfast/{{i}}">Breakfast</a></b>&nbsp;
-          <a href="/lunch/{{i}}">Lunch</a>&nbsp;
-          <a href="/dinner/{{i}}">Dinner</a>
-        </p>
-    {% elif meal == 'lunch' %}
-        <p>
-          <a href="/breakfast/{{i}}">Breakfast</a>&nbsp;
-          <b><a href="/lunch/{{i}}">Lunch</a></b>&nbsp;
-          <a href="/dinner/{{i}}">Dinner</a>
-        </p>
-    {% elif meal == 'dinner' %}
-        <p>
-          <a href="/breakfast/{{i}}">Breakfast</a>&nbsp;
-          <a href="/lunch/{{i}}">Lunch</a>&nbsp;
-          <b><a href="/dinner/{{i}}">Dinner</a></b>
-        </p>
-    {% else %}
-        <p>
-          <a href="/breakfast/{{i}}">Breakfast</a>&nbsp;
-          <a href="/lunch/{{i}}">Lunch</a>&nbsp;
-          <a href="/dinner/{{i}}">Dinner</a>
-        </p>
-    {% endif %}
+    <p>
+      {% if meal == 'breakfast' %}
+      <b><a href="/breakfast/{{i}}">Breakfast</a></b>&nbsp;
+      {% else %}
+      <a href="/breakfast/{{i}}">Breakfast</a>&nbsp;
+      {% endif %}
+
+      {% if meal == 'lunch' %}
+      <b><a href="/lunch/{{i}}">Lunch</a></b>&nbsp;
+      {% else %}
+      <a href="/lunch/{{i}}">Lunch</a>&nbsp;
+      {% endif %}
+
+      {% if meal == 'dinner' %}
+      <b><a href="/dinner/{{i}}">Dinner</a></b>&nbsp;
+      {% else %}
+      <a href="/dinner/{{i}}">Dinner</a>&nbsp;
+      {% endif %}
     <p>
       <p>
       {% for wd in nextWeek %}
@@ -108,7 +101,6 @@
     <footer>
       <p>Order a <a href="https://campusdining.princeton.edu/lunchtogo/">bag lunch!</a>
          More info <a href="https://www.princeton.edu/us/dining/news/archive/?id=15744">here</a></p>
-      <p><a href="/about">About</a></p>
       <p><a href="/api/8/18/2017">API</a> / <a href='/api/6/18/2017/9/10/2017'>API2</a> </p>
       <p><a href="https://github.com/axu2/tiger-menus">GitHub</a></p>
     </footer>
