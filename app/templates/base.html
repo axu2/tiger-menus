@@ -67,19 +67,19 @@
       {% endif %}
 
       {% if meal == 'dinner' %}
-      <b><a href="/dinner/{{i}}">Dinner</a></b>&nbsp;
+      <b><a href="/dinner/{{i}}">Dinner</a></b>
       {% else %}
-      <a href="/dinner/{{i}}">Dinner</a>&nbsp;
+      <a href="/dinner/{{i}}">Dinner</a>
       {% endif %}
     <p>
-      <p>
-      {% for wd in nextWeek %}
-        {% if loop.index0 == i %}
-        <b><a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></b>
-        {% else %}
-        <a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
-        {% endif %}
-      {% endfor %}
+    <p>
+    {% for wd in nextWeek %}
+      {% if loop.index0 == i %}
+      <b><a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></b>
+      {% else %}
+      <a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
+      {% endif %}
+    {% endfor %}
     </p>
   </div>
   {% block content %}{% endblock %}
