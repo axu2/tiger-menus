@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>TigerMenus</title>
 
@@ -10,9 +10,6 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://tigermenus.herokuapp.com/"/>
   <meta property="og:image" content="https://tigermenus.herokuapp.com/static/Tigermenusv2.png"/>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -41,8 +38,8 @@
 </head>
 <body style="padding-bottom: 20px;">
   <div class="jumbotron text-center">
-    <a href="/" style="color: #262626; text-decoration: none;"><h1>Tiger Menus</h1></a>
-    <p></p>
+    <a href="/" style="color: #262626; text-decoration: none;"><h1>{{ title }}</h1></a>
+    <p>{{ message }}</p>
     <p>
       {% if meal == 'breakfast' %}
       <b><a href="/breakfast/{{i}}">Breakfast</a></b>&nbsp;

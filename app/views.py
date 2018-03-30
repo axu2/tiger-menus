@@ -18,6 +18,9 @@ lastDate = now.weekday()
 nextWeek = [minidays[(lastDate + i) % 7] for i in range(7)]
 future = [now + timedelta(days=i) for i in range(7)]
 
+title = "Tiger Menus"
+message = ""
+
 
 def floatMainEntrees(foodList):
     """Return foodList with main entrees at the top."""
@@ -146,6 +149,11 @@ def update():
 @app.before_request
 def checkForUpdate():
     """Check if day has changed."""
+    global title
+    global message
+    title = os.getenv('TITLE') or "Tiger Menus"
+    message = os.getenv('MESSAGE')
+
     global lastDate
     global future
     now = datetime.now()
@@ -158,7 +166,7 @@ def checkForUpdate():
 
 @app.route('/<meal>/<int:i>')
 def meal(meal, i):
-    """Return lunch HTML."""
+    """Return meal HTML."""
 
     if meal == 'breakfast':
         l = breakfastLists[i]
@@ -168,6 +176,7 @@ def meal(meal, i):
         l = dinnerLists[i]
 
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
+        title=title, message=message,
         wucox=l[0], cjl=l[1], whitman=l[2], roma=l[3], forbes=l[4], grad=l[5])
 
 
