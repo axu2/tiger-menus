@@ -179,6 +179,11 @@ def meal(meal, i):
         title=title, message=message,
         wucox=l[0], cjl=l[1], whitman=l[2], roma=l[3], forbes=l[4], grad=l[5])
 
+@app.route('/api2')
+def api3():
+    """Return week's menus in JSON."""
+    return jsonify([breakfastLists, lunchLists, dinnerLists])
+
 
 @app.route('/')
 def index():
