@@ -121,23 +121,23 @@ def update():
     dinnerLists = [[[] for y in range(6)] for x in range(7)]
     nextWeek = [minidays[(lastDate+i) % 7] for i in range(7)]
 
-    #if os.getenv('MONGODB_URI'):
-    for i in range(7):
-        p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
-        m = future[i].month
-        d = future[i].day
-        y = future[i].year
-        prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
+    if os.getenv('TZ'):
+        for i in range(7):
+            p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
+            m = future[i].month
+            d = future[i].day
+            y = future[i].year
+            prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
 
-        roma = prefix + '&locationNum=01'
-        wucox = prefix + '&locationNum=02'
-        forbes = prefix + '&locationNum=03'
-        grad = prefix + '&locationNum=04'
-        cjl = prefix + '&locationNum=05'
-        whitman = prefix + '&locationNum=08'
+            roma = prefix + '&locationNum=01'
+            wucox = prefix + '&locationNum=02'
+            forbes = prefix + '&locationNum=03'
+            grad = prefix + '&locationNum=04'
+            cjl = prefix + '&locationNum=05'
+            whitman = prefix + '&locationNum=08'
 
-        halls = [wucox, cjl, whitman, roma, forbes, grad]
-        scrape(halls, breakfastLists[i], lunchLists[i], dinnerLists[i])
+            halls = [wucox, cjl, whitman, roma, forbes, grad]
+            scrape(halls, breakfastLists[i], lunchLists[i], dinnerLists[i])
 
     now = datetime.now()
     start = datetime(now.year, now.month, now.day)
@@ -152,7 +152,7 @@ def checkForUpdate():
     global title
     global message
     title = os.getenv('TITLE') or "Tiger Menus"
-    message = os.getenv('MESSAGE')
+    message = os.getenv('MESSAGE') or ""
 
     global lastDate
     global future
