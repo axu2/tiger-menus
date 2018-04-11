@@ -20,43 +20,14 @@
 
 <div class="container">
   <div class="row">
+    {% for hall in l %}
     <div class="col-sm-2">
-      <h3>Wu / Wilcox</h3>
-      {% for item in wucox %}
+      <h3>{{hall[0]}}</h3>
+      {% for item in hall[1] %}
           {{ items(item) }}
       {% endfor %}
     </div>
-    <div class="col-sm-2">
-      <h3>CJL</h3>
-      {% for item in cjl %}
-          {{ items(item) }}
-      {% endfor %}
-    </div>
-    <div class="col-sm-2">
-      <h3>Whitman</h3>
-      {% for item in whitman %}
-          {{ items(item) }}
-      {% endfor %}
-    </div>
-    <div class="col-sm-2">
-      <h3>Ro / Ma</h3>
-      {% for item in roma %}
-          {{ items(item) }}
-      {% endfor %}
-    </div>
-    <div class="col-sm-2">
-      <h3>Forbes</h3>
-      {% for item in forbes %}
-          {{ items(item) }}
-      {% endfor %}
-    </div>
-    <div class="col-sm-2">
-      <h3>Grad</h3>
-      {% for item in grad %}
-          {{ items(item) }}
-      {% endfor %}
-    </div>
-  </div>
+    {% endfor %}
   </div>
 </div>
 

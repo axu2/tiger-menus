@@ -175,9 +175,12 @@ def meal(meal, i):
     if meal == 'dinner':
         l = dinnerLists[i]
 
+    l2 = ['Butler', 'CJL', 'Whitman', 'Ro / Ma', 'Forbes', 'Grad']
+
+    l3 = [(l2[j], l[j]) for j in range(6)]
+
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
-        title=title, message=message,
-        wucox=l[0], cjl=l[1], whitman=l[2], roma=l[3], forbes=l[4], grad=l[5])
+        title=title, message=message, l=l3)
 
 @app.route('/api2')
 def api3():
