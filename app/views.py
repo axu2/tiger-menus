@@ -175,7 +175,7 @@ def meal(meal, i):
     if meal == 'dinner':
         l = dinnerLists[i]
 
-    l2 = ['Butler', 'CJL', 'Whitman', 'Ro / Ma', 'Forbes', 'Grad']
+    l2 = ['Wu / Wilcox', 'CJL', 'Whitman', 'Ro / Ma', 'Forbes', 'Grad']
 
     l3 = [(l2[j], l[j]) for j in range(6)]
 
