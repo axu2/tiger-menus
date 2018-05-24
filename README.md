@@ -1,29 +1,17 @@
 
 # TigerMenus
-## Overview
-Developed new university dining hall menu website with 300+ daily active users and 33,000+ total views
 
-Designed interface that consolidated all 6 university dining hall menus into a single page, mobile website with app icon for iPhone/Android, and JSON web API for historical menu data stored in MongoDB
-
-Hosted at http://tigermenus.herokuapp.com/
-
-Programmed backend in Flask (Python) using BeautifulSoup (scraping) and MongoEngine (database)
-
+![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
 
 <table>
   <tr>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"  style="width: 150px;"/></th>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"  style="width: 150px;"/></th>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png" style="width: 150px;"/></th>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png"  style="width: 150px;"/></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"  s></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"  ></th>
+    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png" ></th>
   </tr>
 </table>
 
-![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
-How it looks.
 
-![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/analytics.png)
-How popular it was
 
 ## Setup
 Recommended Python 2.7.9+. Older versions will give you error messages, but you can probably ignore them.
