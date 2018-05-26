@@ -1,8 +1,6 @@
 
 # TigerMenus
 
-![alt tag](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
-
 <table>
   <tr>
     <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"  s></th>
@@ -11,6 +9,7 @@
   </tr>
 </table>
 
+![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
 
 
 ## Setup
