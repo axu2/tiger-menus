@@ -17,7 +17,7 @@ Fork repository (optional) and clone it into your own directory. Then:
 $ cd tiger-menus
 ```
 To set up a virtual environment, run the commands from http://flask.pocoo.org/docs/0.12/installation/#installation:
-For example, if you are using Bash on Ubuntu on Windows like me, the commands might look like:
+For example, if you are using Windows Subsystem for Linux (Ubuntu) like me, the commands might look like:
 ```
 $ sudo apt-get install python-virtualenv
 $ virtualenv venv
@@ -28,10 +28,6 @@ Install requirements with pip in the venv:
 (venv) $ pip install -r requirements.txt
 ```
 
-Start a local MongoDB server.
-```
-(venv) $ service mongodb start
-```
 To run development server:
 ```
 (venv) $ python run.py
