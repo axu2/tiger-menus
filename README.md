@@ -8,8 +8,6 @@
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
 
 <img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png">
-<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"  >
-
 
 ## Setup
 Recommended Python 2.7.9+. Older versions will give you error messages, but you can probably ignore them.
