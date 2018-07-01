@@ -1,15 +1,14 @@
 
 # TigerMenus
 
-<table>
-  <tr>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"  s></th>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"  ></th>
-    <th><img src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png" ></th>
-  </tr>
-</table>
+*	Developed new university dining hall menu website with over 1500+ daily views, 250,000+ lifetime views
+*	Optimized web app for iPhone, Android, and Windows phones using Bootstrap and home screen icons 
+*	Written in Flask (Python), scraped menu data from 42 different dining hall websites using BeautifulSoup
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
+
+<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png">
+<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"  >
 
 
 ## Setup
