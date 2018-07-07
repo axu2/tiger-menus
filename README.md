@@ -16,7 +16,7 @@ $ git clone https://github.com/axu2/tiger-menus.git
 $ cd tiger-menus
 $ python3 -m venv venv
 $ . venv/bin/activate
-$ pip install --upgrade pip
+(venv) $ pip install --upgrade pip
 (venv) $ pip install -r requirements.txt
 ```
 Protip:
