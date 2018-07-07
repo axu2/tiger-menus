@@ -4,6 +4,7 @@ from bson import ObjectId
 from flask_cors import CORS
 from datetime import datetime
 from flask.json import JSONEncoder
+from flask_bootstrap import Bootstrap
 from mongoengine import connect, Document, QuerySet, EmbeddedDocument
 
 
@@ -21,9 +22,11 @@ class FlaskJSONEncoder(JSONEncoder):
             return JSONEncoder.default(self, o)
 
 app = Flask(__name__)
-CORS(app)
 app.json_encoder = FlaskJSONEncoder
-from app import views   # noqa
+CORS(app)
+Bootstrap(app)
 
 if os.getenv('MONGODB_URI'):
     connect("menus", host=os.getenv('MONGODB_URI'))
+
+from app import views   # noqa
