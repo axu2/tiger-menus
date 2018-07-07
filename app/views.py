@@ -3,7 +3,8 @@ from app import app
 from .models import Menu, Item
 from datetime import datetime, timedelta
 from flask import render_template, jsonify
-from mongoengine import MultipleObjectsReturned, DoesNotExist
+from mongoengine import (MultipleObjectsReturned, DoesNotExist,
+                         MongoEngineConnectionError)
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
         'Saturday', 'Sunday']
@@ -68,7 +69,7 @@ def scrape(halls, breakfastList, lunchList, dinnerList):
 
         for tag in soup.table.findAll('div'):
             string = tag.get_text().strip()
-            tag = unicode(tag)
+            tag = str(tag)
             toAppend = []
 
             if string == 'Breakfast':
@@ -121,29 +122,31 @@ def update():
     dinnerLists = [[[] for y in range(6)] for x in range(7)]
     nextWeek = [minidays[(lastDate+i) % 7] for i in range(7)]
 
-    if os.getenv('TZ'):
-        for i in range(7):
-            p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
-            m = future[i].month
-            d = future[i].day
-            y = future[i].year
-            prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
+    for i in range(7):
+        p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
+        m = future[i].month
+        d = future[i].day
+        y = future[i].year
+        prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
 
-            roma = prefix + '&locationNum=01'
-            wucox = prefix + '&locationNum=02'
-            forbes = prefix + '&locationNum=03'
-            grad = prefix + '&locationNum=04'
-            cjl = prefix + '&locationNum=05'
-            whitman = prefix + '&locationNum=08'
+        roma = prefix + '&locationNum=01'
+        wucox = prefix + '&locationNum=02'
+        forbes = prefix + '&locationNum=03'
+        grad = prefix + '&locationNum=04'
+        cjl = prefix + '&locationNum=05'
+        whitman = prefix + '&locationNum=08'
 
-            halls = [wucox, cjl, whitman, roma, forbes, grad]
-            scrape(halls, breakfastLists[i], lunchLists[i], dinnerLists[i])
+        halls = [wucox, cjl, whitman, roma, forbes, grad]
+        scrape(halls, breakfastLists[i], lunchLists[i], dinnerLists[i])
 
-    now = datetime.now()
-    start = datetime(now.year, now.month, now.day)
-    end = start + timedelta(days=1)
-    if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-        Menu(breakfast=breakfastLists[0], lunch=lunchLists[0], dinner=dinnerLists[0]).save()
+    if os.getenv('MONGODB_URI'):
+        now = datetime.now()
+        start = datetime(now.year, now.month, now.day)
+        end = start + timedelta(days=1)
+        if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
+            Menu(breakfast=breakfastLists[0],
+                 lunch=lunchLists[0],
+                 dinner=dinnerLists[0]).save()
 
 
 @app.before_request
@@ -261,5 +264,15 @@ def handle_multiple_objects_returned(e):
     payload = {
         'reason': 'Database problem please use contact form on homepage',
         'description': e.message
+    }
+    return jsonify(payload), 500
+
+
+@app.errorhandler(MongoEngineConnectionError)
+def handle_multiple_objects_returned(e):
+    """MongoEngine `MongoEngineConnectionError` error handler."""
+    payload = {
+        'reason': 'API only available on production',
+        'description': str(e)
     }
     return jsonify(payload), 500
