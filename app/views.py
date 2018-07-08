@@ -3,8 +3,7 @@ from app import app
 from .models import Menu, Item
 from datetime import datetime, timedelta
 from flask import render_template, jsonify
-from mongoengine import (MultipleObjectsReturned, DoesNotExist,
-                         MongoEngineConnectionError)
+from mongoengine import MultipleObjectsReturned, DoesNotExist
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
         'Saturday', 'Sunday']
@@ -139,14 +138,13 @@ def update():
         halls = [wucox, cjl, whitman, roma, forbes, grad]
         scrape(halls, breakfastLists[i], lunchLists[i], dinnerLists[i])
 
-    if os.getenv('MONGODB_URI'):
-        now = datetime.now()
-        start = datetime(now.year, now.month, now.day)
-        end = start + timedelta(days=1)
-        if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-            Menu(breakfast=breakfastLists[0],
-                 lunch=lunchLists[0],
-                 dinner=dinnerLists[0]).save()
+    now = datetime.now()
+    start = datetime(now.year, now.month, now.day)
+    end = start + timedelta(days=1)
+    if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
+        Menu(breakfast=breakfastLists[0],
+             lunch=lunchLists[0],
+             dinner=dinnerLists[0]).save()
 
 
 @app.before_request
@@ -253,7 +251,7 @@ def handle_does_not_exist(e):
     """MongoEngine `DoesNotExist` error handler."""
     payload = {
         'reason': type(e).__name__,
-        'description': e.message
+        'description': str(e)
     }
     return jsonify(payload), 404
 
@@ -263,16 +261,6 @@ def handle_multiple_objects_returned(e):
     """MongoEngine `MultipleObjectsReturned` error handler."""
     payload = {
         'reason': 'Database problem please use contact form on homepage',
-        'description': e.message
-    }
-    return jsonify(payload), 500
-
-
-@app.errorhandler(MongoEngineConnectionError)
-def handle_multiple_objects_returned(e):
-    """MongoEngine `MongoEngineConnectionError` error handler."""
-    payload = {
-        'reason': 'API only available on production',
         'description': str(e)
     }
     return jsonify(payload), 500

@@ -1,17 +1,15 @@
 from datetime import datetime
-from mongoengine import (EmbeddedDocument, Document,
-                         ListField, StringField, DateTimeField,
-                         EmbeddedDocumentField)
+from app import db
 
 
-class Item(EmbeddedDocument):
-    item = StringField(required=True)
-    legend = StringField()
+class Item(db.EmbeddedDocument):
+    item = db.StringField(required=True)
+    legend = db.StringField()
 
 
-class Menu(Document):
-    date_modified = DateTimeField(default=datetime.now)
-    
-    breakfast = ListField(ListField(EmbeddedDocumentField(Item)))
-    lunch = ListField(ListField(EmbeddedDocumentField(Item)))
-    dinner = ListField(ListField(EmbeddedDocumentField(Item)))
+class Menu(db.Document):
+    date_modified = db.DateTimeField(default=datetime.now)
+
+    breakfast = db.ListField(db.ListField(db.EmbeddedDocumentField(Item)))
+    lunch = db.ListField(db.ListField(db.EmbeddedDocumentField(Item)))
+    dinner = db.ListField(db.ListField(db.EmbeddedDocumentField(Item)))
