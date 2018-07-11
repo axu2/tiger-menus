@@ -233,7 +233,7 @@ def api(month, day, year):
     """Return past menu JSON from database."""
     start = datetime(year, month, day)
     end = start + timedelta(days=1)
-    menu = Menu.objects.get(date_modified__gte=start, date_modified__lt=end)
+    menu = Menu.objects.first(date_modified__gte=start, date_modified__lt=end)
     return jsonify(menu)
 
 
