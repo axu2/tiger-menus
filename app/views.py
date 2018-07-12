@@ -233,7 +233,7 @@ def api(month, day, year):
     """Return past menu JSON from database."""
     start = datetime(year, month, day)
     end = start + timedelta(days=1)
-    menu = Menu.objects(date_modified__gte=start, date_modified__lt=end).first()
+    menu = Menu.objects(date_modified__gte=start, date_modified__lt=end).first_or_404()
     return jsonify(menu)
 
 
@@ -244,23 +244,3 @@ def api2(m0, d0, y0, m1, d1, y1):
     end = datetime(y1, m1, d1)
     menus = Menu.objects(date_modified__gte=start, date_modified__lte=end)
     return jsonify(menus)
-
-
-@app.errorhandler(DoesNotExist)
-def handle_does_not_exist(e):
-    """MongoEngine `DoesNotExist` error handler."""
-    payload = {
-        'reason': type(e).__name__,
-        'description': str(e)
-    }
-    return jsonify(payload), 404
-
-
-@app.errorhandler(MultipleObjectsReturned)
-def handle_multiple_objects_returned(e):
-    """MongoEngine `MultipleObjectsReturned` error handler."""
-    payload = {
-        'reason': 'Database problem please use contact form on homepage',
-        'description': str(e)
-    }
-    return jsonify(payload), 500
