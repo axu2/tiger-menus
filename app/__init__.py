@@ -9,6 +9,7 @@ from flask_mongoengine import MongoEngine
 app = Flask(__name__)
 app.jinja_env.auto_reload = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'you-will-never-guess'
 app.config['CAS_SERVER'] = 'https://fed.princeton.edu/cas'
