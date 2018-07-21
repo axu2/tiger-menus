@@ -1,6 +1,6 @@
 import os
 from app import app
-from .models import Menu, Item
+from .models import Menu
 from datetime import datetime, timedelta
 from flask import render_template, jsonify
 from mongoengine import MultipleObjectsReturned, DoesNotExist
@@ -60,12 +60,12 @@ def update():
     nextWeek = [minidays[(day.weekday()+i) % 7] for i in range(7)]
     breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
 
-    # start = datetime(now.year, now.month, now.day)
-    # end = start + timedelta(days=1)
-    # if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-    #     Menu(breakfast=breakfastLists[0],
-    #          lunch=lunchLists[0],
-    #          dinner=dinnerLists[0]).save()
+    start = datetime(day.year, day.month, day.day)
+    end = start + timedelta(days=1)
+    if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
+        Menu(breakfast=breakfastLists[0],
+             lunch=lunchLists[0],
+             dinner=dinnerLists[0]).save()
 
 @app.before_request
 def checkForUpdate():
@@ -98,6 +98,7 @@ def meal(meal, i):
 
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
         title=title, message=message, l=l3)
+
 
 @app.route('/api2')
 def api3():
