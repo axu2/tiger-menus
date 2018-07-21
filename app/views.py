@@ -46,8 +46,8 @@ def checkForUpdate():
     message = os.getenv('MESSAGE') or ""
 
     global day
-    currentDay = datetime.now().weekday()
-    if currentDay != day.weekday():
+    currentDay = datetime.now()
+    if currentDay.weekday() != day.weekday():
         day = currentDay
         update()
 
