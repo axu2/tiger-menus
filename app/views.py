@@ -4,19 +4,16 @@ from .models import Menu, Item
 from datetime import datetime, timedelta
 from flask import render_template, jsonify
 from mongoengine import MultipleObjectsReturned, DoesNotExist
+from app.scrape import scrapeWeek
 
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
-        'Saturday', 'Sunday']
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-breakfastLists = [[[] for y in range(6)] for x in range(7)]
-lunchLists = [[[] for y in range(6)] for x in range(7)]
-dinnerLists = [[[] for y in range(6)] for x in range(7)]
+breakfastLists = []
+lunchLists = []
+dinnerLists = []
 
-now = datetime.now()
-lastDate = now.weekday()
-nextWeek = [minidays[(lastDate + i) % 7] for i in range(7)]
-future = [now + timedelta(days=i) for i in range(7)]
+day = datetime.now()
+nextWeek = [minidays[(day.weekday() + i) % 7] for i in range(7)]
 
 title = "Tiger Menus"
 message = ""
@@ -52,62 +49,6 @@ def floatMainEntrees(foodList):
 
     return foodList
 
-
-def scrape(halls, breakfastList, lunchList, dinnerList):
-    """Scrape one day of campus dining."""
-    import requests
-    from bs4 import BeautifulSoup
-
-    for i, url in enumerate(halls):
-        breakfast = False
-        lunch = False
-        dinner = False
-
-        html = requests.get(url).text
-        soup = BeautifulSoup(html, 'html.parser')
-
-        for tag in soup.table.findAll('div'):
-            string = tag.get_text().strip()
-            tag = str(tag)
-            toAppend = []
-
-            if string == 'Breakfast':
-                breakfast = True
-            if string == 'Lunch':
-                breakfast = False
-                lunch = True
-            if string == 'Dinner':
-                breakfast = False
-                lunch = False
-                dinner = True
-
-            if breakfast:
-                toAppend = breakfastList[i]
-            if lunch:
-                toAppend = lunchList[i]
-            if dinner:
-                toAppend = dinnerList[i]
-
-            if string:
-                if "#0000FF" in tag:
-                    toAppend.append(Item(string, "vegan"))
-                elif "#00FF00" in tag:
-                    toAppend.append(Item(string, "vegetarian"))
-                elif "#8000FF" in tag:
-                    toAppend.append(Item(string, "pork"))
-                elif "#FF0000" in tag:
-                    toAppend.append(Item(string, "halal"))
-                else:
-                    if string[0] == '-':
-                        toAppend.append(Item(string, "label"))
-                    else:
-                        toAppend.append(Item(string, ""))
-
-        breakfastList[i] = floatMainEntrees(breakfastList[i])
-        lunchList[i] = floatMainEntrees(lunchList[i])
-        dinnerList[i] = floatMainEntrees(dinnerList[i])
-
-
 @app.before_first_request
 def update():
     """Update global variables and database."""
@@ -116,36 +57,15 @@ def update():
     global dinnerLists
     global nextWeek
 
-    breakfastLists = [[[] for y in range(6)] for x in range(7)]
-    lunchLists = [[[] for y in range(6)] for x in range(7)]
-    dinnerLists = [[[] for y in range(6)] for x in range(7)]
-    nextWeek = [minidays[(lastDate+i) % 7] for i in range(7)]
+    nextWeek = [minidays[(day.weekday()+i) % 7] for i in range(7)]
+    breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
 
-    for i in range(7):
-        p = 'https://campusdining.princeton.edu/dining/_Foodpro/menuSamp.asp?'
-        m = future[i].month
-        d = future[i].day
-        y = future[i].year
-        prefix = p + 'myaction=read&dtdate={}%2F{}%2F{}'.format(m, d, y)
-
-        roma = prefix + '&locationNum=01'
-        wucox = prefix + '&locationNum=02'
-        forbes = prefix + '&locationNum=03'
-        grad = prefix + '&locationNum=04'
-        cjl = prefix + '&locationNum=05'
-        whitman = prefix + '&locationNum=08'
-
-        halls = [wucox, cjl, whitman, roma, forbes, grad]
-        scrape(halls, breakfastLists[i], lunchLists[i], dinnerLists[i])
-
-    now = datetime.now()
-    start = datetime(now.year, now.month, now.day)
-    end = start + timedelta(days=1)
-    if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-        Menu(breakfast=breakfastLists[0],
-             lunch=lunchLists[0],
-             dinner=dinnerLists[0]).save()
-
+    # start = datetime(now.year, now.month, now.day)
+    # end = start + timedelta(days=1)
+    # if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
+    #     Menu(breakfast=breakfastLists[0],
+    #          lunch=lunchLists[0],
+    #          dinner=dinnerLists[0]).save()
 
 @app.before_request
 def checkForUpdate():
@@ -155,20 +75,16 @@ def checkForUpdate():
     title = os.getenv('TITLE') or "Tiger Menus"
     message = os.getenv('MESSAGE') or ""
 
-    global lastDate
-    global future
-    now = datetime.now()
-    currentDay = now.weekday()
-    if currentDay != lastDate:
-        lastDate = currentDay
-        future = [now + timedelta(days=i) for i in range(7)]
+    global day
+    currentDay = datetime.now().weekday()
+    if currentDay != day.weekday():
+        day = currentDay
         update()
 
 
 @app.route('/<meal>/<int:i>')
 def meal(meal, i):
     """Return meal HTML."""
-
     if meal == 'breakfast':
         l = breakfastLists[i]
     if meal == 'lunch':
@@ -225,7 +141,7 @@ def about():
     return render_template(
         "index.html", meal='dinner',
         title=title, message=message,
-        i=0, day=days[lastDate], nextWeek=nextWeek)
+        i=0, nextWeek=nextWeek)
 
 
 @app.route('/api/<int:month>/<int:day>/<int:year>')

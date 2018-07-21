@@ -1,21 +1,5 @@
 {% extends "base.html" %}
 
-{% macro items(item) -%}
-  {% if item.legend == "label" %}
-    <b><p>{{ item.item }}</p></b>
-  {% elif item.legend == "vegan" %}
-    <p style="color: #0000FF">{{ item.item }}</p>
-  {% elif item.legend == "vegetarian" %}
-    <p style="color: LimeGreen">{{ item.item }}</p>
-  {% elif item.legend == "pork" %}
-    <p style="color: #8000FF">{{ item.item }}</p>
-  {% elif item.legend == "halal" %}
-    <p style="color: DarkRed">{{ item.item }}</p>
-  {% else %}
-    <p>{{ item.item }}</p>
-  {% endif %}
-{%- endmacro %}
-
 {% block app_content %}
 
 <div class="container">
@@ -24,7 +8,11 @@
     <div class="col-sm-2">
       <h3>{{hall[0]}}</h3>
       {% for item in hall[1] %}
-          {{ items(item) }}
+          {% if item[0] == "-" %}
+            <p><b>{{ item }}</b></p>
+          {% else %}
+            <p>{{ item }}</p>
+          {% endif %}
       {% endfor %}
     </div>
     {% endfor %}
