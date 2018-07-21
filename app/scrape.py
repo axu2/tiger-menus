@@ -3,6 +3,35 @@ from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
 
+def floatMainEntrees(items):
+    """Return items with main entrees at the top."""
+    itemsBefore = []
+    itemsMain = []
+    itemsAfter = []
+
+    before = True
+    main = False
+    after = False
+
+    for item in items:
+        more = ['-- Vegetarian & Vegan Entree --', '-- Euro Special --']
+        if main and item[0] == '-' and not item in more:
+            main = False
+            after = True
+        if item == '-- Main Entree --':
+            main = True
+            before = False
+
+        if before:
+            itemsBefore.append(item)
+        if main:
+            itemsMain.append(item)
+        if after:
+            itemsAfter.append(item)
+
+    return itemsMain + itemsBefore + itemsAfter
+
+
 def scrapeHall(url):
     breakfast = []
     lunch = []
@@ -16,7 +45,7 @@ def scrapeHall(url):
     soup = BeautifulSoup(html, 'html.parser')
     for card in soup.findAll(class_="card"):
         mealName = card.h5.text
-        items = list(card.ul.stripped_strings)
+        items = floatMainEntrees(list(card.ul.stripped_strings))
         if mealName == b:
             breakfast = [b] + items
         elif mealName == l:

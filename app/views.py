@@ -19,36 +19,6 @@ title = "Tiger Menus"
 message = ""
 
 
-def floatMainEntrees(foodList):
-    """Return foodList with main entrees at the top."""
-    if len(foodList) > 1:
-        foodBefore = []
-        foodMain = []
-        foodAfter = []
-
-        before = True
-        main = False
-        after = False
-
-        for item in foodList:
-            more = ['-- Vegetarian & Vegan Entree --', '-- Euro Special --']
-            if main and item["item"][0] == '-' and not item["item"] in more:
-                main = False
-                after = True
-            if item["item"] == '-- Main Entree --':
-                main = True
-                before = False
-            if before:
-                foodBefore.append(item)
-            if main:
-                foodMain.append(item)
-            if after:
-                foodAfter.append(item)
-
-        foodList = [foodBefore[0]] + foodMain + foodBefore[1:] + foodAfter
-
-    return foodList
-
 @app.before_first_request
 def update():
     """Update global variables and database."""
