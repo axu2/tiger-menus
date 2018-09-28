@@ -5,31 +5,31 @@ from bs4 import BeautifulSoup
 
 def floatMainEntrees(items):
     """Return items with main entrees at the top."""
-    itemsBefore = []
     itemsMain = []
+    itemsEntree = []
     itemsAfter = []
 
-    before = True
     main = False
-    after = False
+    entree = True
 
     for item in items:
-        more = ['-- Vegetarian & Vegan Entree --', '-- Euro Special --']
-        if main and item[0] == '-' and not item in more:
-            main = False
-            after = True
-        if item == '-- Main Entree --':
+        if 'Main Entree' in item:
             main = True
-            before = False
+            entree = False
+        elif "Entree" in item:
+            main = False
+            entree = True
+        elif "--" in item:
+            main = False
+            entree = False
 
-        if before:
-            itemsBefore.append(item)
         if main:
             itemsMain.append(item)
-        if after:
+        elif entree:
+            itemsEntree.append(item)
+        else:
             itemsAfter.append(item)
-
-    return itemsMain + itemsBefore + itemsAfter
+    return itemsMain + itemsEntree + itemsAfter
 
 
 def scrapeHall(url):
