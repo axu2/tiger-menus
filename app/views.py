@@ -5,12 +5,13 @@ from datetime import datetime, timedelta
 from flask import render_template, jsonify
 from mongoengine import MultipleObjectsReturned, DoesNotExist
 from app.scrape import scrapeWeek
+from app.test_menus import b, l, d
 
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-breakfastLists = []
-lunchLists = []
-dinnerLists = []
+breakfastLists = b
+lunchLists = l
+dinnerLists = d
 
 day = datetime.now()
 nextWeek = [minidays[(day.weekday() + i) % 7] for i in range(7)]
@@ -28,14 +29,16 @@ def update():
     global nextWeek
 
     nextWeek = [minidays[(day.weekday()+i) % 7] for i in range(7)]
-    breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
 
-    start = datetime(day.year, day.month, day.day)
-    end = start + timedelta(days=1)
-    if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
-        Menu(breakfast=breakfastLists[0],
-             lunch=lunchLists[0],
-             dinner=dinnerLists[0]).save()
+    if os.getenv('HEROKU'):
+        breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
+
+        start = datetime(day.year, day.month, day.day)
+        end = start + timedelta(days=1)
+        if not Menu.objects(date_modified__gte=start, date_modified__lt=end):
+            Menu(breakfast=breakfastLists[0],
+                lunch=lunchLists[0],
+                dinner=dinnerLists[0]).save()
 
 @app.before_request
 def checkForUpdate():
