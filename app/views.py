@@ -1,5 +1,5 @@
 import os
-from app import app
+from app import app, cas
 from .models import Menu
 from datetime import datetime, timedelta
 from flask import render_template, jsonify
@@ -70,7 +70,7 @@ def meal(meal, i):
     l3 = [(l2[j], l[j]) for j in range(6)]
 
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
-        title=title, message=message, l=l3)
+        title=title, message=message, l=l3, cas=cas)
 
 
 @app.route('/api2')
@@ -115,7 +115,7 @@ def about():
     return render_template(
         "index.html", meal='dinner',
         title=title, message=message,
-        i=0, nextWeek=nextWeek)
+        i=0, nextWeek=nextWeek, cas=cas)
 
 
 @app.route('/api/<int:month>/<int:day>/<int:year>')

@@ -88,6 +88,13 @@
       <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSd-i9YUoMUk_xJ6l3cNoSl04KKymQ8CAHID9CbwhJpgNn-2QQ/viewform?usp=sf_link">
         Feedback
       </a></p>
+
+      {% if cas.username %}
+      <p><a href={{ url_for('cas.logout') }}>Logout {{cas.username}}</a></p>
+      {% else %}
+      <p><a href={{ url_for('cas.login') }}>Login</a></p>
+      {% endif %}
+
       <h4><b><a href="/about">How to Install / About</a></b></h4>
 
     </footer>
