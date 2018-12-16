@@ -20,3 +20,18 @@ class User(db.Document):
             return netid
         else:
             return self.email
+
+
+def getUser(netid):
+    email = netid + '@princeton.edu'
+    users = User.objects(email=email)
+    user = None
+    if users:
+        user = User.objects(email=email).first()
+    else:
+        user = User(email=email)
+        user.prefs.append('chicken parm')
+        user.prefs.append('dim sum')
+        user.prefs.append('egg roll')
+        user.save()
+    return user
