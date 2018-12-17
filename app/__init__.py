@@ -33,7 +33,7 @@ admin = Admin(app, 'TigerMenus')
 
 class UserView(ModelView):
     def is_accessible(self):
-        return cas.username == "ax2"
+        return cas.username in {"ax2"}
 
 admin.add_view(UserView(User))
 
