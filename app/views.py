@@ -2,12 +2,9 @@ import os
 from app import app, cas
 from .models import Menu, getUser
 from datetime import datetime, timedelta
-from flask import render_template, jsonify, flash, redirect, url_for, request
-from mongoengine import MultipleObjectsReturned, DoesNotExist
+from flask import render_template
 from app.scrape import scrapeWeek
 from app.test_menus import b, l, d
-from flask_cas import login_required
-from app.forms import AddFoodForm
 
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
@@ -42,6 +39,7 @@ def update():
                 lunch=lunchLists[0],
                 dinner=dinnerLists[0]).save()
 
+
 @app.before_request
 def checkForUpdate():
     """Check if day has changed."""
@@ -73,54 +71,6 @@ def meal(meal, i):
 
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
         title=title, message=message, l=l3)
-
-
-@app.route('/finder', methods=['GET', 'POST'])
-@login_required
-def finder():
-    user = getUser(cas.username)
-
-    form = AddFoodForm()
-
-    if form.validate_on_submit():
-        food = form.food.data.lower()
-        form.food.data = None
-        if food not in user.prefs:
-            if len(food) > 40:
-                flash("pls don't spam", "error")
-            else:
-                user.prefs.append(food)
-                user.save()
-        return redirect(url_for('finder'))
-        #flash("New entry added!", "success")
-
-    # some magic to match preferences to this weeks meals
-    # then pass it to render_template
-    matches = "placeholders for when foods are being served"
-
-    return render_template('finder.html', 
-    prefs=user.prefs, form=form,
-    meal='dinner',
-    title=title, message=message,
-    i=0, nextWeek=nextWeek, matches=matches)
-
-
-@app.route('/r', methods=['POST'])
-def r():
-    user = getUser(cas.username)
-
-    food = request.form['food']
-    if food in user.prefs:
-        user.prefs.remove(food)
-        user.save()
-
-    return redirect(url_for('finder'))
-
-
-@app.route('/api2')
-def api3():
-    """Return week's menus in JSON."""
-    return jsonify([breakfastLists, lunchLists, dinnerLists])
 
 
 @app.route('/')
@@ -160,21 +110,3 @@ def about():
         "index.html", meal='dinner',
         title=title, message=message,
         i=0, nextWeek=nextWeek)
-
-
-@app.route('/api/<int:month>/<int:day>/<int:year>')
-def api(month, day, year):
-    """Return past menu JSON from database."""
-    start = datetime(year, month, day)
-    end = start + timedelta(days=1)
-    menu = Menu.objects(date_modified__gte=start, date_modified__lt=end).first_or_404()
-    return jsonify(menu)
-
-
-@app.route('/api/<int:m0>/<int:d0>/<int:y0>/<int:m1>/<int:d1>/<int:y1>')
-def api2(m0, d0, y0, m1, d1, y1):
-    """Return past menu JSON from database."""
-    start = datetime(y0, m0, d0)
-    end = datetime(y1, m1, d1)
-    menus = Menu.objects(date_modified__gte=start, date_modified__lte=end)
-    return jsonify(menus)
