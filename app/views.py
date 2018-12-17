@@ -2,7 +2,7 @@ import os
 from app import app, cas
 from .models import Menu, getUser
 from datetime import datetime, timedelta
-from flask import render_template, jsonify, flash, redirect, url_for
+from flask import render_template, jsonify, flash, redirect, url_for, request
 from mongoengine import MultipleObjectsReturned, DoesNotExist
 from app.scrape import scrapeWeek
 from app.test_menus import b, l, d
@@ -96,12 +96,25 @@ def finder():
 
     # some magic to match preferences to this weeks meals
     # then pass it to render_template
+    matches = "placeholders for when foods are being served"
 
     return render_template('finder.html', 
     prefs=user.prefs, form=form,
     meal='dinner',
     title=title, message=message,
-    i=0, nextWeek=nextWeek)
+    i=0, nextWeek=nextWeek, matches=matches)
+
+
+@app.route('/r', methods=['POST'])
+def r():
+    user = getUser(cas.username)
+
+    food = request.form['food']
+    if food in user.prefs:
+        user.prefs.remove(food)
+        user.save()
+
+    return redirect(url_for('finder'))
 
 
 @app.route('/api2')

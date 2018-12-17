@@ -27,11 +27,16 @@
 
   <div class="row">
     <div class="col-sm-6">
-        placeholder for when foods are being served
+       {{matches}}
     </div>
     <div class="list-group col-sm-6">
       {% for pref in prefs %}
-      <a class="list-group-item">{{pref}}</a>
+      <a class="list-group-item">
+            <form action='\r' method='POST'>
+              <input type="hidden" name="food" value="{{ pref }}">
+              <button class="close" type="submit button" > &times;</button>
+            </form> <h5>{{ pref }}</h5>
+       </a>
       {% endfor %}    
     </div>
   </div>
