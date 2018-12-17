@@ -1,11 +1,13 @@
 import os
 from app import app, cas
-from .models import Menu
+from .models import Menu, getUser
 from datetime import datetime, timedelta
-from flask import render_template, jsonify
+from flask import render_template, jsonify, flash, redirect, url_for
 from mongoengine import MultipleObjectsReturned, DoesNotExist
 from app.scrape import scrapeWeek
 from app.test_menus import b, l, d
+from flask_cas import login_required
+from app.forms import AddFoodForm
 
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
@@ -70,7 +72,36 @@ def meal(meal, i):
     l3 = [(l2[j], l[j]) for j in range(6)]
 
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
-        title=title, message=message, l=l3, cas=cas)
+        title=title, message=message, l=l3)
+
+
+@app.route('/finder', methods=['GET', 'POST'])
+@login_required
+def finder():
+    user = getUser(cas.username)
+
+    form = AddFoodForm()
+
+    if form.validate_on_submit():
+        food = form.food.data.lower()
+        form.food.data = None
+        if food not in user.prefs:
+            if len(food) > 40:
+                flash("pls don't spam", "error")
+            else:
+                user.prefs.append(food)
+                user.save()
+        return redirect(url_for('finder'))
+        #flash("New entry added!", "success")
+
+    # some magic to match preferences to this weeks meals
+    # then pass it to render_template
+
+    return render_template('finder.html', 
+    prefs=user.prefs, form=form,
+    meal='dinner',
+    title=title, message=message,
+    i=0, nextWeek=nextWeek)
 
 
 @app.route('/api2')
@@ -115,7 +146,7 @@ def about():
     return render_template(
         "index.html", meal='dinner',
         title=title, message=message,
-        i=0, nextWeek=nextWeek, cas=cas)
+        i=0, nextWeek=nextWeek)
 
 
 @app.route('/api/<int:month>/<int:day>/<int:year>')

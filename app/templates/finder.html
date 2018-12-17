@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+<div class="container">
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      <div class="row">
+        <div class="col-sm-12">
+      {% for message in messages %}
+      <div class="alert alert-info" role="alert">{{ message }}</div>
+      {% endfor %}
+        </div>
+      </div>
+   {% endif %}
+   {% endwith %}
+
+  <div class="row">
+    <div class="col-sm-12">
+    <h3>Add a food. See when it's being served this week. Enjoy.</h3>
+    {{ wtf.quick_form(form) }}
+    </div>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <div class="col-sm-6">
+        placeholder for when foods are being served
+    </div>
+    <div class="list-group col-sm-6">
+      {% for pref in prefs %}
+      <a class="list-group-item">{{pref}}</a>
+      {% endfor %}    
+    </div>
+  </div>
+</div>
+
+{% endblock %}
