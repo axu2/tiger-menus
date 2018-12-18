@@ -3,7 +3,7 @@ from flask_cas import login_required
 from app.forms import AddFoodForm
 from flask import render_template, flash, redirect, url_for, request
 from app.models import getUser
-from app.views import title, message, nextWeek
+from app import views
 
 @app.route('/finder', methods=['GET', 'POST'])
 @login_required
@@ -31,8 +31,8 @@ def finder():
     return render_template('finder.html', 
     prefs=user.prefs, form=form,
     meal='dinner',
-    title=title, message=message,
-    i=0, nextWeek=nextWeek, matches=matches)
+    title=views.title, message=views.message,
+    i=0, nextWeek=views.nextWeek, matches=matches)
 
 
 @app.route('/r', methods=['POST'])

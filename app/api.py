@@ -2,7 +2,7 @@ from app import app
 from datetime import datetime, timedelta
 from app.models import Menu
 from flask import jsonify
-from app.views import breakfastLists, lunchLists, dinnerLists
+from app import views
 
 @app.route('/api/<int:month>/<int:day>/<int:year>')
 def api(month, day, year):
@@ -24,4 +24,4 @@ def api2(m0, d0, y0, m1, d1, y1):
 @app.route('/api2')
 def api3():
     """Return week's menus in JSON."""
-    return jsonify([breakfastLists, lunchLists, dinnerLists])
+    return jsonify([views.breakfastLists, views.lunchLists, views.dinnerLists])

@@ -37,4 +37,4 @@ class UserView(ModelView):
 
 admin.add_view(UserView(User))
 
-from app import views   # noqa
+from app import views, api, finder   # noqa
