@@ -46,3 +46,4 @@ def r():
         user.save()
 
     return redirect(url_for('finder'))
+    

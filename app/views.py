@@ -110,3 +110,6 @@ def about():
         "index.html", meal='dinner',
         title=title, message=message,
         i=0, nextWeek=nextWeek)
+
+
+from app import api, finder
