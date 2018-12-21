@@ -11,8 +11,8 @@ class Menu(db.Document):
 
 
 class User(db.Document):
-    email = db.StringField(max_length=40)
-    prefs = db.ListField(db.StringField(max_length=40))
+    email = db.StringField(unique=True, max_length=40)
+    prefs = db.ListField(db.StringField(max_length=40), default=lambda:["chicken parm", "dim sum", "spring roll"])
 
     def __unicode__(self):
         netid, domain = self.email.split('@')
@@ -24,14 +24,12 @@ class User(db.Document):
 
 def getUser(netid):
     email = netid + '@princeton.edu'
-    users = User.objects(email=email)
-    user = None
-    if users:
-        user = User.objects(email=email).first()
-    else:
-        user = User(email=email)
-        user.prefs.append('chicken parm')
-        user.prefs.append('dim sum')
-        user.prefs.append('egg roll')
-        user.save()
-    return user
+    # lol race conditions
+    # probably a better way to do this
+    try:
+        return User.objects(email=email).get()
+    except:
+        try:
+            return User(email=email).save()
+        except:
+            return User.objects(email=email).get()
