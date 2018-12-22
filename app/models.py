@@ -33,3 +33,29 @@ def getUser(netid):
             return User(email=email).save()
         except:
             return User.objects(email=email).get()
+
+
+# many-to-many SQL implementation 
+
+# prefs = db.Table('prefs',
+#     db.Column('food_id', db.Integer, db.ForeignKey('food.id'), primary_key=True),
+#     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
+# )
+
+
+# class User(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     email = db.Column(db.String(120), index=True, unique=True)
+#     foods = db.relationship('Food', secondary=prefs, lazy='subquery',
+#         backref=db.backref('users', lazy=True))
+
+#     def __repr__(self):
+#         return '<User {}>'.format(self.email)
+
+
+# class Food(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(64), index=True, unique=True)
+
+#     def __repr__(self):
+#         return '<Food {}>'.format(self.name)
