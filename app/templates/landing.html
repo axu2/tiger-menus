@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+{% block title %}
+TigerMenus
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='mylanding.css')}}">
+<script type="text/javascript" src="{{ url_for('static', filename='mylanding.js') }}"></script>
+{% endblock %}
+
+{% block navbar %}
+<div id="navbar">
+  <div class="logo">
+    <a href="/landing" style="color: #262626; text-decoration: none;">
+      <img class="logoimg" src="/static/logowhite3.png" alt="tigermenus-logo">
+    </a>
+  </div>
+
+  <div class="meals">
+    <a class="mealofday" href="/breakfast/{{i}}">Breakfast</a>
+    <a class="mealofday" href="/lunch/{{i}}">Lunch</a>
+    <a class="mealofday" href="/dinner/{{i}}">Dinner</a>
+  </div>
+
+  <div class="sidebar" onclick="openNav()">&#9776;</div>
+</div>
+<div class="jumbotron"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/about">About</a>
+  <a href="https://dining.princeton.edu/where-eat/hours-operation">Hours</a>
+  <a href="/about">Install</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-i9YUoMUk_xJ6l3cNoSl04KKymQ8CAHID9CbwhJpgNn-2QQ/viewform?usp=sf_link">Feedback</a>
+  <a href="https://campusdining.princeton.edu/lunchtogo/">Bag Lunch</a>
+</div>
+
+<section id="landing">
+  Know what you will eat today.
+  <a href="/" class="btn"><button class="button">Check Menu</button></a>
+</section>
+{% endblock %}
+{% endblock %}

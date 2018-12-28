@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+#navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    position: fixed;
+    background: none;
+    transition: width 0.5s ease, background .25s ease-in-out;
+    -moz-transition: width 0.5s ease, background .25s ease-in-out;
+    -webkit-transition: width 0.5s ease, background .25s ease-in-out;
+}
+
+#navbar:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#landing {
+    text-decoration: bold;
+    text-align: center;
+    font-family: "Cabin", sans-serif;
+    font-size: 4vw;
+    color: white;
+    padding: 26rem 29rem 26rem 29rem;
+    transition: padding 0.5s ease;
+}
+
+a.btn {
+    text-decoration: none;
+    box-shadow: none !important;
+}
+
+.button {
+    display: block;
+    padding: 2vh 4vw;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid white;
+    border-radius: 15px;
+    box-shadow: 0 2px #1e1e1e;
+    /* margin: 2vh auto; */
+}
+
+.button:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.button:active {
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0px #1e1e1e;
+    transform: translateY(4px);
+}

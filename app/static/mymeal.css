@@ -1,0 +1,26 @@
+h3 {
+    font-family: cabin;
+    color: black; 
+}
+
+p {
+    font-family: cabin;
+    color: black;
+}
+
+.container {
+    background: rgba(255,255,255,0.9);
+    width: 95%;
+    border-radius: 15px;
+    transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -webkit-transition: width 0.5s ease;
+}
+
+.col-sm-2 {
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}

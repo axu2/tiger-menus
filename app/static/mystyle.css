@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+body#bg {
+    width: 100%;
+    margin: 0;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/test_landing.jpg") no-repeat 50% 50% fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    transition: width 0.5s ease, margin-left .5s;
+    background-color: black;
+}
+
+.jumbotron {
+    padding: 4.5rem;
+    margin: 0;
+    color: inherit;
+    background-color: transparent;
+}
+
+#navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -webkit-transition: width 0.5s ease;
+}
+
+.logo {
+    order: 1;
+}
+
+.logoimg {
+    width: 22rem;
+    height: 4rem;
+}
+
+.meals {
+    order: 2;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar {
+    order: 3;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 0 1rem 0 18rem;
+}
+
+/* .days {
+    order: 3;
+} */
+
+a.mealofday {
+    /* text-align: center; */
+    vertical-align: middle;
+    padding: 2.3rem 2rem;
+    margin: 0 4rem;
+    font-family: "Scala Sans", sans-serif;
+    font-size: 1.7vw;
+    color: white;
+}
+
+/* 
+a.dayofweek {
+    text-align: center;
+    padding: .5vw;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 2vw;
+    color: white;
+    flex: 1;
+} */
+
+a.mealofday:hover {
+    text-decoration: none;
+    text-decoration: bold;
+    /* background: linear-gradient(
+        rgba(255, 255, 255, 0.15), 
+        rgba(255, 255, 255, 0.15)
+      ); */
+    box-shadow: inset 0 -5px 0 white;
+    transition: box-shadow 0.25s ease-in-out;
+}
+
+/* a.mealofday:active {
+    color: hotpink;
+    text-decoration: bold;
+} */
+
+a.current {
+    text-decoration: bold;
+    /* background: linear-gradient(
+        rgba(0, 0, 0, 0.7), 
+        rgba(0, 0, 0, 0.7)
+      ); */
+    box-shadow: inset 0 -5px 0 white;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 25px;
+    text-decoration: none;
+    font-family: cabin;
+    font-size: 25px;
+    white-space: nowrap;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}

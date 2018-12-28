@@ -84,6 +84,12 @@ def index():
     else:
         return meal('lunch', 1)
 
+@app.route('/landing')
+def landing():
+    """Return homepage HTML."""
+    return render_template("landing.html", meal='dinner',
+        title=title, message=message,
+        i=0, nextWeek=nextWeek)
 
 @app.route('/breakfast')
 def breakfast0():
