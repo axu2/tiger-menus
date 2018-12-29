@@ -8,10 +8,47 @@ p {
     color: black;
 }
 
+hr {
+    border-top: 3px double #8c8b8b;
+}
+
+hr.small {
+    border-top: 1px dashed #8c8b8b;
+    /* border-top: 1px solid #e8e8e8; */
+}
+
+.days {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -webkit-transition: width 0.5s ease;
+}
+
+a.dayofweek {
+    padding: 1rem;
+    font-family: cabin;
+    font-size: 1.5rem;
+    color: black;
+}
+
+#date {
+    font-family: cabin;
+    font-size: 3rem;
+    color: black; 
+    text-align: center;
+    margin-top: 2rem;
+}
+
 .container {
     background: rgba(255,255,255,0.9);
     width: 95%;
     border-radius: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
     transition: width 0.5s ease;
     -moz-transition: width 0.5s ease;
     -webkit-transition: width 0.5s ease;

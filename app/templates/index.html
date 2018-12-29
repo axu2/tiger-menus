@@ -1,97 +1,42 @@
 {% extends "base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='myabout.css')}}">
+<!-- <script type="text/javascript" src="{{ url_for('static', filename='mymeal.js') }}"></script> -->
+{% endblock %}
+
+
 {% block app_content %}
 
-<div class="container">
-	<p>How to install on iOS:</p>
-	<div class="row">
-    <div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/i1.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-		<div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/i2.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-		<div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/i3.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-		<div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/i4.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-	</div>
-</div>
-<hr>
-
-<div class="container">
-	<p>How to install on Android:</p>
-	<div class="row">
-    <div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/droid1.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-		<div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/droid2.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-		<div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/droid3.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-		<div class="col-sm-3">
-			<figure class="figure">
-				<div align="center"><img src="/static/droid4.png" class="img-responsive" alt="meme"></div>
-				<figcaption class="figure-caption text-center"></figcaption>
-			</figure>
-		</div>
-	</div>
-</div>
-
-<hr>
-
-<div class="container">
+<div class="container stats">
 	<figure class="figure">
 		<div align="center"><img src="/static/google3.png" class="img-responsive" alt="Google Analytics"></div>
-		<figcaption class="figure-caption text-center">Usage during Spring 18</figcaption>
+		<figcaption class="figure-caption text-center">Figure 1. Usage during Spring 2018</figcaption>
 	</figure>
 </div>
 
-<hr>
+<!-- <hr> -->
 
-<div class="container">
+<div class="container stats">
 	<figure class="figure">
 		<div align="center"><img src="/static/analytics2.png" class="img-responsive" alt="Google Analytics"></div>
-		<figcaption class="figure-caption text-center">Usage during Fall 17</figcaption>
+		<figcaption class="figure-caption text-center">Figure 2. Usage during Fall 2017</figcaption>
 	</figure>
 </div>
 
-<hr>
+<!-- <hr> -->
 
-<div class="container">
+<div class="container stats">
 	<figure class="figure">
 		<div align="center"><img src="/static/analytics.png" class="img-responsive" alt="Google Analytics"></div>
-		<figcaption class="figure-caption text-center">Usage during Spring 17</figcaption>
+		<figcaption class="figure-caption text-center">Figure 3. Usage during Spring 2017</figcaption>
 	</figure>
 </div>
 
-<hr>
+<!-- <hr> -->
 
-<div class="container">
+<div class="container about">
 	<p>Credits to Sherry Bai '19 for confirming naming credit to Ji-Sung Kim '19</p>
 	<p>Icon Designed by <a href='https://alicepanpan.com/'>Alice Wang '19</a></p>
 	<p>Website created by Alex Xu '20</p>
