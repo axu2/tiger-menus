@@ -8,6 +8,17 @@
 {% block app_content %}
 <div class="container">
   <div id="date" class="row"></div>
+
+  <div class="days">
+    {% for wd in nextWeek %}
+    {% if loop.index0 == i %}
+    <b><a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></b>
+    {% else %}
+    <a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
+    {% endif %}
+    {% endfor %}
+  </div>
+
   <hr>
   <div class="row">
     {% for hall in l %}
@@ -24,16 +35,6 @@
     {% endfor %}
   </div>
 
-  <hr class="small">
-    <div class="days">
-      {% for wd in nextWeek %}
-      {% if loop.index0 == i %}
-      <b><a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></b>
-      {% else %}
-      <a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
-      {% endif %}
-      {% endfor %}
-    </div>
 </div>
 
 <script type="text/javascript" src="{{ url_for('static', filename='mymeal.js') }}"></script>

@@ -1,16 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://use.typekit.net/era7rgw.css');
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
 body#bg {
     width: 100%;
     margin: 0;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/test_landing.jpg") no-repeat 50% 50% fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/test_landing_low.jpg") no-repeat 50% 50% fixed;
     background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -webkit-background-size: cover;
     transition: width 0.5s ease, margin-left .5s;
+    -moz-transition: width 0.5s ease, margin-left .5s;
+    -webkit-transition: width 0.5s ease, margin-left .5s;
     background-color: black;
 }
-
+  
 .jumbotron {
     padding: 4.5rem;
     margin: 0;
@@ -58,7 +62,7 @@ a.mealofday {
     vertical-align: middle;
     padding: 2.3rem 2rem;
     margin: 0 4rem;
-    font-family: "Scala Sans", sans-serif;
+    font-family: "ff-scala-sans-pro", sans-serif;
     font-size: 1.7vw;
     color: white;
 }

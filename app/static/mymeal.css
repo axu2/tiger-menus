@@ -10,11 +10,8 @@ p {
 
 hr {
     border-top: 3px double #8c8b8b;
-}
-
-hr.small {
-    border-top: 1px dashed #8c8b8b;
-    /* border-top: 1px solid #e8e8e8; */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .days {
@@ -22,7 +19,6 @@ hr.small {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 1.5rem;
     transition: width 0.5s ease;
     -moz-transition: width 0.5s ease;
     -webkit-transition: width 0.5s ease;
