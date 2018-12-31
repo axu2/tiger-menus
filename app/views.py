@@ -87,7 +87,7 @@ def index():
 @app.route('/landing')
 def landing():
     """Return homepage HTML."""
-    return render_template("landing.html", meal='dinner',
+    return render_template("landing.html",
         title=title, message=message,
         i=0, nextWeek=nextWeek)
 
@@ -113,7 +113,7 @@ def dinner0():
 def about():
     """Return about page HTML."""
     return render_template(
-        "index.html", meal='dinner',
+        "index.html",
         title=title, message=message,
         i=0, nextWeek=nextWeek)
 
@@ -121,6 +121,6 @@ def about():
 def install():
     """Return install page HTML."""
     return render_template(
-        "install.html", meal='dinner',
+        "install.html",
         title=title, message=message,
         i=0, nextWeek=nextWeek)

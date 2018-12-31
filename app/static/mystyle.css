@@ -121,29 +121,6 @@ a.current {
 #mySidenav{
     will-change: width;
 }
-
-
-/* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
-
-@media (min-width: 1281px) {
-  
-    //CSS
-    
-  }
-  
-  /* 
-    ##Device = Laptops, Desktops
-    ##Screen = B/w 1025px to 1280px
-  */
-  
-  @media (min-width: 1025px) and (max-width: 1280px) {
-    
-    //CSS
-    
-  }
   
   /* 
     ##Device = Tablets, Ipads (portrait)
@@ -151,20 +128,15 @@ a.current {
   */
   
   @media (min-width: 768px) and (max-width: 1024px) {
-    
-    .logoimg {
-        width: 17vw;
-        height: 4vh;
-    }
 
     a.mealofday{
-        padding: 0;
+        padding: 2.3rem 1rem;
         margin: 0 2vw;
         font-size: 20px;
     }
 
     .sidebar{
-        padding: 0 1rem 0 10vw;
+        padding: 0 1rem 0 12vw;
     }
     
   }
@@ -176,7 +148,6 @@ a.current {
   
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     
-        
   }
   
   /* 
@@ -185,19 +156,32 @@ a.current {
   */
   
   @media (min-width: 481px) and (max-width: 767px) {
-    
+
+    body#bg{
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero768.jpg") no-repeat 50% 50% fixed;
+        background-color: black;
+    }
+
     .logoimg {
-        margin-bottom: 2rem;
+        width: 16rem;
+        height: 3rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
     }
 
     #navbar {
-        flex-direction: column;
+        flex-flow: no-wrap;
     }
 
     a.mealofday{
-        padding: 0;
-        margin: 0 2vw;
-        font-size: 30px;
+        padding: 2.7rem 0.5rem;
+        margin: 0 0vw;
+        font-size: 18px;
+    }
+
+    .sidebar{
+        font-size: 3rem;
+        padding: 0 1rem 0 5vw;
     }
 
     /* sidebar relocation need consideration*/
@@ -210,7 +194,42 @@ a.current {
   */
   
   @media (min-width: 320px) and (max-width: 480px) {
-    
-    //CSS
-    
+        
+    body#bg{
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero480.jpg") no-repeat 50% 50% fixed;
+        background-color: black;
+    }
+
+    #navbar {
+        flex-wrap: wrap;
+    }
+
+    a.mealofday{
+        padding: 1.8rem 1.5rem;
+        margin: 0 0vw;
+        font-size: 18px;
+    }
+
+    .meals{
+        order: 3;
+        margin-top: 2rem;
+    }
+
+    .sidebar{
+        font-size: 3rem;
+        padding: 0 1rem 0 3vw;
+        order: 2;
+    }
+
+    .sidenav{
+        text-align: center;
+    }
+
+    .jumbotron {
+        padding: 7rem;
+        margin: 0;
+        color: inherit;
+        background-color: transparent;
+    }
+
   }

@@ -16,13 +16,11 @@
 }
 
 #landing {
-    text-decoration: bold;
     text-align: center;
     font-family: "Cabin", sans-serif;
     font-size: 4vw;
     color: white;
     padding: 28vh 0;
-    /* padding: 25rem 29rem 26rem 29rem; */
     transition: padding 0.5s ease;
     -webkit-animation: fadein 2s; 
     -moz-animation: fadein 2s; 
@@ -104,14 +102,36 @@ a.btn {
     to   { opacity: 1; }
 }
 
-/* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-
+  /* 
+    ##Device = iphone X
+  */
+  @media only screen 
+  and (device-width : 375px) 
+  and (device-height : 812px) 
+  and (-webkit-device-pixel-ratio : 3) {
     
+    #landing{
+        padding: 50vw 4vw 0 4vw !important;
+        font-size: 40px !important;
+    }
+    .button {
+        font-size: 20px !important;
+    }
+    
+  }
+
+  @media only screen 
+  and (device-width : 812px) 
+  and (device-height : 375px) 
+  and (-webkit-device-pixel-ratio : 3) 
+  and (orientation : landscape) {
+    #landing{
+        padding: 8vw 4vw 0 4vw !important;
+        font-size: 40px !important;
+    }
+    .button {
+        font-size: 20px !important;
+    }
   }
   
   /* 
@@ -121,7 +141,13 @@ a.btn {
   
   @media (min-width: 768px) and (max-width: 1024px) {
     
-  
+    #landing{
+        padding: 50vw 4vw 0 4vw;
+        font-size: 50px;
+    }
+    .button {
+        font-size: 35px;
+    }
   }
   
   /* 
@@ -131,14 +157,12 @@ a.btn {
   
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     
-    body#bg{
-        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/portrait1024.jpg") no-repeat 50% 50% fixed;
-    }
     #landing{
+        padding: 25vw 4vw 0 4vw;
         font-size: 40px;
     }
     .button {
-        font-size: 30px;
+        font-size: 25px;
     }
         
   }
@@ -150,12 +174,9 @@ a.btn {
   
   @media (min-width: 481px) and (max-width: 767px) {
     
-    body#bg{
-        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero768.jpg") no-repeat 50% 50% fixed;
-    }
 
     #landing{
-        font-size: 28px;
+        font-size: 40px;
     }
     .button {
         font-size: 20px;
@@ -170,11 +191,9 @@ a.btn {
   
   @media (min-width: 320px) and (max-width: 480px) {
     
-    body#bg{
-        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero480.jpg") no-repeat 50% 50% fixed;
-    }
     #landing{
-        font-size: 28px;
+        padding: 30vw 4vw 0 4vw;
+        font-size: 40px;
     }
     .button {
         font-size: 20px;
