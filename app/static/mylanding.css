@@ -23,12 +23,12 @@
     color: white;
     padding: 25rem 29rem 26rem 29rem;
     transition: padding 0.5s ease;
-
     -webkit-animation: fadein 2s; 
     -moz-animation: fadein 2s; 
      -ms-animation: fadein 2s;
       -o-animation: fadein 2s;
          animation: fadein 2s;
+    will-change: padding;
 }
 
 a.btn {
