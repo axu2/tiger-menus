@@ -111,7 +111,7 @@ a.btn {
   and (-webkit-device-pixel-ratio : 3) {
     
     #landing{
-        padding: 50vw 4vw 0 4vw !important;
+        padding: 50vw 4vw !important;
         font-size: 40px !important;
     }
     .button {
@@ -126,7 +126,7 @@ a.btn {
   and (-webkit-device-pixel-ratio : 3) 
   and (orientation : landscape) {
     #landing{
-        padding: 8vw 4vw 0 4vw !important;
+        padding: 8vw 4vw !important;
         font-size: 40px !important;
     }
     .button {
@@ -142,7 +142,7 @@ a.btn {
   @media (min-width: 768px) and (max-width: 1024px) {
     
     #landing{
-        padding: 50vw 4vw 0 4vw;
+        padding: 50vw 4vw;
         font-size: 50px;
     }
     .button {
@@ -158,7 +158,7 @@ a.btn {
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     
     #landing{
-        padding: 25vw 4vw 0 4vw;
+        padding: 25vw 4vw;
         font-size: 40px;
     }
     .button {
@@ -192,7 +192,7 @@ a.btn {
   @media (min-width: 320px) and (max-width: 480px) {
     
     #landing{
-        padding: 30vw 4vw 0 4vw;
+        padding: 30vw 4vw;
         font-size: 40px;
     }
     .button {
