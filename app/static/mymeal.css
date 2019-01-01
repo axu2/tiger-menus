@@ -1,10 +1,10 @@
 h3 {
-    font-family: cabin;
-    color: black; 
+    font-family: "Cabin", Fallback, sans-serif;
+    color: black;
 }
 
 p {
-    font-family: cabin;
+    font-family: "Cabin", Fallback, sans-serif;
     color: black;
 }
 
@@ -26,21 +26,21 @@ hr {
 
 a.dayofweek {
     padding: 1rem;
-    font-family: cabin;
+    font-family: "Cabin", Fallback, sans-serif;
     font-size: 1.5rem;
     color: black;
 }
 
 #date {
-    font-family: cabin;
+    font-family: "Cabin", Fallback, sans-serif;
     font-size: 3rem;
-    color: black; 
+    color: black;
     text-align: center;
     margin-top: 2rem;
 }
 
 .container {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     width: 95%;
     border-radius: 15px;
     padding-right: 20px;

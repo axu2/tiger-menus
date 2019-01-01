@@ -1,17 +1,17 @@
 h3 {
-    font-family: cabin;
+    font-family: "Cabin", Fallback, sans-serif;
     color: black;
     text-align: center;
     margin-bottom: 2rem;
 }
 
 p {
-    font-family: cabin;
+    font-family: "Cabin", Fallback, sans-serif;
     color: black;
 }
 
 figcaption {
-    font-family: cabin;
+    font-family: "Cabin", Fallback, sans-serif;
     color: black;
     padding-top: 1rem;
     font-style: italic;

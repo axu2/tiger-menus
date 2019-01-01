@@ -75,7 +75,7 @@ a.mealofday {
     vertical-align: middle;
     padding: 2.3rem 2rem;
     margin: 0 4rem;
-    font-family: "Cabin", sans-serif;
+    font-family: "Cabin", Fallback, sans-serif;
     font-size: 1.7vw;
     color: white;
 }
@@ -108,7 +108,7 @@ a.current {
 .sidenav a {
     padding: 8px 8px 8px 25px;
     text-decoration: none;
-    font-family: cabin;
+    font-family: "Cabin", Fallback, sans-serif;
     font-size: 25px;
     white-space: nowrap;
     color: #818181;

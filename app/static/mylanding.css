@@ -20,7 +20,7 @@
 
 #landing {
     text-align: center;
-    font-family: "Cabin", sans-serif;
+    font-family: "Cabin", Fallback, sans-serif;
     font-size: 4vw;
     color: white;
     padding: 28vh 0;
