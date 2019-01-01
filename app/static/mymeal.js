@@ -1,11 +1,11 @@
-const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-let date = new Date();
+var date = new Date();
 if (window.location.pathname.split('/')[2] !== undefined) {
   const nextDate = date.getDate() + parseInt(window.location.pathname.split('/')[2]);
   date.setDate(nextDate);
 }
-const dateString = date.toLocaleDateString('en-US', options);
+var dateString = date.toLocaleDateString('en-US', options);
 document.getElementById("date").textContent = `Menus for ${dateString}`;
 
 if (phone.matches) {

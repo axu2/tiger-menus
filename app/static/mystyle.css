@@ -5,11 +5,11 @@
     font-weight: 400;
     src: url('static/fonts/cabin-v12-latin-regular.eot'); /* IE9 Compat Modes */
     src: local('Cabin'), local('Cabin-Regular'),
-         url('static/fonts/cabin-v12-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('static/fonts/cabin-v12-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-         url('static/fonts/cabin-v12-latin-regular.woff') format('woff'), /* Modern Browsers */
-         url('static/fonts/cabin-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('static/fonts/cabin-v12-latin-regular.svg#Cabin') format('svg'); /* Legacy iOS */
+         url('/fonts/cabin-v12-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('/fonts/cabin-v12-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('/fonts/cabin-v12-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('/fonts/cabin-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('/fonts/cabin-v12-latin-regular.svg#Cabin') format('svg'); /* Legacy iOS */
   }
 
 body#bg {
