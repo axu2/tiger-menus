@@ -1,3 +1,7 @@
+var phone = window.matchMedia('(min-width: 320px) and (max-width: 480px)');
+var tablet = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
+var landscape = window.matchMedia('(min-width: 500px) and (max-height: 600px)');
+
 if (phone.matches) {
   function openNav() {
     document.getElementById("mySidenav").style.width = "100%";
