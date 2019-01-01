@@ -6,7 +6,6 @@ from flask_admin import Admin
 from datetime import datetime
 from flask_bootstrap import Bootstrap
 from flask_mongoengine import MongoEngine
-from flask_static_compress import FlaskStaticCompress
 from flask_admin.contrib.mongoengine import ModelView
 
 app = Flask(__name__)
@@ -21,7 +20,6 @@ app.config['CAS_AFTER_LOGIN'] = 'index'
 cas = CAS(app)
 CORS(app)
 Bootstrap(app)
-compress = FlaskStaticCompress(app)
 
 dummy = "mongodb://heroku_t6g31fxj:8u1g6iotm21eg7r11u6ai38j20@ds013495.mlab.com:13495/heroku_t6g31fxj"
 app.config['MONGODB_SETTINGS'] = {
