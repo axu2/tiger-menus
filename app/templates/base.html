@@ -6,12 +6,8 @@ TigerMenus
 
 {% block styles %}
 {{super()}}
-{% compress 'css' %}
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='mystyle.css')}}">
-{% endcompress %}
-{% compress 'js' %}
 <script type="text/javascript" async src="{{ url_for('static', filename='myscript.js') }}"></script>
-{% endcompress %}
 {% endblock %}
 
 {% block metas %}
