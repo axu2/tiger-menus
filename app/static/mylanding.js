@@ -1,3 +1,7 @@
+phone = window.matchMedia('(min-width: 320px) and (max-width: 480px)');
+tablet = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
+landscape = window.matchMedia('(min-width: 500px) and (max-height: 600px)');
+
 if (phone.matches) {
   function openNav() {
     document.getElementById("mySidenav").style.width = "100%";
@@ -20,6 +24,7 @@ if (phone.matches) {
     document.getElementById("mySidenav").style.width = "0";
   }
 }
+
 else {
 
   function openNav() {
