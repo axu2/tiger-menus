@@ -8,8 +8,13 @@ TigerMenus
 
 {% block styles %}
 {{super()}}
+{% compress 'css' %}
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='mylanding.css')}}">
+{% endcompress %}
+{% compress 'js' %}
 <script type="text/javascript" async src="{{ url_for('static', filename='mylanding.js') }}"></script>
+{% endcompress %}
+
 {% endblock %}
 
 {% block navbar %}
