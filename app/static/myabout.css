@@ -53,26 +53,23 @@ figcaption {
         margin: 0 0 1rem 0;
         margin-left: auto;
         margin-right: auto;
-    }  
+    }
     .stats {
         padding: 1rem 1rem 1rem 1rem;
     }
     .about {
         padding: 1rem 2rem;
     }
-
     figcaption {
         font-size: 12px;
         padding-top: .5rem
     }
-
-    p{
+    p {
         margin: 5px;
     }
-      
 }
 
-@media (max-width: 767px) and (min-width: 481px){
+@media (max-width: 767px) and (min-width: 481px) {
     .container {
         background: rgba(255, 255, 255, 0.9);
         width: 95%;
@@ -81,22 +78,20 @@ figcaption {
         margin: 0 0 1rem 0;
         margin-left: auto;
         margin-right: auto;
-    }  
+    }
     .stats {
         padding: 1rem 1rem 1rem 1rem;
     }
     .about {
         padding: 1rem 2rem;
     }
-
     figcaption {
         font-size: 12px;
         padding-top: .5rem
     }
-
-    p{
+    p {
         margin: 5px;
-    }    
+    }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
@@ -108,21 +103,18 @@ figcaption {
         margin: 0 0 1rem 0;
         margin-left: auto;
         margin-right: auto;
-    }  
+    }
     .stats {
         padding: 1rem 1rem 1rem 1rem;
     }
     .about {
         padding: 1rem 2rem;
     }
-
     figcaption {
         font-size: 12px;
         padding-top: .5rem
     }
-
-    p{
+    p {
         margin: 5px;
     }
-    
 }
