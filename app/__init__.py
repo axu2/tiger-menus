@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_admin import Admin
 from datetime import datetime
 from flask_bootstrap import Bootstrap
-from flask.ext.compress import Compress
+from flask_compress import Compress
 from flask_mongoengine import MongoEngine
 from flask_admin.contrib.mongoengine import ModelView
 
