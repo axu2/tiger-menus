@@ -3,7 +3,7 @@ from app import app, cas
 from app.gzip_helper import gzipped
 from .models import Menu, getUser
 from datetime import datetime, timedelta
-from flask import render_template
+from flask import render_template, send_from_directory
 from app.scrape import scrapeWeek
 from app.test_menus import b, l, d
 
@@ -128,3 +128,12 @@ def install():
         "install.html",
         title=title, message=message,
         i=0, nextWeek=nextWeek)
+
+"""
+@gzipped
+@app.route('/static/<path:path>')
+def serve_static(path):
+    send_from_directory('static', path)
+    response.direct_passthrough = False
+    return response
+"""
