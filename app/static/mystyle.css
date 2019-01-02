@@ -12,7 +12,7 @@
          url('/static/fonts/cabin-v12-latin-regular.svg#Cabin') format('svg'); /* Legacy iOS */
   }
 
-body#bg {
+/* body#bg {
     width: 100%;
     margin: 0;
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/background_optimized.jpg") no-repeat 50% 50% fixed;
@@ -25,7 +25,23 @@ body#bg {
     -webkit-transition: width 0.5s ease, margin-left .5s;
     background-color: black;
     will-change: width, margin-right;
-}
+} */
+
+body#bg:before {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/background_optimized.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 
 .jumbotron {
     padding: 4.5rem;
