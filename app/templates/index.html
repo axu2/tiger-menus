@@ -5,7 +5,6 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='myabout.css')}}">
 {% endblock %}
 
-
 {% block app_content %}
 
 <div class="container stats">
@@ -37,9 +36,5 @@
 	<p><a href="https://github.com/axu2/tiger-menus">GitHub</a></p>
 </div>
 
-
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
+<script type="text/javascript" async src="{{ url_for('static', filename='myscript.js') }}"></script>
 {% endblock %}
