@@ -36,6 +36,7 @@ body#bg:before {
     width: 100%;
     height: 100%;
     z-index: -10;
+    background-color: black;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/background_optimized.jpg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -180,6 +181,10 @@ a.current {
     body#bg:before {
         background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero768.jpg") no-repeat 50% 50% fixed;
         background-color: black;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
     .logoimg {
         width: 16rem;
@@ -210,6 +215,10 @@ a.current {
     body#bg:before {
         background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero480.jpg") no-repeat 50% 50% fixed;
         background-color: black;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
     #navbar {
         flex-wrap: wrap;
