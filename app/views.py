@@ -1,5 +1,6 @@
 import os
 from app import app, cas
+from app.gzip_helper import gzipped
 from .models import Menu, getUser
 from datetime import datetime, timedelta
 from flask import render_template
@@ -54,7 +55,7 @@ def checkForUpdate():
         day = currentDay
         update()
 
-
+@gzipped
 @app.route('/<meal>/<int:i>')
 def meal(meal, i):
     """Return meal HTML."""
@@ -72,7 +73,7 @@ def meal(meal, i):
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
         title=title, message=message, l=l3)
 
-
+@gzipped
 @app.route('/')
 def index():
     """Return homepage HTML. The displayed meal depends on time of day."""
@@ -84,6 +85,7 @@ def index():
     else:
         return meal('lunch', 1)
 
+@gzipped
 @app.route('/landing')
 def landing():
     """Return homepage HTML."""
@@ -91,24 +93,25 @@ def landing():
         title=title, message=message,
         i=0, nextWeek=nextWeek)
 
+@gzipped
 @app.route('/breakfast')
 def breakfast0():
     """Return breakfast/0 HTML for convenience."""
     return meal('breakfast', 0)
 
-
+@gzipped
 @app.route('/lunch')
 def lunch0():
     """Return lunch/0 HTML for convenience."""
     return meal('lunch', 0)
 
-
+@gzipped
 @app.route('/dinner')
 def dinner0():
     """Return dinner/0 HTML for convenience."""
     return meal('dinner', 0)
 
-
+@gzipped
 @app.route('/about')
 def about():
     """Return about page HTML."""
@@ -117,6 +120,7 @@ def about():
         title=title, message=message,
         i=0, nextWeek=nextWeek)
 
+@gzipped
 @app.route('/install')
 def install():
     """Return install page HTML."""

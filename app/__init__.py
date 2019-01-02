@@ -3,6 +3,7 @@ from flask import Flask
 from flask_cas import CAS
 from flask_cors import CORS
 from flask_admin import Admin
+#from flask_gzip import Gzip
 from datetime import datetime
 from flask_bootstrap import Bootstrap
 from flask_mongoengine import MongoEngine
@@ -19,6 +20,7 @@ app.config['CAS_AFTER_LOGIN'] = 'index'
 
 cas = CAS(app)
 CORS(app)
+#Gzip(app)
 Bootstrap(app)
 
 dummy = "mongodb://heroku_t6g31fxj:8u1g6iotm21eg7r11u6ai38j20@ds013495.mlab.com:13495/heroku_t6g31fxj"
