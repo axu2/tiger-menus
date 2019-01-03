@@ -18,7 +18,6 @@ document.getElementById("date").textContent = `Menus for ${dateString}`;
 
 if (phone.matches) {
   function openNav() {
-    console.log("open-phone");
     mySideNav.style.width = "100%";
   }
   function closeNav() {
@@ -26,7 +25,6 @@ if (phone.matches) {
   }
 } else if (tablet.matches) {
   function openNav() {
-    console.log("open-tablet");
     mySideNav.style.width = "25%";
   }
   function closeNav() {
@@ -34,7 +32,6 @@ if (phone.matches) {
   }
 } else if (landscape.matches) {
   function openNav() {
-    console.log("open-landscape");
     mySideNav.style.width = "30%";
   }
   function closeNav() {
@@ -43,7 +40,6 @@ if (phone.matches) {
 } else {
 
   function openNav() {
-    console.log("open-fail");
     mySideNav.style.width = "15%";
     myBackground.style.marginRight = "15%";
     myBackground.style.width = "85%";
