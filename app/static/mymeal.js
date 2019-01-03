@@ -16,7 +16,7 @@ if (window.location.pathname.split('/')[2] !== undefined) {
 var dateString = date.toLocaleDateString('en-US', options);
 document.getElementById("date").textContent = `Menus for ${dateString}`;
 
-if (phone.matches) {
+if (window.matchMedia('(min-width: 320px) and (max-width: 480px)').matches) {
   function openNav() {
     console.log("open-good");
     mySideNav.style.width = "100%";
