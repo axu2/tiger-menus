@@ -30,7 +30,6 @@ if (phone.matches) {
 }
 
 else {
-
   function openNav() {
     mySideNav.style.width = "15%";
     myBackground.style.marginRight = "15%";

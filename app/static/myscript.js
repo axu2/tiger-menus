@@ -23,5 +23,4 @@ function openNav() {
 }
   function closeNav() {
     mySideNav.style.width = "0";
-
 }
