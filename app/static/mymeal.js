@@ -17,6 +17,7 @@ var dateString = date.toLocaleDateString('en-US', options);
 document.getElementById("date").textContent = `Menus for ${dateString}`;
 
 if (phone.matches) {
+  console.log("testing");
   function openNav() {
     mySideNav.style.width = "100%";
   }
