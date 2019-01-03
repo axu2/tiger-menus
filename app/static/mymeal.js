@@ -18,7 +18,7 @@ document.getElementById("date").textContent = `Menus for ${dateString}`;
 
 if (phone.matches) {
   function openNav() {
-    console.log("test");
+    console.log("open-good");
     mySideNav.style.width = "100%";
   }
   function closeNav() {
@@ -41,6 +41,7 @@ if (phone.matches) {
 } else {
 
   function openNav() {
+    console.log("open-fail");
     mySideNav.style.width = "15%";
     myBackground.style.marginRight = "15%";
     myBackground.style.width = "85%";
