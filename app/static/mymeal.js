@@ -16,9 +16,9 @@ if (window.location.pathname.split('/')[2] !== undefined) {
 var dateString = date.toLocaleDateString('en-US', options);
 document.getElementById("date").textContent = `Menus for ${dateString}`;
 
-if (window.matchMedia('(min-width: 320px) and (max-width: 480px)').matches) {
+if (phone.matches) {
   function openNav() {
-    console.log("open-good");
+    console.log("open-phone");
     mySideNav.style.width = "100%";
   }
   function closeNav() {
@@ -26,6 +26,7 @@ if (window.matchMedia('(min-width: 320px) and (max-width: 480px)').matches) {
   }
 } else if (tablet.matches) {
   function openNav() {
+    console.log("open-tablet");
     mySideNav.style.width = "25%";
   }
   function closeNav() {
@@ -33,6 +34,7 @@ if (window.matchMedia('(min-width: 320px) and (max-width: 480px)').matches) {
   }
 } else if (landscape.matches) {
   function openNav() {
+    console.log("open-landscape");
     mySideNav.style.width = "30%";
   }
   function closeNav() {
