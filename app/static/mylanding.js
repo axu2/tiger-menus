@@ -6,36 +6,21 @@ var mySideNav = document.getElementById("mySidenav");
 var myBackground = document.getElementById("bg");
 var myNavbar = document.getElementById("navbar");
 
-if (phone.matches) {
-  function openNav() {
+function openNav() {
+  if (phone.matches) {
     mySideNav.style.width = "100%";
-  }
-  function closeNav() {
-    mySideNav.style.width = "0";
-  }
-} else if (tablet.matches) {
-  function openNav() {
+  } else if (tablet.matches) {
     mySideNav.style.width = "25%";
-  }
-  function closeNav() {
-    mySideNav.style.width = "0";
-  }
-} else if (landscape.matches) {
-  function openNav() {
+  } else if (landscape.matches) {
     mySideNav.style.width = "30%";
-  }
-  function closeNav() {
-    mySideNav.style.width = "0";
-  }
-}
-
-else {
-  function openNav() {
+  } else {
     mySideNav.style.width = "15%";
     myBackground.style.marginRight = "15%";
     myBackground.style.width = "85%";
     myNavbar.style.width = "85%";
+    myMealContainer.style.width = "99%";
   }
+}
 
   function closeNav() {
     mySideNav.style.width = "0";

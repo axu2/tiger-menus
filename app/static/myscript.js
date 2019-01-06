@@ -4,23 +4,22 @@ var landscape = window.matchMedia('(min-width: 500px) and (max-height: 600px)');
 
 var mySideNav = document.getElementById("mySidenav");
 
-if(phone.matches) {
-  function openNav() {
-    mySideNav.style.width = "100%";
-  }
- } else if(tablet.matches) {
-  function openNav() {
-    mySideNav.style.width = "25%";
-  }
- } else if(landscape.matches){
-  function openNav() {
-    mySideNav.style.width = "30%";
-  }
- } else {
 function openNav() {
-  mySideNav.style.width = "15%";
+  if (phone.matches) {
+    mySideNav.style.width = "100%";
+  } else if (tablet.matches) {
+    mySideNav.style.width = "25%";
+  } else if (landscape.matches) {
+    mySideNav.style.width = "30%";
+  } else {
+    mySideNav.style.width = "15%";
+    myBackground.style.marginRight = "15%";
+    myBackground.style.width = "85%";
+    myNavbar.style.width = "85%";
+    myMealContainer.style.width = "99%";
   }
 }
+
   function closeNav() {
     mySideNav.style.width = "0";
 }
