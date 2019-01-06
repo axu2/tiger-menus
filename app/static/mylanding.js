@@ -28,4 +28,3 @@ function openNav() {
     myBackground.style.width = "100%";
     myNavbar.style.width = "100%";
   }
-}
