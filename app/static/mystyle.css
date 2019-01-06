@@ -18,7 +18,7 @@ body#bg {
     -webkit-transition: width 0.5s ease, margin-left .5s;
     background-color: black;
     will-change: width, margin-right;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/background_optimized.jpg") no-repeat 50% 50% fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/background_optimized.jpg") no-repeat 10% 90% fixed;
     /* background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero768.jpg") no-repeat 50% 50% fixed; */
 
 } 
