@@ -207,7 +207,7 @@ a.current {
 
 @media (min-width: 320px) and (max-width: 480px) {
     body#bg {
-        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero480.jpg") no-repeat 50% 50% fixed;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero480_2.jpg") no-repeat 50% 50% fixed;
         background-color: black;
     }
     #navbar {
