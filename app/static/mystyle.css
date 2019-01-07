@@ -30,6 +30,7 @@ body#bg:before {
     height: 100%;
     z-index: -10;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/background_optimized.jpg") no-repeat center center;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -221,7 +222,7 @@ a.current {
         height: 100%;
         z-index: -10;
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/hero480_2.jpg") no-repeat center center;
-        background-attachment: fixed;
+        background-attachment: initial;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
