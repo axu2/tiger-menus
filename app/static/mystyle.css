@@ -259,7 +259,13 @@ hr {
 .days {
     width: 100%;
     display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
     align-items: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
     justify-content: center;
     transition: width 0.5s ease;
     -moz-transition: width 0.5s ease;
