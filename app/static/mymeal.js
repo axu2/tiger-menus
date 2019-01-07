@@ -3,6 +3,10 @@ var phone = window.matchMedia('(min-width: 320px) and (max-width: 480px)');
 var tablet = window.matchMedia('(min-width: 768px) and (max-width: 1024px)');
 var landscape = window.matchMedia('(min-width: 500px) and (max-device-width : 1024px) and (max-height: 600px) and (orientation: landscape)');
 
+if (phone.matches) {
+  var options = { year: 'numeric', month: 'long', day: 'numeric' };
+}
+
 var mySideNav = document.getElementById("mySidenav");
 var myBackground = document.getElementById("bg");
 var myNavbar = document.getElementById("navbar");
@@ -13,8 +17,14 @@ if (window.location.pathname.split('/')[2] !== undefined) {
   const nextDate = date.getDate() + parseInt(window.location.pathname.split('/')[2]);
   date.setDate(nextDate);
 }
+
 var dateString = date.toLocaleDateString('en-US', options);
-document.getElementById("date").textContent = "Menus for " + dateString;
+
+if (phone.matches) {
+  document.getElementById("date").textContent = dateString;
+} else {
+  document.getElementById("date").textContent = "Menus for " + dateString;
+}
 
 function openNav() {
   if (phone.matches) {
