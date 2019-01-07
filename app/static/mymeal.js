@@ -14,7 +14,7 @@ if (window.location.pathname.split('/')[2] !== undefined) {
   date.setDate(nextDate);
 }
 var dateString = date.toLocaleDateString('en-US', options);
-document.getElementById("date").textContent = `Menus for ${dateString}`;
+document.getElementById("date").textContent = "Menus for " + dateString;
 
 function openNav() {
   if (phone.matches) {
