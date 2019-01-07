@@ -46,7 +46,13 @@ body#bg:before {
 #navbar {
     width: 100%;
     display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
     align-items: center;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-justify-content: space-between;
     justify-content: space-between;
     padding: 1.5rem;
     position: absolute;
@@ -147,12 +153,6 @@ a.current {
   */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .logoimg {
-        width: 15rem;
-        height: 2.8rem;
-        margin-top: 0.5rem;
-        margin-bottom: 1.3rem;
-    }
     a.mealofday {
         padding: 2.3rem 1rem;
         margin: 0 1vw;
