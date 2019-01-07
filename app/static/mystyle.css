@@ -147,9 +147,15 @@ a.current {
   */
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    .logoimg {
+        width: 15rem;
+        height: 2.8rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1.3rem;
+    }
     a.mealofday {
         padding: 2.3rem 1rem;
-        margin: 0 2vw;
+        margin: 0 1vw;
         font-size: 20px;
     }
     .sidebar {
