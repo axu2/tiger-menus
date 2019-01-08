@@ -69,12 +69,11 @@ def scrapeDay(m, d, y):
         'roma' : '01',
         'wucox': '02',
         'forbes' : '03',
-        # 'grad' : '04',
-        # 'cjl' : '05',
+        'grad' : '04',
+        'cjl' : '05',
         'whitman' : '08'
     }
-    halls = [prefix + i for i in ('02', '08', '01', '03')]
-    # halls = [prefix + i for i in ('02', '05', '08', '01', '03', '04')]
+    halls = [prefix + i for i in ('02', '05', '08', '01', '03', '04')]
 
     for hall in halls:
         breakfast, lunch, dinner = scrapeHall(hall)
