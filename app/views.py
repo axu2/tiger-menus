@@ -55,7 +55,6 @@ def checkForUpdate():
         day = currentDay
         update()
 
-@gzipped
 @app.route('/<meal>/<int:i>')
 def meal(meal, i):
     """Return meal HTML."""
@@ -128,12 +127,3 @@ def install():
         "install.html",
         title=title, message=message,
         i=0, nextWeek=nextWeek)
-
-"""
-@gzipped
-@app.route('/static/<path:path>')
-def serve_static(path):
-    send_from_directory('static', path)
-    response.direct_passthrough = False
-    return response
-"""
