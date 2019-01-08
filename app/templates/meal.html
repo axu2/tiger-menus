@@ -11,7 +11,7 @@
   <div class="days">
     {% for wd in nextWeek %}
     {% if loop.index0 == i %}
-    <b><a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></b>
+    <strong><a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></strong>
     {% else %}
     <a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
     {% endif %}
@@ -36,5 +36,5 @@
 
 </div>
 
-<script type="text/javascript" async src="{{ url_for('static', filename='mymeal.js') }}"></script>
+<script type="text/javascript" async src="{{ url_for('static', filename='js/mymeal.js') }}"></script>
 {% endblock %}
