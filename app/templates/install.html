@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/myabout.css')}}">
+{% endblock %}
+
+{% block app_content %}
+
+<div class="container">
+	<h3>How to install on iOS</h3>
+	<div class="row">
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/i1.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/i2.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/i3.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/i4.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<h3>How to install on Android</h3>
+	<div class="row">
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/droid1.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/droid2.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/droid3.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/droid4.png" class="img-responsive" alt="meme"></div>
+				<figcaption class="figure-caption text-center"></figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" async src="{{ url_for('static', filename='js/myscript.js') }}"></script>
+{% endblock %}

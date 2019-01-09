@@ -1,0 +1,66 @@
+h3 {
+    font-family: "Cabin", Fallback, sans-serif;
+    color: black;
+}
+
+p {
+    font-family: "Cabin", Fallback, sans-serif;
+    color: black;
+}
+
+hr {
+    border-top: 3px double #8c8b8b;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.days {
+    width: 100%;
+    display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    align-items: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -webkit-transition: width 0.5s ease;
+}
+
+a.dayofweek {
+    padding: 1rem;
+    font-family: "Cabin", Fallback, sans-serif;
+    font-size: 1.5rem;
+    color: black;
+}
+
+#date {
+    font-family: "Cabin", Fallback, sans-serif;
+    font-size: 3rem;
+    color: black;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    width: 95%;
+    border-radius: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+    transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -webkit-transition: width 0.5s ease;
+    will-change: width;
+}
+
+.col-sm-2 {
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}

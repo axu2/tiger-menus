@@ -1,0 +1,120 @@
+h3 {
+    font-family: "Cabin", Fallback, sans-serif;
+    color: black;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-family: "Cabin", Fallback, sans-serif;
+    color: black;
+}
+
+figcaption {
+    font-family: "Cabin", Fallback, sans-serif;
+    color: black;
+    padding-top: 1rem;
+    font-style: italic;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    width: 95%;
+    border-radius: 15px;
+    transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -webkit-transition: width 0.5s ease;
+    padding: 0 3rem 3rem 3rem;
+    margin: 3rem;
+}
+
+.stats {
+    padding: 3rem 3rem 1rem 3rem;
+}
+
+.about {
+    padding: 3rem;
+}
+
+.col-sm-2 {
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        width: 95%;
+        border-radius: 15px;
+        padding: 0 2rem 3rem 2rem;
+        margin: 0 0 1rem 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .stats {
+        padding: 1rem 1rem 1rem 1rem;
+    }
+    .about {
+        padding: 1rem 2rem;
+    }
+    figcaption {
+        font-size: 12px;
+        padding-top: .5rem
+    }
+    p {
+        margin: 5px;
+    }
+}
+
+@media (max-width: 767px) and (min-width: 481px) {
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        width: 95%;
+        border-radius: 15px;
+        padding: 0 2rem 3rem 2rem;
+        margin: 0 0 1rem 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .stats {
+        padding: 1rem 1rem 1rem 1rem;
+    }
+    .about {
+        padding: 1rem 2rem;
+    }
+    figcaption {
+        font-size: 12px;
+        padding-top: .5rem
+    }
+    p {
+        margin: 5px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        width: 95%;
+        border-radius: 15px;
+        padding: 0 2rem 3rem 2rem;
+        margin: 0 0 1rem 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .stats {
+        padding: 1rem 1rem 1rem 1rem;
+    }
+    .about {
+        padding: 1rem 2rem;
+    }
+    figcaption {
+        font-size: 12px;
+        padding-top: .5rem
+    }
+    p {
+        margin: 5px;
+    }
+}

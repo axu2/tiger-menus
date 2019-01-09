@@ -17,6 +17,8 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'you-will-never-guess'
 app.config['CAS_SERVER'] = 'https://fed.princeton.edu/cas'
 app.config['CAS_AFTER_LOGIN'] = 'index'
 
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 864000
+
 cas = CAS(app)
 CORS(app)
 Bootstrap(app)

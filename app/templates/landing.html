@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+{% block title %}
+TigerMenus
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/mylanding.css')}}">
+{% endblock %}
+
+{% block navbar %}
+<div id="navbar">
+  <div class="logo">
+    <a href="/landing">
+      <img class="logoimg" src="/static/logo_optimized2.png" alt="tigermenus-logo">
+    </a>
+  </div>
+
+  <div class="meals">
+    <a class="mealofday" href="/breakfast/{{i}}">Breakfast</a>
+    <a class="mealofday" href="/lunch/{{i}}">Lunch</a>
+    <a class="mealofday" href="/dinner/{{i}}">Dinner</a>
+  </div>
+
+  <div class="sidebar" onclick="openNav()">&#9776;</div>
+</div>
+<div class="jumbotron"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+<section id="landing">
+  Know what you will eat today.
+  <hr>
+  <a href="/" class="btn"><button class="button">Check Menu</button></a>
+</section>
+
+<script type="text/javascript" async src="{{ url_for('static', filename='js/mylanding.js') }}"></script>
+{% endblock %}
+{% endblock %}

@@ -1,22 +1,40 @@
 {% extends "base.html" %}
 
-{% block app_content %}
+{% block styles %}
+{{super()}}
+{% endblock %}
 
+{% block app_content %}
 <div class="container">
+  <div id="date" class="row"></div>
+
+  <div class="days">
+    {% for wd in nextWeek %}
+    {% if loop.index0 == i %}
+    <strong><a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></strong>
+    {% else %}
+    <a class="dayofweek" href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <hr>
   <div class="row">
     {% for hall in l %}
     <div class="col-sm-2">
       <h3>{{hall[0]}}</h3>
       {% for item in hall[1] %}
-          {% if item[0] == "-" %}
-            <p><b>{{ item }}</b></p>
-          {% else %}
-            <p>{{ item }}</p>
-          {% endif %}
+      {% if item[0] == "-" %}
+      <p><strong>{{ item }}</strong></p>
+      {% else %}
+      <p>{{ item }}</p>
+      {% endif %}
       {% endfor %}
     </div>
     {% endfor %}
   </div>
+
 </div>
 
+<script type="text/javascript" async src="{{ url_for('static', filename='js/mymeal.js') }}"></script>
 {% endblock %}

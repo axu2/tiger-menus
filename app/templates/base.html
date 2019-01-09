@@ -1,109 +1,101 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-  TigerMenus
+TigerMenus
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/mystyle.css')}}">
 {% endblock %}
 
 {% block metas %}
-  {{super()}}
-  <meta name="description" content="What's on the menu today at every Princeton dining hall? Visit TigerMenus to find out!">
-  <meta name="keywords" content="Princeton, tiger, menus, menu, TigerMenus, TigerMenu, Tiger Menus, Tiger Menu" />
+{{super()}}
+<meta name="description" content="What's on the menu today at every Princeton dining hall? Visit TigerMenus to find out!">
+<meta name="keywords" content="Princeton, tiger, menus, menu, TigerMenus, TigerMenu, Tiger Menus, Tiger Menu" />
 
-  <meta property="og:title" content="TigerMenus">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tigermenus.herokuapp.com/">
-  <meta property="og:image" content="https://tigermenus.herokuapp.com/static/Tigermenusv2.png">
+<meta property="og:title" content="TigerMenus">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tigermenus.herokuapp.com/">
+<meta property="og:image" content="https://tigermenus.herokuapp.com/static/Tigermenusv2.png">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png">
-  <link rel="manifest" href="/static/favicons/manifest.json">
-  <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="/static/favicons/favicon.ico">
-  <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
-  <meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32_optimized.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16_optimized.png">
+<link rel="manifest" href="/static/favicons/manifest.json">
+<link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/static/favicons/favicon.ico">
+<meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
 {% endblock %}
 
-{% block body_attribs	%}
-  style="padding-bottom: 20px;"
-{% endblock %}
+{% block body %}
 
-{% block navbar %}
-  <div class="jumbotron text-center">
-    <a href="/" style="color: #262626; text-decoration: none;"><h1>{{ title }}</h1></a>
-    <p>{{ message | safe }}</p>
-    <p>
+<body id="bg">
+  {% block navbar %}
+  <div id="navbar">
+    <div class="logo">
+      <a href="/landing">
+        <img class="logoimg" src="/static/logo_optimized2.png" alt="tigermenus-logo">
+      </a>
+    </div>
+
+    <div class="meals">
       {% if meal == 'breakfast' %}
-      <b><a href="/breakfast/{{i}}">Breakfast</a></b>&nbsp;
+      <a class="current mealofday" href="/breakfast/{{i}}">Breakfast</a>
       {% else %}
-      <a href="/breakfast/{{i}}">Breakfast</a>&nbsp;
+      <a class="mealofday" href="/breakfast/{{i}}">Breakfast</a>
       {% endif %}
-
       {% if meal == 'lunch' %}
-      <b><a href="/lunch/{{i}}">Lunch</a></b>&nbsp;
+      <a class="current mealofday" href="/lunch/{{i}}">Lunch</a>
       {% else %}
-      <a href="/lunch/{{i}}">Lunch</a>&nbsp;
+      <a class="mealofday" href="/lunch/{{i}}">Lunch</a>
       {% endif %}
-
       {% if meal == 'dinner' %}
-      <b><a href="/dinner/{{i}}">Dinner</a></b>
+      <a class="current mealofday" href="/dinner/{{i}}">Dinner</a>
       {% else %}
-      <a href="/dinner/{{i}}">Dinner</a>
+      <a class="mealofday" href="/dinner/{{i}}">Dinner</a>
       {% endif %}
-    <p>
-    <p>
-    {% for wd in nextWeek %}
-      {% if loop.index0 == i %}
-      <b><a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a></b>
-      {% else %}
-      <a href="/{{meal}}/{{loop.index0}}">{{ wd }}</a>
-      {% endif %}
-    {% endfor %}
-    </p>
-  </div>
-{% endblock %}
+    </div>
 
-{% block content %}
+    <div class="sidebar" onclick="openNav()">&#9776;</div>
+  </div>
+  <div class="jumbotron"></div>
+
+  </div>
+  {% endblock %}
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/about">About</a>
+    <a href="https://dining.princeton.edu/where-eat/hours-operation" target="_blank">Hours</a>
+    <a href="/install">Install</a>
+    <a href="https://goo.gl/forms/iwa6C95I3YJKGPpt1"
+      target="_blank">Feedback</a>
+    <a href="https://campusdining.princeton.edu/lunchtogo/" target="_blank">Bag Lunch</a>
+  </div>
+
+  {% block content %}
 
   {% block app_content %}
   {% endblock %}
 
-  <hr>
+  {% endblock %}
+  {% endblock %}
 
-  <div class="container">
-    <footer>
-      <p>To add the site to your phone's homescreen, open the <a href="/">homepage</a></p>
-      <p>On iPhone, click the <img height="24" src="/static/action.png"/> button on the bottom of Safari</p>
-      <p>On Android, click on the <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span> button on the top right of Chrome</p>
-      <p>Click "Add to Home Screen" <img src="/static/favicons/favicon-32x32.png"/></p>
-    </footer>
-  </div>
+  {% block scripts %}
+  {{ super() }}
 
-  <hr>
-
-  <div class="container">
-    <footer>
-      <p>Order a <a href="https://campusdining.princeton.edu/lunchtogo/">bag lunch!</a></p>
-      <p><a href="https://dining.princeton.edu/where-eat/hours-operation">Hours</a></p>
-      <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSd-i9YUoMUk_xJ6l3cNoSl04KKymQ8CAHID9CbwhJpgNn-2QQ/viewform?usp=sf_link">
-        Feedback
-      </a></p>
-      <a href="/finder">Food Finder</a>
-      <h4><b><a href="/about">How to Install / About</a></b></h4>
-    </footer>
-  </div>
-{% endblock %}
-
-{% block scripts %}
-    {{ super() }}
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-93565150-1', 'auto');
     ga('send', 'pageview');
-    </script>
-{% endblock %}
+  </script>
+  {% endblock %}
+</body>

@@ -73,7 +73,6 @@ def scrapeDay(m, d, y):
         'cjl' : '05',
         'whitman' : '08'
     }
-
     halls = [prefix + i for i in ('02', '05', '08', '01', '03', '04')]
 
     for hall in halls:
