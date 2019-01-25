@@ -13,9 +13,9 @@
   }
 
 body#bg {
-    transition: width 0.5s ease, margin-left .5s;
-    -moz-transition: width 0.5s ease, margin-left .5s;
-    -webkit-transition: width 0.5s ease, margin-left .5s;
+    transition: width 0.5s ease, margin-right .5s;
+    -moz-transition: width 0.5s ease, margin-right .5s;
+    -webkit-transition: width 0.5s ease, margin-right .5s;
     background-color: black;
     will-change: width, margin-right;
 } 
