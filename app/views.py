@@ -2,7 +2,7 @@ import os
 from app import app, cas
 from .models import Menu, getUser
 from datetime import datetime, timedelta
-from flask import render_template
+from flask import render_template, jsonify
 from app.scrape import scrapeWeek
 from app.test_menus import b, l, d
 
@@ -38,6 +38,7 @@ def update():
             Menu(breakfast=breakfastLists[0],
                 lunch=lunchLists[0],
                 dinner=dinnerLists[0]).save()
+
 
 
 @app.before_request
