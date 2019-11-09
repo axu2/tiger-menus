@@ -39,7 +39,7 @@ def scrapeHall(url):
 
     b = "Breakfast"
     l = "Lunch"
-    d = "Dinner"
+    d = ["Dinner", "Din"]
 
     html = requests.get(url).text
     soup = BeautifulSoup(html, 'html.parser')
@@ -50,8 +50,8 @@ def scrapeHall(url):
             breakfast = [b] + items
         elif mealName == l:
             lunch = [l] + items
-        elif mealName == d:
-            dinner = [d] + items
+        elif mealName in d:
+            dinner = ["Dinner"] + items
 
     return breakfast, lunch, dinner
 
