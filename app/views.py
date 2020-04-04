@@ -31,9 +31,6 @@ def update():
     if os.getenv('HEROKU'):
         breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
 
-        start = datetime(day.year, day.month, day.day)
-        end = start + timedelta(days=1)
-
 
 @app.before_request
 def checkForUpdate():
