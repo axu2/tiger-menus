@@ -105,3 +105,11 @@ def about():
         "index.html", meal='dinner',
         title=title, message=message,
         i=0, nextWeek=nextWeek)
+
+
+@app.route('/install')
+def install():
+    return render_template(
+        "install.html", meal='dinner',
+        title=title, message=message,
+        i=0, nextWeek=nextWeek)
