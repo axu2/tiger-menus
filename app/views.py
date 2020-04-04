@@ -101,15 +101,19 @@ def dinner0():
 @app.route('/about')
 def about():
     """Return about page HTML."""
-    return render_template(
-        "index.html", meal='dinner',
-        title=title, message=message,
-        i=0, nextWeek=nextWeek)
+    return "Coming Soon!"
 
 
 @app.route('/install')
 def install():
     return render_template(
         "install.html", meal='dinner',
+        title=title, message=message,
+        i=0, nextWeek=nextWeek)
+
+@app.route('/usage')
+def usage():
+    return render_template(
+        "usage.html", meal='dinner',
         title=title, message=message,
         i=0, nextWeek=nextWeek)
