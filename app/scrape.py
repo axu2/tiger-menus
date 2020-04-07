@@ -33,9 +33,9 @@ def floatMainEntrees(items):
 
 
 def scrapeHall(url):
-    breakfast = []
-    lunch = []
-    dinner = []
+    breakfast = ["No Data Available"]
+    lunch = ["No Data Available"]
+    dinner = ["No Data Available"]
 
     b = "Breakfast"
     l = "Lunch"
