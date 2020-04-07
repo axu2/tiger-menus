@@ -99,3 +99,6 @@ ENV/
 
 # vscode
 .vscode/
+
+# Windows
+.db
