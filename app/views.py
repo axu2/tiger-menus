@@ -12,7 +12,7 @@ lunchLists = l
 dinnerLists = d
 
 day = datetime.now()
-nextWeek = [minidays[(day.weekday() + i) % 7] for i in range(7)]
+nextWeek = []
 
 title = "Tiger Menus"
 message = ""
@@ -26,7 +26,8 @@ def update():
     global dinnerLists
     global nextWeek
 
-    nextWeek = [minidays[(day.weekday()+i) % 7] for i in range(7)]
+    i = day.weekday()
+    nextWeek = minidays[i:] + minidays[:i]
 
     if os.getenv('HEROKU'):
         breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
@@ -57,12 +58,10 @@ def meal(meal, i):
     if meal == 'dinner':
         l = dinnerLists[i]
 
-    l2 = ['Wu / Wilcox', 'CJL', 'Whitman', 'Ro / Ma', 'Forbes', 'Grad']
-
-    l3 = [(l2[j], l[j]) for j in range(6)]
+    names = ['Wu / Wilcox', 'CJL', 'Whitman', 'Ro / Ma', 'Forbes', 'Grad']
 
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
-        title=title, message=message, l=l3)
+        title=title, message=message, cols=zip(names, l))
 
 
 @app.route('/')
@@ -98,19 +97,13 @@ def dinner0():
 @app.route('/about')
 def about():
     """Return about page HTML."""
-    return "Coming Soon!"
+    return "<p>Coming Soon!</p>"
 
 
 @app.route('/install')
 def install():
-    return render_template(
-        "install.html", meal='dinner',
-        title=title, message=message,
-        i=0, nextWeek=nextWeek)
+    return render_template("install.html", message="Install Instructions")
 
 @app.route('/usage')
 def usage():
-    return render_template(
-        "usage.html", meal='dinner',
-        title=title, message=message,
-        i=0, nextWeek=nextWeek)
+    return render_template("usage.html", message="Usage Analytics")

@@ -31,25 +31,27 @@
 
 {% block navbar %}
   <div class="jumbotron text-center">
-    <a href="/" style="color: #262626; text-decoration: none;"><h1>{{ title }}</h1></a>
+    <a href="/" style="color: #262626; text-decoration: none;"><h1>{{ title or "Tiger Menus" }}</h1></a>
     <p>{{ message | safe }}</p>
     <p>
-      {% if meal == 'breakfast' %}
-      <b><a href="/breakfast/{{i}}">Breakfast</a></b>&nbsp;
-      {% else %}
-      <a href="/breakfast/{{i}}">Breakfast</a>&nbsp;
-      {% endif %}
+      {% if meal %}
+        {% if meal == 'breakfast' %}
+        <b><a href="/breakfast/{{i}}">Breakfast</a></b>&nbsp;
+        {% else %}
+        <a href="/breakfast/{{i}}">Breakfast</a>&nbsp;
+        {% endif %}
 
-      {% if meal == 'lunch' %}
-      <b><a href="/lunch/{{i}}">Lunch</a></b>&nbsp;
-      {% else %}
-      <a href="/lunch/{{i}}">Lunch</a>&nbsp;
-      {% endif %}
+        {% if meal == 'lunch' %}
+        <b><a href="/lunch/{{i}}">Lunch</a></b>&nbsp;
+        {% else %}
+        <a href="/lunch/{{i}}">Lunch</a>&nbsp;
+        {% endif %}
 
-      {% if meal == 'dinner' %}
-      <b><a href="/dinner/{{i}}">Dinner</a></b>
-      {% else %}
-      <a href="/dinner/{{i}}">Dinner</a>
+        {% if meal == 'dinner' %}
+        <b><a href="/dinner/{{i}}">Dinner</a></b>
+        {% else %}
+        <a href="/dinner/{{i}}">Dinner</a>
+        {% endif %}
       {% endif %}
     <p>
     <p>
@@ -86,8 +88,8 @@
   <div class="container">
     <footer>
       <p>Order a <a href="https://campusdining.princeton.edu/lunchtogo/">bag lunch!</a></p>
-      <p><a href="https://dining.princeton.edu/where-eat/hours-operation">Hours</a></p>
-      <p><a href="https://services.jsatech.com/index.php?cid=69">TigerCard Balance</a></p>
+      <p><a href="https://dining.princeton.edu/where-eat/hours-operation">Campus Dining Hours</a></p>
+      <p><a href="https://services.jsatech.com/login.php?cid=69">TigerCard Balance</a> (Swipes+Paw Points+Dining Points)</p>
       <p><a href="https://realtalk-princeton.tumblr.com/post/158361256664/how-do-i-get-on-the-free-food-listserv">Get on FreeFood Listserv</a></p>
     </footer>
   </div>
@@ -99,9 +101,9 @@
       <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSd-i9YUoMUk_xJ6l3cNoSl04KKymQ8CAHID9CbwhJpgNn-2QQ/viewform?usp=sf_link">
         Feedback
       </a></p>
-      <p><a href="/usage">Usage Analytics</a></b></footer></p>
+      <p><a href="/usage">Usage (Google Analytics)</a></p>
       <p><a href="https://github.com/axu2/tiger-menus">Code (GitHub)</a> Please contribute!</p>
-      <p><a href="/about">About</a></b></footer></p>
+      <p><a href="/about">About</a></p>
     </footer>
   </div>
 
@@ -112,6 +114,7 @@
       <p>Created by <a href="https://github.com/axu2">Alex Xu '20</a> (ax2)</p> 
       <p>Icon designed by <a href='https://alicepanpan.com/'>Alice Wang '19</a></p>
       <p>Named by Ji-Sung Kim '19</p>
+      <p>Other contributions by William Li '21</p>
       <p>Lauched March 12, 2017</p>
     </footer>
   </div>
