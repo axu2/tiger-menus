@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block app_content %}
+<div class="container">
+	<h1>Summary</h1>
+
+	<p>
+		<a href="/">TigerMenus</a> is a web application that presents Princeton dining hall menu options
+		<b>organized by meal</b>, unlike the <a href="https://menus.princeton.edu/dining/_Foodpro/online-menu/">official dining hall website</a>.
+	</p>
+
+	<p>
+		It's viewed nearly 2500+ times every day, and usage has been growing every semester
+		since it's launch on March 12, 2017. Now it has over 750,000+ lifetime views!
+	</p>
+
+	<h1>Motivation</h1>
+
+	<p>
+		At Princeton University, there are 6 different dining halls, each with its
+		own webpage for the menus. At some point, I got tired of opening up 6 different
+		tabs every meal just to compare menu options to decide where to eat. 
+	</p>
+
+	<p>
+		So I decided to learn Python, web scraping using BeautifulSoup, 
+		and full stack web develepment using Flask
+		to pull all the information I wanted 
+		into a single convenient site just for myself.
+	</p>
+
+	<p>
+		After posting the app to Facebook, 
+		it blew up and has since become a popular student app!
+	</p>
+
+	<p>
+		If you want, please continue this app's legacy and contribute on GitHub!
+		It's been a great way for me to learn about web development!
+	</p>
+
+	<h1>Design Decisions</h1>
+
+	<p>
+		I chose to make TigerMenus a web app to make development and maintenance a lot easier,
+		since I didn't need the features and performance of native apps. (Moreover, I wouldn't
+		have to update code after each major iOS update.)
+	</p>
+
+	<p>
+		Now through their phone's default web browser, 
+		anyone on iOS, Android, and even Windows phone 
+		can install the app to their phone!	
+	</p>
+
+	<p>
+		The column layout is designed to minimize the number of clicks a user has to do,
+		since scrolling is faster than clicking.
+	</p>
+
+	<p>
+		I intentionally used no Javascript to make the site as fast as possible to load,
+		since I originally tested this to use on my iPhone 4 in 2017.
+	</p>
+
+
+	<h1>Google Analytics</h1>
+	<div class="row">
+	<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/usage/views.jpg" class="img-responsive" alt="Views"></div>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/usage/cat.jpg" class="img-responsive" alt="Category"></div>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/usage/os.jpg" class="img-responsive" alt="OS"></div>
+			</figure>
+		</div>
+		<div class="col-sm-3">
+			<figure class="figure">
+				<div align="center"><img src="/static/usage/brand.jpg" class="img-responsive" alt="Brand"></div>
+			</figure>
+		</div>
+	</div>
+
+	<h1>Credits</h1>
+
+	<p>Created by <a href="https://github.com/axu2">Alex Xu '20</a> (ax2)</p> 
+	<p>Icon designed by <a href='https://alicepanpan.com/'>Alice Wang '19</a></p>
+	<p>Named by Ji-Sung Kim '19 and Sherry Bai '19</p>
+	<p>Other contributions by <a href="https://github.com/WillPower264">William Li '21</a></p>
+	<p>Lauched March 12, 2017</p>
+		
+</div>
+
+{% endblock %}
