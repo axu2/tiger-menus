@@ -1,7 +1,7 @@
 import os
 from app import app
 from datetime import datetime, timedelta
-from flask import render_template, jsonify
+from flask import render_template
 from app.scrape import scrapeWeek, hallToId
 from app.test_menus import b, l, d
 
@@ -92,16 +92,11 @@ def dinner0():
     return meal('dinner', 0)
 
 
-@app.route('/about')
-def about():
-    """Return about page HTML."""
-    return "<p>Coming Soon!</p>"
-
-
 @app.route('/install')
 def install():
     return render_template("install.html", message="Install Instructions")
 
-@app.route('/usage')
-def usage():
-    return render_template("usage.html", message="Usage Analytics")
+
+@app.route('/about')
+def about():
+    return render_template("about.html", message="About")
