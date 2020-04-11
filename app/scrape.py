@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
+from collections import OrderedDict
 
 
 def floatMainEntrees(items):
@@ -56,6 +57,16 @@ def scrapeHall(url):
     return breakfast, lunch, dinner
 
 
+hallToId = OrderedDict([
+    ('Wu / Wilcox', '02'),
+    ('CJL',         '05'),
+    ('Whitman',     '08'),
+    ('Ro / Ma',     '01'),
+    ('Forbes',      '03'),
+    ('Grad',        '04')
+])
+
+
 def scrapeDay(m, d, y):
     dayBreakfast = []
     dayLunch = []
@@ -64,17 +75,7 @@ def scrapeDay(m, d, y):
     prefix = "https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?"
     prefix += "dtdate={}%2F{}%2F{}&locationNum=".format(m, d, y)
 
-    # For reference
-    hallId = {
-        'roma' : '01',
-        'wucox': '02',
-        'forbes' : '03',
-        'grad' : '04',
-        'cjl' : '05',
-        'whitman' : '08'
-    }
-
-    halls = [prefix + i for i in ('02', '05', '08', '01', '03', '04')]
+    halls = [prefix + i for i in hallToId.values()]
 
     for hall in halls:
         breakfast, lunch, dinner = scrapeHall(hall)

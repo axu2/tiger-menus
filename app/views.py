@@ -2,7 +2,7 @@ import os
 from app import app
 from datetime import datetime, timedelta
 from flask import render_template, jsonify
-from app.scrape import scrapeWeek
+from app.scrape import scrapeWeek, hallToId
 from app.test_menus import b, l, d
 
 minidays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -58,10 +58,8 @@ def meal(meal, i):
     if meal == 'dinner':
         l = dinnerLists[i]
 
-    names = ['Wu / Wilcox', 'CJL', 'Whitman', 'Ro / Ma', 'Forbes', 'Grad']
-
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
-        title=title, message=message, cols=zip(names, l))
+        title=title, message=message, cols=zip(hallToId.keys(), l))
 
 
 @app.route('/')
