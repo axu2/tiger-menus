@@ -7,7 +7,7 @@
 * Optimized web app for iPhone, Android, and Windows phones using Bootstrap 3 and home screen icons 
 * Hosted at https://tigermenus.herokuapp.com/
 
-![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
+![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
 <img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png">
 
