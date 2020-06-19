@@ -1,9 +1,10 @@
 
 # TigerMenus
 
-*	Developed new university dining hall menu website with over 2000+ daily views, 425,000+ lifetime views
-*	Optimized web app for iPhone, Android, and Windows phones using Bootstrap and home screen icons 
-*	Written in Flask (Python), scraped menu data from 42 different dining hall websites using BeautifulSoup
+* Created Flask (Python) web app that presents dining hall menu options organized by meal on a single page
+* Solved problem of needing to open 6 different dining hall websites to compare options for a given meal
+* Is viewed 2500+ times a day, nearly 1 million lifetime views; scrapes menu data daily using BeautifulSoup
+* Optimized web app for iPhone, Android, and Windows phones using Bootstrap 3 and home screen icons 
 * Hosted at https://tigermenus.herokuapp.com/
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot.png)
