@@ -6,7 +6,7 @@ It's viewed nearly 2500+ times every day, and usage has been growing every semes
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
-<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png"/>
+<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png"/>
 
 # Motivation
 
