@@ -14,7 +14,7 @@ Through their phone's default web browser, anyone on iOS, Android, and even Wind
 
 At Princeton University, there are 6 different dining halls, each with its own webpage for the menus. At some point, I got tired of opening up 6 different tabs every meal just to compare menu options to decide where to eat.
 
-So I decided to learn Python, web scraping using BeautifulSoup, and full stack web develepment using Flask to pull all the information I wanted into a single convenient site just for myself.
+So I decided to learn Python, web scraping using BeautifulSoup, and full stack web development using Flask to pull all the information I wanted into a single convenient site just for myself.
 
 After posting the app to Facebook, it blew up and has since become a popular student app!
 
