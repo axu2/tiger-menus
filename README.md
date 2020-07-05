@@ -22,7 +22,7 @@ I chose to make TigerMenus a web app to make development and maintenance a lot e
 
 Now through their phone's default web browser, anyone on iOS, Android, and even Windows phone can install the app to their phone!
 
-<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png"/>
+<img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/><img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png"/>
 
 The column layout is designed to minimize the number of clicks a user has to do, since scrolling is faster than clicking.
 
@@ -32,7 +32,7 @@ I originally tested this to use on an iPhone 4 in 2017.
 
 # Analytics
 
-<img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/views.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/cat.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/os.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/brand.jpg"/>
+<img width=200 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/views.jpg"/><img width=200 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/cat.jpg"/><img width=200 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/os.jpg"/><img width=200 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/brand.jpg"/>
 
 # Credits
 
