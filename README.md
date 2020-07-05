@@ -1,15 +1,30 @@
+[TigerMenus](https://tigermenus.herokuapp.com/) is a web application that presents Princeton dining hall menu options organized by meal, unlike the official dining hall website.
 
-# TigerMenus
-
-* Created Flask (Python) web app that presents dining hall menu options organized by meal on a single page
-* Solved problem of needing to open 6 different dining hall websites to compare options for a given meal
-* Is viewed 2500+ times a day, nearly 1 million lifetime views; scrapes menu data daily using BeautifulSoup
-* Optimized web app for iPhone, Android, and Windows phones using Bootstrap 3 and home screen icons 
-* Hosted at https://tigermenus.herokuapp.com/
+It's viewed nearly 2500+ times every day, and usage has been growing every semester since its launch on March 12, 2017. Now it has nearly 1 million lifetime views!
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
 <img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png">
+
+# Motivation
+
+At Princeton University, there are 6 different dining halls, each with its own webpage for the menus. At some point, I got tired of opening up 6 different tabs every meal just to compare menu options to decide where to eat.
+
+So I decided to learn Python, web scraping using BeautifulSoup, and full stack web develepment using Flask to pull all the information I wanted into a single convenient site just for myself.
+
+After posting the app to Facebook, it blew up and has since become a popular student app!
+
+If you want, please continue this app's legacy and contribute on GitHub! It's been a great way for me to learn about web development!
+
+# Design Decisions
+
+I chose to make TigerMenus a web app to make development and maintenance a lot easier, since I didn't need the features and performance of native apps. (Moreover, I wouldn't have to update code after each major iOS update.)
+
+Now through their phone's default web browser, anyone on iOS, Android, and even Windows phone can install the app to their phone!
+
+The column layout is designed to minimize the number of clicks a user has to do, since scrolling is faster than clicking.
+
+I intentionally used no Javascript to make the site as lightweight as possible, and I originally tested this to use on my iPhone 4 in 2017.
 
 ## Setup (Python 3)
 ```
