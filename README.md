@@ -16,7 +16,7 @@ So I decided to learn Python, web scraping using BeautifulSoup, and full stack w
 
 After posting the app to Facebook, it blew up and has since become a popular student app!
 
-If you want, please continue this app's legacy and contribute on GitHub! It's been a great way for me to learn about web development!
+If you want, please continue this app's legacy and contribute on GitHub! It's been a great way for me to learn about web development and learning how to learn!
 
 # Design Decisions
 
