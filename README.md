@@ -34,6 +34,42 @@ I originally tested this to use on an iPhone 4 in 2017.
 
 <img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/views.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/cat.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/os.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/brand.jpg"/>
 
+# Credits
+
+Created by Alex Xu '20 (ax2)
+
+Icon designed by Alice Wang '19
+
+Named by Ji-Sung Kim '19 and Sherry Bai '19
+
+Other contributions by William Li '21
+
+Lauched March 12, 2017
+
+# Feedback + Reviews
+
+Please don't make this website bloated with features. The simplicity is the best part.
+
+thanks so much for creating this app! i practically use it everyday to find the best dining hall for each meal :D
+
+I use this every day! Thanks for making and maintaining it. It unironically improves my quality of life a lot.
+
+Nice job Alex and everyone involved for making a great, convenient website that is so useful!
+
+Looking at TigerMenus is one of my most enjoyable (& exciting) study breaks. :) Thanks!
+
+Saved my life given I cannot swipe into the dhalls without wasting a swipe
+
+I use this site all the time, it's a quick way to compare options.
+
+it's fantastic :) use it every day
+
+I love tigermenus! you rock! keep it up!
+
+I would cry without this.
+
+tiger menus is life <3
+
 ## Setup (Python 3)
 ```
 $ git clone https://github.com/axu2/tiger-menus.git
