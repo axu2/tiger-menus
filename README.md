@@ -30,6 +30,10 @@ I intentionally used no Javascript to make the site as lightweight as possible.
 
 I originally tested this to use on an iPhone 4 in 2017.
 
+# Analytics
+
+<img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/views.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/cat.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/os.jpg"/><img width=220 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/usage/brand.jpg"/>
+
 ## Setup (Python 3)
 ```
 $ git clone https://github.com/axu2/tiger-menus.git
