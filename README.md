@@ -6,8 +6,6 @@ It's viewed nearly 2500+ times every day, and usage has been growing every semes
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
-<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png"/>
-
 # Motivation
 
 At Princeton University, there are 6 different dining halls, each with its own webpage for the menus. At some point, I got tired of opening up 6 different tabs every meal just to compare menu options to decide where to eat.
@@ -23,6 +21,8 @@ If you want, please continue this app's legacy and contribute on GitHub! It's be
 I chose to make TigerMenus a web app to make development and maintenance a lot easier, since I didn't need the features and performance of native apps. (Moreover, I wouldn't have to update code after each major iOS update.)
 
 Now through their phone's default web browser, anyone on iOS, Android, and even Windows phone can install the app to their phone!
+
+<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/><img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png"/>
 
 The column layout is designed to minimize the number of clicks a user has to do, since scrolling is faster than clicking.
 
