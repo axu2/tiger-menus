@@ -12,6 +12,10 @@ Through their phone's default web browser, anyone on iOS, Android, and even Wind
 
 <img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/><img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png"/>
 
+On mobile, it's a simple scrolling interace, since scrolling is faster than clicking.
+
+<img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png"/>
+
 ## Setup (Python 3)
 ```
 $ git clone https://github.com/axu2/tiger-menus.git
