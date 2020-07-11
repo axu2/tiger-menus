@@ -4,7 +4,7 @@
 
 It solves the problem of needing to open 6 different websites just to compare menu options!
 
-It's viewed nearly 2500+ times every day, with nearly 1 million lifetime views!
+It's viewed 2000+ times every day, with nearly 1 million lifetime views!
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
