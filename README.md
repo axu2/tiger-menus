@@ -2,9 +2,11 @@
 
 [TigerMenus](https://tigermenus.herokuapp.com/) is a web application that presents Princeton dining hall menu options **organized by meal**, unlike the official dining hall website.
 
-It solves the problem of needing to open 6 different dining hall websites just to compare options for a given meal
+It solves the problem of needing to open 6 different websites just to compare menu options!
 
-It's viewed nearly 2500+ times every day, and usage has been growing every semester since its launch on March 12, 2017. Now it has nearly 1 million lifetime views!
+It's viewed nearly 2500+ times every day, and usage has been growing every semester since its launch on March 12, 2017. 
+
+Now it has nearly 1 million lifetime views!
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
@@ -15,6 +17,8 @@ Through their phone's default web browser, anyone on iOS, Android, and even Wind
 On mobile, it's a simple scrolling interace, since scrolling is faster than clicking.
 
 <img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png"/>
+
+Hosted at https://tigermenus.herokuapp.com/
 
 ## Setup (Python 3)
 ```
