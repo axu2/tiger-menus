@@ -18,7 +18,31 @@ On mobile, it's a simple scrolling interace, since scrolling is faster than clic
 
 Hosted at https://tigermenus.herokuapp.com/
 
-## Setup (Python 3)
+# Testimonials
+
+* Please don't make this website bloated with features. **The simplicity is the best part.**
+
+* thanks so much for creating this app! i practically use it everyday to find the best dining hall for each meal :D
+
+* I use this every day! Thanks for making and maintaining it. It unironically improves my quality of life a lot.
+
+* Nice job Alex and everyone involved for making a great, convenient website that is so useful!
+
+* Looking at TigerMenus is one of my most enjoyable (& exciting) study breaks. :) Thanks!
+
+* Saved my life given I cannot swipe into the dhalls without wasting a swipe
+
+* I use this site all the time, it's a quick way to compare options.
+
+* it's fantastic :) use it every day
+
+* I love tigermenus! you rock! keep it up!
+
+* I would cry without this.
+
+* tiger menus is life <3
+
+# Setup (Python 3)
 ```
 $ git clone https://github.com/axu2/tiger-menus.git
 $ cd tiger-menus
