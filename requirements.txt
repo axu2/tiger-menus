@@ -4,4 +4,3 @@ gunicorn==19.7.1
 requests>=2.20.0
 Flask-Cors==3.0.6
 Flask-Bootstrap==3.3.7.1
-git+https://github.com/cameronbwhite/Flask-CAS.git@v1.0.1
