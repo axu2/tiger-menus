@@ -41,4 +41,3 @@ Hosted at https://tigermenus.herokuapp.com/
 * I would cry without this.
 
 * tiger menus is life <3
-* 
