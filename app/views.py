@@ -29,7 +29,7 @@ def update():
     i = day.weekday()
     nextWeek = minidays[i:] + minidays[:i]
 
-    #if os.getenv('HEROKU'):
+    # if os.getenv('HEROKU'):
     breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
 
 
