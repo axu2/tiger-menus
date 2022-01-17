@@ -19,6 +19,12 @@ Open http://localhost:5000/
 
 By default, it loads menus from the test_menus.py file, so you don't have to wait for the server to scrape data.
 
-It takes a while to scrape 7*6=42 webpages, so page will load when scraping is done if you set a HEROKU environment variable.
+It takes a while to scrape 7*6=42 webpages, so page will load when scraping is done.
 
-In production, don't forget to set TZ='America/New_York' and HEROKU=1 environment variables.
+## Environment Variables
+
+In production, don't forget to set:
+
+```
+TZ='America/New_York' 
+```
