@@ -30,8 +30,7 @@ def update():
     nextWeek = minidays[i:] + minidays[:i]
 
     #if os.getenv('HEROKU'):
-    if true:
-        breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
+    breakfastLists, lunchLists, dinnerLists = scrapeWeek(day)
 
 
 @app.before_request
