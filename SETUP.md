@@ -24,5 +24,7 @@ It takes a while to scrape 7*6=42 webpages, so page will load when scraping is d
 In production, don't forget to set:
 
 ```
-TZ='America/New_York' 
+TZ=America/New_York 
 ```
+
+since scraping updates on the Princeton time zone.
