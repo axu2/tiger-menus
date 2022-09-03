@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime, timedelta
+from datetime import timedelta
 from bs4 import BeautifulSoup
 from collections import OrderedDict
 
@@ -63,7 +63,8 @@ hallToId = OrderedDict([
     ('Whitman',     '08'),
     ('Ro / Ma',     '01'),
     ('Forbes',      '03'),
-    ('Grad',        '04')
+    ('Yeh',         '06'),
+    ('Grad',        '04'),
 ])
 
 
@@ -94,7 +95,7 @@ def scrapeWeek(dt):
     for i in range(7):
         day = dt + timedelta(days=i)
         m, d, y = day.month, day.day, day.year
-        breakfast, lunch, dinner = scrapeDay(m,d,y)
+        breakfast, lunch, dinner = scrapeDay(m, d, y)
         weekBreakfast.append(breakfast)
         weekLunch.append(lunch)
         weekDinner.append(dinner)

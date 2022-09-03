@@ -1,7 +1,5 @@
-import os
 from flask import Flask
 from flask_cors import CORS
-from datetime import datetime
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
