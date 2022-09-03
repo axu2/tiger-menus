@@ -8,11 +8,11 @@ It's viewed 2000+ times every day, with nearly 1 million lifetime views!
 
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
-Through their phone's default web browser, anyone on iOS, Android, and even Windows phone can install the app to their phone!
+Through their phone's default web browser, anyone on iOS or Android can install the app to their phone!
 
-<img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/><img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/windows.png"/>
+<img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphoneicon.png"/><img width=250 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/androidicon.png"/>
 
-On mobile, it's a simple scrolling interace, since scrolling is faster than clicking.
+On mobile, it's a simple scrolling interface, since scrolling is faster than clicking.
 
 <img width=300 src="https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/iphone.png"/>
 
