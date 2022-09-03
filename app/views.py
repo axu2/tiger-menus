@@ -1,6 +1,6 @@
 import os
 from app import app
-from datetime import datetime, timedelta
+from datetime import datetime
 from flask import render_template
 from app.scrape import scrapeWeek, hallToId
 from app.test_menus import b, l, d
@@ -59,7 +59,7 @@ def meal(meal, i):
         l = dinnerLists[i]
 
     return render_template("meal.html", meal=meal, i=i, nextWeek=nextWeek,
-        title=title, message=message, cols=zip(hallToId.keys(), l))
+                           title=title, message=message, cols=zip(hallToId.keys(), l))
 
 
 @app.route('/')
