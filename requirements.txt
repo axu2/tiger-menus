@@ -4,3 +4,5 @@ gunicorn==19.7.1
 requests>=2.20.0
 Flask-Cors==3.0.9
 Flask-Bootstrap==3.3.7.1
+jinja2==3.0
+itsdangerous==2.0.1
