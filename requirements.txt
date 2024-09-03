@@ -2,5 +2,5 @@ Flask==2.3.2
 bs4==0.0.1
 gunicorn==22.0.0
 requests>=2.20.0
-Flask-Cors==4.0.1
+Flask-Cors==5.0.0
 Flask-Bootstrap==3.3.7.1
