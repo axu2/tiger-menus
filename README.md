@@ -6,6 +6,8 @@ It solves the problem of needing to open 6 different websites just to compare me
 
 It's viewed 2000+ times every day, with nearly 1 million lifetime views!
 
+Hosting is provided by the University via TigerApps. https://tigerapps.org
+
 ![desktop](https://raw.githubusercontent.com/axu2/tiger_menus/master/app/static/screenshot2019.png)
 
 Through their phone's default web browser, anyone on iOS, Android, and even Windows phone can install the app to their phone!
