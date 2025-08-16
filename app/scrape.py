@@ -42,17 +42,21 @@ def scrapeHall(url):
     l = "Lunch"
     d = ["Dinner", "Din"]
 
-    html = requests.get(url).text
-    soup = BeautifulSoup(html, 'html.parser')
-    for card in soup.findAll(class_="card"):
-        mealName = card.h5.text
-        items = floatMainEntrees(list(card.ul.stripped_strings))
-        if mealName == b:
-            breakfast = [b] + items
-        elif mealName == l:
-            lunch = [l] + items
-        elif mealName in d:
-            dinner = ["Dinner"] + items
+    try:
+        html = requests.get(url).text
+        soup = BeautifulSoup(html, 'html.parser')
+        for card in soup.findAll(class_="card"):
+            mealName = card.h5.text
+            items = floatMainEntrees(list(card.ul.stripped_strings))
+            if mealName == b:
+                breakfast = [b] + items
+            elif mealName == l:
+                lunch = [l] + items
+            elif mealName in d:
+                dinner = ["Dinner"] + items
+    except Exception as e:
+        print(e)
+        pass
 
     return breakfast, lunch, dinner
 
