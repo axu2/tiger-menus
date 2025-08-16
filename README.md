@@ -2,7 +2,7 @@
 
 (2017-2025)
 
-**Update 2025:** Campus dining finally changed the website, so this application no longer runs.
+**Update July 20, 2025:** Campus dining finally changed the website, so this application no longer work, fix it yourself!
 
 [TigerMenus](https://tigermenus.herokuapp.com/) is a web application started in 2017 that presents Princeton dining hall menu options **organized by meal**, unlike the official dining hall website.
 
