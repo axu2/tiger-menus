@@ -43,7 +43,7 @@ def scrapeHall(url):
     d = ["Dinner", "Din"]
 
     try:
-        html = requests.get(url).text
+        html = requests.get(url).textt
         soup = BeautifulSoup(html, 'html.parser')
         for card in soup.findAll(class_="card"):
             mealName = card.find(class_='card-header').contents[0].strip()
@@ -63,7 +63,7 @@ def scrapeHall(url):
                 dinner = ["Dinner"] + items
     except Exception as e:
         print(e)
-        pass
+        return ['Error'], ['Error'], ['Error']
 
     return breakfast, lunch, dinner
 
