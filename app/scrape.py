@@ -34,7 +34,6 @@ def floatMainEntrees(items):
 
 
 def scrapeHall(url):
-    print(url)
     breakfast = ["No Data Available"]
     lunch = ["No Data Available"]
     dinner = ["No Data Available"]
@@ -113,3 +112,4 @@ def scrapeWeek(dt):
         weekDinner.append(dinner)
 
     return weekBreakfast, weekLunch, weekDinner
+
