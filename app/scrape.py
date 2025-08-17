@@ -43,7 +43,7 @@ def scrapeHall(url):
     d = ["Dinner", "Din"]
 
     try:
-        html = requests.get(url).textt
+        html = requests.get(url).text
         soup = BeautifulSoup(html, 'html.parser')
         for card in soup.findAll(class_="card"):
             mealName = card.find(class_='card-header').contents[0].strip()
